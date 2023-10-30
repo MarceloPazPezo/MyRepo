@@ -1,0 +1,288 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+
+
+\begin{document}
+
+\imagenlogo{img/logoUBB.png} % Logo Universidad
+\universidad{Universidad del Bío-Bío pepito5} % Universidad
+\titulo{SQL en PostgreSQL} % Titulo
+\asignatura{Base de Datos 1} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+} % Autor
+\portada % Crear portada
+\margenes % Crear márgenes
+
+
+\section{Teoria}
+\indent
+Pequeño apunte hecho en clase, y pasado en limpio a LaTeX sobre algunos comandos para PostgreSQL.
+
+\subsection{Seleccionar todos los atributos de una tabla}
+\indent
+Para seleccionar todos los atributos de una tabla se utiliza el caracter `*` en lugar de los atributos.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT *
+FROM PROPIEDAD;
+    \end{verbatim}
+\end{tcolorbox}
+
+
+\subsection{Poner alias y renombrar atributos}
+\indent
+Para seleccionar un atributo y renombrarlo se utiliza la palabra reservada `AS` seguida del nombre que se le quiere dar al atributo.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT COD_P AS CODIGO_PROPIEDAD, UBICACION
+FROM PROPIEDAD;
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{Poner alias a tablas}
+\indent
+Para ponerle un alias a una tabla solo se le agrega el nombre al lado.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.COD_P AS CODIGO_PROPIEDAD, P.UBICACION
+FROM PROPIEDAD P;
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+\subsection{Para filtrar}
+\indent
+Para filtrar se utiliza la palabra reservada `WHERE` seguida de la condición que se quiere aplicar `(AND, OR)`.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.COD_P AS CODIGO_PROPIEDAD, P.UBICACION
+FROM PROPIEDAD P
+WHERE P.TIPOPROPIEDAD='CASA' AND P.NUMDORM>2;
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+\section{Instancias de la Base de Datos}
+\begin{samepage}
+    \insertarfigura{img/TablaArrendatario.png}{2.5cm}{Tabla de instancia de Arrendatarios}{fig:Figura}
+    \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
+    \insertarfigura{img/TablaArriendo.png}{3cm}{Tabla de instancia de Arriendos}{fig:Figura}
+    \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
+    \insertarfigura{img/TablaDueño.png}{2cm}{Tabla de instancia de Dueños}{fig:Figura}
+    \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
+    \insertarfigura{img/TablaPropiedad.png}{1.7cm}{Tabla de instancia de Propiedades}{fig:Figura}
+    \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
+    \insertarfigura{img/TablaTelefono.png}{2.5cm}{Tabla de instancia de Telefonos}{fig:Figura}
+\end{samepage}
+
+\newpage
+\section{Ejercicios}
+\indent
+Resuelva las siguientes consultas:
+
+\subsection{a}
+\indent
+Muestre todos los datos de las propiedades que son de tipo casa.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT * 
+FROM PROPIEDAD P
+WHERE P.TIPOPROPIEDAD='CASA';
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{b}
+\indent
+Muestre el código y ubicación de las propiedades que tienes más de 100 mts2 construido.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.COD_P, P.UBICACION 
+FROM PROPIEDAD P
+WHERE P.MTSCONST>100;
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{c}
+\indent
+Muestre el código y ubicación de las propiedades que tengas sea de Oriente y tenga sala de estar.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.COD_P, P.UBICACION
+FROM PROPIEDAD P
+WHERE P.UBICACION='ORIENTE' AND P.SALAESTAR='SI';
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+
+\subsection{d}
+\indent
+Muestre el nombre de los dueños y código de cada propiedad.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT D.NOMBRE, P.COD_P
+FROM DUENO D, PROPIEDAD P
+WHERE D.RUTD=P.RUTD;
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{e}
+\indent
+Liste el código de las propiedades que estuvieron arrendadas en el año 2020.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT A.COD_P
+FROM ARRIENDO A
+WHERE (A.FECHAINICIO>='01/01/2020' AND A.FECHAINICIO<='31/12/2020') OR 
+(A.FECHATERM >= '01/01/2020' AND A.FECHATERM <= '31/12/2020') OR 
+(A.FECHAINICIO >= '01/01/2020' AND A.FECHATERM IS NULL);
+
+o
+
+SELECT A.COD_P
+FROM ARRIENDO A
+WHERE (A.FECHAINICIO BETWEEN '01/01/2020' AND '31/12/2020') OR
+(A.FECHATERM BETWEEN '01/01/2020' AND '31/12/2020') OR
+(A.FECHAINICIO <= '01/01/2020' AND A.FECHATERM IS NULL);
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+\subsection{f}
+\indent
+Muestra el código de las propiedades cuyo arriendo fluctua entre \$150000 y 200000 ambos inclusive.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT A.COD_P
+FROM ARRIENDO A
+WHERE A.MONTO >= 150000 AND A.MONTO <= 200000;
+
+o
+
+SELECT A.COD_P
+FROM ARRIENDO A
+WHERE A.MONTO BETWEEN 150000 AND 200000;
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{g}
+\indent
+Muestre el nombre de los arrendatorios y de los dueños, y el código de la propiedad que tienen vigente un arriendo.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT A.NOMBRE, D.NOMBRE, AR.COD_P 
+FROM DUENO D, PROPIEDAD P, ARRIENDO AR, ARRENDATARIO A
+WHERE D.RUTD = P.RUTD AND P.COD_P = AR.COD_P AND AR.RUTA = A.RUTA AND 
+AR.FECHATERM IS NULL;
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{h}
+\indent
+Muestre el nombre y dirección de los arrendatarios que son de Talca
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT A.NOMBRE, A.DIRECCION
+FROM ARRENDATARIO A
+WHERE A.DIRECCION LIKE ('%TALCA%');
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+\subsection{i}
+\indent
+Liste el código de las propiedades que ha arrendado Pedro, desde el 2020 en adelante.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT AR.COD_P
+FROM ARRIENDO AR, ARRENDATARIO A
+WHERE AR.RUTA = A.RUTA AND
+A.NOMBRE = 'PEDRO' AND AR.FECHAINICIO >= '01/01/2020';
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{j}
+\indent
+Muestre los teléfonos que tiene cada propiedad.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT T.NUMERO, T.COD_P
+FROM PROPIEDAD P, TELEFONO T
+WHERE P.COD_P = T.COD_P
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{k}
+\indent
+Muestre el nombre de las propiedades que no se encuentra con arriendo vigente.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.COD_P
+FROM PROPIEDAD P
+WHERE P.COD_P NOT IN (SELECT A.COD_P FROM ARRIENDO A
+					  WHERE A.COD_P = P.COD_P AND A.FECHATERM IS NULL);
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{l}
+\indent
+Muestra el nombre de los arrendatarios que no están arrendando actualmente.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT A.NOMBRE
+FROM ARRENDATARIO A
+WHERE A.RUTA NOT IN (SELECT AR.RUTA FROM ARRIENDO AR
+                    WHERE AR.FECHATERM IS NULL);
+    \end{verbatim}
+\end{tcolorbox}
+\end{document}

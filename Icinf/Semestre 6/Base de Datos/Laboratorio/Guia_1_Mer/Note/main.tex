@@ -1,0 +1,182 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+
+
+\begin{document}
+
+\imagenlogo{img/logoUBB.png}
+\universidad{Universidad del Bío-Bío pepito5}
+\titulo{Guia 1 MER} % Titulo
+\asignatura{Base de Datos} % asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada 
+\margenes % Crear márgenes
+
+\section{Teoria}
+\subsection{MER}
+\indent
+Modelo de datos entidad-relación está basado en un percepción del mundo real que consta de un conjunto de objetos
+básicos llamados entidades y de relaciones entre estos objetos.
+
+\subsection{Entidad}
+\indent
+Un objeto del mundo real que puede distinguirse de otros objetos, pueden tener existencia física o conceptual.
+objeto singular (persona, lugar, cosa, concepto, suceso) dentro de una empresa que hay que representar
+en una BD. Una entidad es descrita por un conjunto de atributos. Ademas una entidad posee una clave primaria (*) para 
+identificarla univocamente.
+
+\insertarfigura{img/Entidad.png}{2.5cm}{Entidad Persona con algunos atributos}{fig:Figura}
+
+\subsection{Atributo}
+\indent
+Los atributos describen propiedades que posee cada entidad.
+
+\subsection{Relacion}
+\indent
+Asociación entre dos o más entidades. Una relación puede tener atributos propios (descriptivos).
+
+\insertarfigura{img/Relacion.png}{2.5cm}{Relacion entre Persona y una Empresa}{fig:Figura}
+
+\subsection{Restriccion}
+\subsubsection{Uno a Muchos}
+\indent
+Una relación de uno a muchos (1:M) se refiere a la situación en la que un registro
+de una tabla se puede asociar a uno o varios registros de otra tabla.
+
+\insertarfigura{img/unoAMuchos.png}{3cm}{Relacion 1:M}{fig:Figura}
+
+\subsubsection{Muchos a Muchos}
+\indent
+Una relación de muchos a muchos (M:N) se refiere a la situación en la que varios 
+registros de una tabla pueden estar asociados con varios registros de otra tabla. 
+
+\insertarfigura{img/muchosAMuchos.png}{3cm}{Relacion N:M}{fig:Figura}
+
+\subsubsection{Uno a Uno}
+\indent
+Una relación de uno a uno (1:1) se refiere a la situación en la que un registro
+de una tabla está asociado con un único registro de otra tabla.
+
+\insertarfigura{img/unoAUno.png}{3cm}{Relacion 1:1}{fig:Figura}
+
+\newpage
+\subsection{Herencia}
+\indent
+Se refiere a la capacidad de una entidad de heredar atributos y relaciones de otra entidad. 
+
+\insertarfigura{img/Herencia.png}{4.5cm}{Herencia}{fig:Figura}
+
+\subsection{Dependencia}
+\indent
+Existe una relación “de dependencia en existencia” cuando se vincula un a entidad
+regular con otra que no puede existir sin la primera. Se puede observar que
+siempre la entidad regular “fuerte” tiene cardinalidad (1,1).
+
+\section{Ejercicios}
+\indent
+Para cada uno de los siguientes enunciados se pide generar el Modelo Entidad Relación, respectivo,
+considerando las entidades, relaciones, atributos, clave principal y cardinalidades entre las entidades.
+
+\subsection{Enunciado 1}
+\indent
+Los huéspedes de un hotel se alojan en una habitación, la cual tiene una valor único por tipo de
+habitación; Single, doble o suite.
+
+\insertarfigura{img/Ejercicio1.png}{4cm}{MER 1}{fig:Figura}
+
+\newpage
+\subsection{Enunciado 2}
+\indent
+Cada académico participa, durante cada semestre, en distintos proyectos: de investigación,
+extensión o capacitación. Donde para cada uno es los proyectos es necesario conocer el Jefe de
+proyecto que es uno de los académicos que participa en el proyecto.
+
+\insertarfigura{img/Ejercicio2.png}{12cm}{MER 2}{fig:Figura}
+
+\newpage
+\subsection{Enunciado 3}
+\indent
+Los alumnos memoristas de cada carrera preparan un proyecto durante su proyecto de título.
+Cada proyecto de título es guiado por uno o varios profesores.
+
+\insertarfigura{img/Ejercicio3.png}{8cm}{MER 3}{fig:Figura}
+
+\subsection{Enunciado 4}
+\indent
+Todos los docentes que dictan clases en la Universidad son contratados por una o varias
+facultades, como jornada completa, jornada parcial, media jornada. Los que son evaluados
+semestralmente.
+
+\insertarfigura{img/Ejercicio4.png}{8cm}{MER 4}{fig:Figura}
+
+\newpage
+\subsection{Enunciado 5}
+Una corredora de propiedades desea manejar las propiedades residenciales que tiene en arriendo.
+La información a manejar es la siguiente:
+\begin{enumerate}
+    \item Para cada propiedad, su ubicación, tipo (casa o departamento), número de dormitorios, número
+    de baños, sala de estar (si o no), metros cuadrados construidos y metros cuadrados de patio para
+    las casas, si cuenta con teléfono o no (y si tiene cuál es), además del dueño de la misma.
+    \item Para los dueños, su rut, nombre, dirección y teléfono.
+    \item Para los arrendatarios, su rut, nombre, dirección trabajo, teléfono trabajo.
+    \item Para cada propiedad, si ésta se encuentra arrendada, manejar quién es el arrendatario, desde
+    cuando, y a cuanto asciende el arriendo.
+    \item Interesa saber quiénes han arrendado la casa anteriormente (no sólo el arrendatario actual).
+    \item Interesa conocer cuánto tiempo ha estado arrendada una propiedad, y cuánto tiempo ha estado
+    sin arrendatario.
+\end{enumerate}
+
+\insertarfigura{img/Ejercicio5.png}{10cm}{MER 5}{fig:Figura}
+
+% \subsection{Enunciado 6}
+% La biblioteca de la Universidad del Bío-Bío desea diseñar una base de datos para manejar la
+% información de los préstamos. Los datos a registrar y requerimientos de información son los
+% siguientes:
+% \begin{enumerate}
+%     \item Para cada alumno: el rut, nombre completo, carrera que estudia y régimen de estudio (diurno o
+%     vespertino), teléfono y estado de usuario (si está o no habilitado para pedir libros).
+%     \item Para cada libro: código del ejemplar, título, estado(prestado, disponible, en mantención, de
+%     baja), el(los) autor(es) (nombre(s) y nacionalidad(es)), editorial (nombre, representante legal,
+%     dirección).
+%     \item A la biblioteca le interesa hacer consultas por títulos de libro, por autor, por editorial y
+%     año de edición.
+%     \item Para cada préstamo: código del alumno que solicita el libro, código del libro, fecha del
+%     préstamo, fecha de devolución, estado del préstamo (vigente, devuelto en fecha, devuelto con
+%     atraso, no devuelto).
+%     \item A la bibliotecaria no le interesa registrar las devoluciones, sólo le interesa que al momento
+%     en que se devuelve un ejemplar se anule (no borrar) el préstamo y en que caso de que se devuelve
+%     en fecha posterior a la devolución se sancione al alumno de acuerdo a las políticas de devolución
+%     que dicen que el alumno quedará inhabilitado para pedir libros 5 ías por cada día de atraso.
+%     \item A la biblioteca le interesa emitir un listado de alumnos morosos por carrera.
+% \end{enumerate}
+    
+% \insertarfigura{img/Ejercicio6.png}{4cm}{MER 6}{fig:Figura}
+
+% \subsection{Enunciado 7}
+
+% \begin{enumerate}
+%     \item La oficina de trabajo recibe ofertas de empleo y cada vez que esto ocurre se abre un llamado a
+%     estudiantes interesados.
+%     \item A cada llamado se le asigna un número, una descripción, la fecha de
+% aparicíon, la fecha límite de presentación al mismo y la institución que solicita el llamado.
+%     \item Los llamados pueden ser solicitados por una empresa o por una facultad. 
+%     \item Si el llamado es para una empresa se sabe el nombre de la misma y si desea figurar o no en el aviso que saldrá publicado. Cuando la oferta de empleo proviene de una facultad. 
+%     \item Para postular a un llamado, el estudiante se debe registrar, donde deben ingresar su cédula, nombre, fecha de nacimiento, dirección, email,
+% currúculum, teléfonos y la carrera que estudia.
+%     \item Se considera una sola carrera por estudiante.
+%     \item De cada estudiante inscrito al llamado se registra la fecha de inscripción al mismo.
+%     \item Los currúculum de los estudiantes presentados se envían a la empresa o facultad que ofrece el empleo, para que  ́esta
+% realice la selección.
+%     \item En caso que la empresa decida no contratar a nadie el llamado se declara
+% como desierto y se registra el motivo de tal situación para tenerlo en cuenta en futuros llamados.
+%     \item También puede suceder que ningún estudiante se inscriba para un llamado, en cuyo caso el llamado
+% también será declarado como desierto. De lo contrario se registran los estudiantes contratados
+% en el mismo.
+% \end{enumerate}
+% \insertarfigura{img/Ejercicio7.png}{4cm}{MER 7}{fig:Figura}
+
+
+\end{document}
