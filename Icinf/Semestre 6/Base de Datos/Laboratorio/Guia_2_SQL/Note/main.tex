@@ -1,0 +1,213 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+
+
+\begin{document}
+
+\imagenlogo{img/logoUBB.png}
+\universidad{Universidad del Bío-Bío pepito5}
+\titulo{Guia 2 SQL: Consultas} % Titulo
+\asignatura{Base de Datos} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada
+\margenes % Crear márgenes
+
+\section{Teoria}
+\subsection{Subconsulta EXISTS}
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT * FROM table1
+WHERE EXISTS (SELECT *
+              FROM table2
+              WHERE table1.column = table2.column);
+    \end{verbatim}
+\end{tcolorbox}
+\indent
+*OBS: Es necesario hacer un join.
+\subsection{Subconsulta IN}
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT * FROM table1
+WHERE table1.column IN (SELECT table2.column
+                        FROM table2);
+    \end{verbatim}
+\end{tcolorbox}
+\indent
+*OBS: Es necesario que la subconsulta devuelva una sola columna a comparar.
+
+\section{Ejercicios}
+\subsection{Base de datos}
+
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+CREATE TABLE CLIENTE (
+    NCLIENTE INTEGER PRIMARY KEY,
+    NOMBRE VARCHAR(10),
+    CIUDAD VARCHAR(10)
+);
+INSERT INTO CLIENTE VALUES (1,'MARIA', 'TALCAHUANO');
+INSERT INTO CLIENTE VALUES (2,'JOSE', 'CHILLAN');
+INSERT INTO CLIENTE VALUES (3,'FRANCISCA', 'TOME');
+INSERT INTO CLIENTE VALUES (4,'GUSTAVO', 'TALCAHUANO');
+CREATE TABLE PRODUCTO (
+    COD INTEGER PRIMARY KEY,
+    DESCRIPCION VARCHAR(15),
+    TIPO VARCHAR(10),
+    PRECIO INTEGER
+);
+INSERT INTO PRODUCTO VALUES (11,'YOGURT','LACTEO', 350);
+INSERT INTO PRODUCTO VALUES (12,'MANTEQUILLA','LACTEO',
+2000);
+INSERT INTO PRODUCTO VALUES (21,'ESPIRALES','PASTA', 1200);
+INSERT INTO PRODUCTO VALUES (22,'CORBATAS','PASTA', 1200);
+INSERT INTO PRODUCTO VALUES (31,'NARANJA','FRUTA', 1800);
+CREATE TABLE VENTA (
+    NCLIENTE INTEGER,
+    COD INTEGER,
+    FECHA DATE,
+    CANTIDAD INTEGER,
+    PRIMARY KEY (NCLIENTE, COD, FECHA),
+    FOREIGN KEY (NCLIENTE) REFERENCES CLIENTE,
+    FOREIGN KEY (COD) REFERENCES PRODUCTO
+);
+INSERT INTO VENTA VALUES (1,11,'01/10/2023',4);
+INSERT INTO VENTA VALUES (1,11,'15/10/2023',1);
+INSERT INTO VENTA VALUES (2,21,'23/09/2023',4);
+INSERT INTO VENTA VALUES (2,31,'12/10/2023',1);
+INSERT INTO VENTA VALUES (1,22,'18/10/2023',6);
+INSERT INTO VENTA VALUES (3,31,'20/09/2023',3);
+INSERT INTO VENTA VALUES (3,12,'07/10/2023',8);
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+\subsection{Subconsulta 1}
+Muestre el nombre de los productos que se han vendido más de 5 unidades por venta.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.DESCRIPCION
+FROM PRODUCTO P
+WHERE EXISTS (SELECT *
+                FROM VENTA V
+                WHERE V.COD = P.COD AND V.CANTIDAD > 5);
+    \end{verbatim}
+\end{tcolorbox}
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.DESCRIPCION
+FROM PRODUCTO P
+WHERE P.COD IN (SELECT V.COD
+                FROM VENTA V
+                WHERE V.CANTIDAD > 5);
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{Subconsulta 2}
+Listar los productos que han sido vendidos a cliente de la ciudad de Talcahuano.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.COD, P.DESCRIPCION
+FROM PRODUCTO P
+WHERE EXISTS (SELECT *
+                FROM VENTA V, CLIENTE C
+                WHERE V.COD = P.COD AND C.NCLIENTE = V.NCLIENTE
+                AND C.CIUDAD ILIKE 'TALCAHUANO');
+                -- ILIKE es para ignorar mayusculas
+    \end{verbatim}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT P.COD, P.DESCRIPCION
+FROM PRODUCTO P
+WHERE P.COD IN (SELECT V.COD
+                FROM VENTA V, CLIENTE C
+                WHERE C.NCLIENTE = V.NCLIENTE 
+                AND C.CIUDAD ILIKE 'TALCAHUANO');
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+\subsection{Subconsulta 3}
+Muestre el número de los clientes que han comprado productos de tipo lácteos.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT C.NCLIENTE
+FROM CLIENTE C
+WHERE EXISTS (SELECT *
+                FROM VENTA V, PRODUCTO P
+                WHERE C.NCLIENTE = V.NCLIENTE AND V.COD = P.COD
+                AND P.TIPO = 'LACTEO');
+    \end{verbatim}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT C.NCLIENTE
+FROM CLIENTE C
+WHERE C.NCLIENTE IN (SELECT V.NCLIENTE
+                    FROM VENTA V, PRODUCTO P
+                    WHERE V.COD = P.COD AND P.TIPO = 'LACTEO');
+    \end{verbatim}
+\end{tcolorbox}
+
+\subsection{Subconsulta 4}
+Listar el nombre de los clientes que no han comprado productos.
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT C.NOMBRE
+FROM CLIENTE C
+WHERE NOT EXISTS (SELECT *
+                    FROM VENTA V
+                    WHERE V.NCLIENTE = C.NCLIENTE);
+    \end{verbatim}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+    [colback=gray!5!white,colframe=gray!75!black,fonttitle=\bfseries,title=SQL]
+    \begin{sqlcode}
+    \end{sqlcode}
+    \begin{verbatim}
+SELECT C.NOMBRE
+FROM CLIENTE C
+WHERE C.NCLIENTE NOT IN (SELECT V.NCLIENTE
+                        FROM VENTA V);
+    \end{verbatim}
+\end{tcolorbox}
+
+\newpage
+
+\end{document}
