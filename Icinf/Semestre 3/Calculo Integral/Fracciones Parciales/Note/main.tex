@@ -1,0 +1,262 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{systeme}
+\usepackage{empheq}
+\usepackage{array}
+
+\begin{document}
+
+\imagenlogo{img/logoUBB.png}
+\universidad{Universidad del Bío-Bío}
+\titulo{Fracciones Parciales} % Titulo
+\asignatura{Calculo Integral} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada
+\margenes % Crear márgenes
+
+
+\section{Teoria}
+\indent
+
+Las fracciones parciales permiten descomponer expresiones racionales complejas (en palabras mas simples fraciones irreducibles) en la suma de expresiones más simples. Para esto se deben seguir los siguientes pasos:
+\subsection{Division Sintetica (Ruffini)}
+\indent
+La division sintetica es un metodo para dividir polinomios de la forma $P(x) = a_nx^n + a_{n-1}x^{n-1} + ... + a_1x + a_0$ por un polinomio de la forma $x - r$. Para esto se debe seguir los siguientes pasos:
+
+\[
+\begin{array}{ccccc|c}
+  x^n & x^{n-1} & ... & x & x^0\\
+  &&&&&\\
+  a_n & a_{n-1} & ... & a_1 & a_0 \\ 
+  & a_n r & ... & (a_{n-1} + a_n r + ...)r & (a_1 + (a_{n-1} + a_n r + ...)r)r & r\\ 
+  \cline{1-6}
+  a_n & a_{n-1} + a_n r & ... & a_1 + (a_{n-1} + a_n r + ...)r & a_0 + (a_1 + (a_{n-1} + a_n r + ...)r)r\\
+  &&&&&\\
+  x^{n-1} & x^{n-2} & ... & x^0 & /(x-r) \\ 
+\end{array}
+\]
+Ejemplo:
+\begin{align*}
+    \frac{x^3 + 2x^2 - 5x + 6}{x-2} &= \quad \text{?} && \text{Aplicamos la division sintetica}
+\end{align*}
+\[
+\begin{array}{cccc|c}
+  x^3 & x^2 & x & x^0\\
+  &&&&\\
+  1 & 2 & -5 & 6 \\ 
+    & 2 & 8 & 6 & 2\\ 
+  \cline{1-5}
+  1 & 4 & 3 & 12 \\
+  &&&&\\
+  x^2 & x & x^0 & /(x-r)
+\end{array}
+\]
+\begin{align*}
+    \frac{x^3 + 2x^2 - 5x + 6}{x-2} &= x^2 + 4x + 3 + \frac{12}{x-2}\\
+\end{align*}
+
+\newpage
+\subsection{Descomposicion en fracciones simples}
+\subsubsection{Pasos generales}
+\begin{enumerate}
+    \item Comprobar que el grado del numerador es menor que el grado del denominador.
+\begin{align*}
+    \frac{f(x)}{g(x)} \quad \text{, donde } f(x) \text{ y } g(x) \text{ son polinomios y } \text{grado}(f(x)) < \text{grado}(g(x))
+\end{align*}
+
+    \item Factorizar el denominador.
+\begin{align*}
+    \frac{f(x)}{g(x)} = \frac{f(x)}{(ax+b)(cx^2+d)} \quad \text{, donde } a, b, c, d \in \mathbb{R}
+\end{align*}
+
+    \item Escribir la función racional como una suma de fracciones con denominadores lineales y cuadráticos irreducibles.
+\begin{align*}
+    \frac{f(x)}{(ax+b)(cx^2+d)} = \frac{A}{ax+b} + \frac{Bx+C}{cx^2+d} \quad \text{, donde } A, B \in \mathbb{R}
+\end{align*}
+
+    \item Determinar las constantes desconocidas en las fracciones parciales.
+\begin{align*}
+    \frac{f(x)}{(ax+b)(cx^2+d)} = \frac{i}{ax+b} + \frac{jx + k}{cx^2+d} \quad \text{, donde } i, j, k \in \mathbb{R}
+\end{align*}
+
+    \item Escribir la función racional como una suma de fracciones parciales.
+\begin{align*}
+    \frac{f(x)}{g(x)} = \frac{f(x)}{(ax+b)(cx^2+d)} = \frac{i}{ax+b} + \frac{jx+k}{cx^2+d} \quad \text{, donde } i, j, k \in \mathbb{R}
+\end{align*}
+
+\end{enumerate}
+
+Existen 4 casos dentro de las fracciones parciales a la hora de tener factorizados los denominadores, que son:
+
+\newpage
+\subsubsection{Caso 1: Factores lineales diferentes e irreducibles $(ax + b)$}
+\indent
+La fracción parcial toma la forma:
+\[
+    \frac{A}{ax +b} \quad \text{, donde A} \in \mathbb{R}
+\]
+Ejemplo:
+
+\begin{align*}
+    \frac{3}{(x)(x+1)} &= \frac{A}{x} + \frac{B}{x+1} && \text{Multiplicamos por el denominador} \\
+    3 &= A(x+1) + B(x) \\
+    \text{Para A tenemos que:} \\
+    3 &= A(x+1) + B(x) && \text{Evaluamos en $x=0$} \\
+    3 &= A(0+1) + B(0) \\
+    3 &= A(1) + B(0) && \text{Resolvemos el sistema de ecuaciones} \\
+    3 &= A \\
+    A &= 3 \\
+    \text{Para B tenemos que:} \\
+    3 &= A(x+1) + B(x) && \text{Evaluamos en $x=-1$} \\
+    3 &= A(-1+1) + B(-1) \\
+    3 &= A(0) + B(-1) \\
+    3 &= -B \\
+    B &= -3 \\
+    \text{Así:} \\
+    \frac{3}{(x)(x+1)} &= \frac{3}{x} - \frac{3}{x+1} && \text{Remplazamos los valores de A y B} \\
+\end{align*}
+
+\newpage
+\subsubsection{Caso 2: Factores lineales repetidos e irreducibles $(ax + b)^n$}
+\indent
+Cada término en la expansión toma la forma:
+\[
+    \frac{A_i}{(ax + b)^i} \quad \text{, donde i varía de 1 a n y cada } A_i \text{ es una constante.}
+\]
+Ejemplo:
+\begin{align*}
+    \frac{2x}{(x+1)^2} &= \frac{A}{x+1} + \frac{B}{(x+1)^2} && \text{Multiplicamos por el denominador} \\
+    2x &= A(x+1) + B && \text{Agrupamos los terminos segun su grado}\\
+    2x &= Ax + (A + B) \\
+    \text{Por Coeficientes Equivalentes tenemos:}
+\end{align*}
+
+\begin{subequations}
+    \begin{empheq}[left=\empheqlbrace]{align}
+    A x &= 2x \\
+    A + B &= 0
+    \end{empheq}
+\end{subequations}
+
+\begin{align*}
+    \text{Para la ecuacion (1a) tenemos que:} \\
+    A x &= 2x && \text{Dividimos por $x$} \\
+    A &= 2 \\
+    \text{Para la ecuacion (1b) tenemos que:} \\
+    A + B &= 0 && \text{Remplazamos el valor de A} \\
+    2 + B &= 0 && \text{Despejamos B} \\
+    B &= -2 \\
+    \text{Así:} \\
+    \frac{2x}{(x+1)^2} &= \frac{A}{x+1} + \frac{B}{(x+1)^2} && \text{Remplazamos los valores de A y B}\\
+    \frac{2x}{(x+1)^2} &= \frac{2}{x+1} - \frac{2}{(x+1)^2}\\
+\end{align*}
+\newpage
+\subsubsection{Caso 3: Denominador cuadrático diferentes e irreducible $(ax^2 + bx + c)$}
+\indent
+La fracción parcial toma la forma:
+\[
+    \frac{(Ax + B)}{(ax^2 + bx + c)} \quad \text{, donde A y B son constantes.}
+\]
+
+Ejemplo:
+\begin{align*}
+    \frac{5x + 1}{(x^2 + 1)(x^2 + 3)} &= \frac{Ax + B}{x^2 + 1} + \frac{Cx + D}{x^2 + 3} && \text{Multiplicamos por el denominador} \\
+    5x + 1 &= (Ax + B)(x^2 + 3) + (Cx + D)(x^2+1) && \text{Agrupamos segun su grado}\\
+    5x + 1 &= (A + C)x^3 + (B + D)x^2 \\ &+ (C + 3A)x + (3B +D) \\
+    \text{Por C. E. tenemos:}
+\end{align*}
+
+\begin{subequations}
+    \begin{empheq}[left=\empheqlbrace]{align}
+    0x^3 &= (A + C) x^3 \\
+    0x^2 &= (B + D)x^2 \\
+    5x &= (C + 3A)x \\
+    1 &= (3B + D)
+    \end{empheq}
+\end{subequations}
+
+\begin{align*}
+    \text{Para la ecuacion (2a) tenemos que:} \\
+    0 &= A + C && \text{Restamos $C$} \\
+    A &= -C \\
+    \text{Para la ecuacion (2b) tenemos que:} \\
+    0 &= B + D && \text{Restamos $D$} \\
+    B &= -D \\
+    \text{Para la ecuacion (2c) tenemos que:} \\
+    5 &= C + 3A && \text{Remplazamos el valor de A} \\
+    5 &= C - 3C \\
+    5 &= -2C \\
+    C &= \frac{-5}{2} \\
+    \text{Así:} \\
+    A &= -C \\
+    A &= \frac{5}{2} \\
+\end{align*}
+\begin{align*}
+    \text{Para la ecuacion (2d) tenemos que:} \\
+    1 &= 3B + D && \text{Remplazamos el valor de B} \\
+    1 &= 3(-D) + D \\
+    1 &= -2D \\
+    D &= \frac{-1}{2} \\
+    \text{Así:} \\
+    B &= -D \\
+    B &= \frac{1}{2} \\
+    \text{Luego:} \\
+    \frac{5x+1}{(x^2+1)(x^2+3)} &= \frac{Ax+B}{x^2+1} + \frac{Cx + D}{x^2+3} && \text{Remplazamos los valores}\\
+    \frac{5x+1}{(x^2+1)(x^2+3)} &= \frac{\frac{5}{2}x+\frac{1}{2}}{x^2+1} + \frac{\frac{-5}{2}x - \frac{1}{2}}{x^2+3}\\
+    \frac{5x+1}{(x^2+1)(x^2+3)} &= \frac{1}{2}\left(\frac{5x+1}{x^2+1}\right) - \frac{1}{2}\left(\frac{5x + 1}{x^2+3}\right)\\
+\end{align*}
+
+\newpage
+\subsubsection{Caso 4: Denominador cuadrático repetidos e irreducible $(ax^2 + bx + c)$}
+\indent
+La fracción parcial toma la forma:
+\[
+    \frac{(A_ix + B_i)}{(ax^2 + bx + c)^i} \quad \text{, donde i varía de 1 a n y cada } A_i, B_i \text{ es una constante.}
+\]
+
+Ejemplo:
+\begin{align*}
+    \frac{2x-4}{(x^2 + 1)^2} &= \frac{Ax + B}{x^2 + 1} + \frac{Cx + D}{(x^2 + 1)} && \text{Multiplicamos por el denominador} \\
+    2x - 4 &= (Ax + B)(x^2 + 1) + (Cx + D) && \text{Agrupamos segun su grado}\\
+    2x - 4 &= Ax^3 + Bx^2 + (C + A)x + (B + D)\\
+    \text{Por C. E. tenemos:}
+\end{align*}
+
+\begin{subequations}
+    \begin{empheq}[left=\empheqlbrace]{align}
+    0x^3 &= Ax^3 \\
+    0x^2 &= Bx^2 \\
+    2x &= (C + A)x \\
+    -4 &= (B + D)
+    \end{empheq}
+\end{subequations}
+
+\begin{align*}
+    \text{Para la ecuacion (3a) tenemos que:} \\
+    0 &= A\\
+    \text{Para la ecuacion (3b) tenemos que:} \\
+    0 &= B \\
+    \text{Para la ecuacion (3c) tenemos que:} \\
+    2 &= C + A && \text{Remplazamos el valor de A} \\
+    2 &= C \\
+    \text{Para la ecuacion (3d) tenemos que:} \\
+    -4 &= B + D && \text{Remplazamos el valor de B} \\
+    -4 &= D \\
+    \text{Luego:} \\
+    \frac{2x-4}{(x^2+1)^2} &= \frac{Ax+B}{x^2+1} + \frac{Cx + D}{(x^2+1)^2} && \text{Remplazamos los valores}\\
+    \frac{2x-4}{(x^2+1)^2} &= \frac{0x+0}{x^2+1} + \frac{2x + (-4)}{(x^2+1)^2} \\
+    \frac{2x-4}{(x^2+1)^2} &= \frac{2x - 4}{(x^2+1)^2}
+\end{align*}
+\begin{center}
+\[
+    \therefore \text{No se puede descomponer}
+\]
+\end{center}
+
+\end{document}
