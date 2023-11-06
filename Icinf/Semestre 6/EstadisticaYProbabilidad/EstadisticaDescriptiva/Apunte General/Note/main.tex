@@ -251,7 +251,7 @@ como: Cuartiles, Deciles y Percentiles.
             xlabel={Número de asignaturas reprobadas $c_i$},
             ylabel={$F_i$}
         ]
-        \addplot[color=red,mark=*] coordinates {(0,26) (1,43) (2,64) (3,75) (4,82) (5,86) (6,89) (7,90)};
+        \addplot[color=red,mark=*] coordinates { (0,26) (1,43) (2,64) (3,75) (4,82) (5,86) (6,89) (7,90)};
         \end{axis}
     \end{tikzpicture}
     \caption{Ojiva de datos \textbf{cuantitativos discretos}}
@@ -520,11 +520,11 @@ Dividen al conjunto de datos en cien partes porcentualmente iguales.
 \begin{enumerate}
     \item Para datos cuantitativos discretos:
     \begin{equation*}
-        D_k = \frac{kn}{10}
+        P_k = \frac{kn}{100}
     \end{equation*}
     \item Para datos cuantitativos continuos:
     \begin{equation*}
-        D_k = FI_k + \left(\frac{\displaystyle \frac{kn}{10} - F_{k-1}}{f_k}\right) \cdot A_k
+        P_k = FI_k + \left(\frac{\displaystyle \frac{kn}{100} - F_{k-1}}{f_k}\right) \cdot A_k
     \end{equation*}
     * $FI_k$ es la Frontera Inferior de la clase del k-esimo percentil.\\
     * $F_{k-1}$ es la frecuencia acumulada hasta la clase anterior a la clase del k-esimo percentil. \\
@@ -746,7 +746,7 @@ Si una distribución es simétrica, unimodal de forma acampanada, se dice \textb
         \node[draw, fill=white] at (axis cs:0,-0.18) {$ 99\% $};
         \end{axis}
     \end{tikzpicture}
-    \caption{Campana de Gauss}
+    \caption{Regla Empírica}
 \end{figure}
 
 \newpage
