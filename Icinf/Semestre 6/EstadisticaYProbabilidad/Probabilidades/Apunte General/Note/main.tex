@@ -1,0 +1,237 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{amsmath}
+
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+
+\begin{document}
+
+\imagenlogo{img/logoUBB.png}
+\universidad{Universidad del Bío-Bío pepito5}
+\titulo{Probabilidades} % Titulo
+\asignatura{Estadistica y Probabilidad} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada
+\margenes % Crear márgenes
+
+
+\section{Definiciones Generales}
+\begin{enumerate}
+    \item \textbf{Probabilidad:} Es la medida de la certeza de que un evento ocurra.
+    \item \textbf{Experimento Determinista:} Es aquel que al repetirlo bajo las mismas condiciones, siempre da el \textbf{mismo resultado}.
+    \item \textbf{Experimento Aleatorio:} Es aquel que al repetirlo bajo las mismas condiciones, puede dar \textbf{resultados distintos}.
+    \item \textbf{Espacio Muestral:} Es el conjunto de todos los posibles resultados de un experimento aleatorio $\Omega$.
+    \item \textbf{Evento:} Es un subconjunto del espacio muestral $A, B, C \subset \Omega$.
+\end{enumerate}
+
+\section{Teoria de Conjuntos}
+\begin{enumerate}
+    \item \textbf{Unión:} A o B o Ambos $A \cup B = \{x \in \Omega | x \in A \lor x \in B\}$
+    \item \textbf{Intersección:} A y B o resultados comunes, $A \cap B = \{x \in \Omega | x \in A \land x \in B\}$
+    \item \textbf{Vacio:} $\emptyset = \{\}$
+    \item \textbf{Mutuamente excluyente:} $A \cap B = \emptyset$
+    \item \textbf{Contenido:} $A \subseteq B \Leftrightarrow \forall x \in A \Rightarrow x \in B$
+    \item \textbf{Complemento:} $A^c = \{x \in \Omega | x \notin A\}$
+\end{enumerate}
+
+\section{Probabilidad Clásica}
+\indent
+La probabilidad de A es la proporción de $n_A$ con respecto a $n$, esto es:
+\begin{equation*}
+    P(A) = \frac{n_A}{n_{\Omega}}
+\end{equation*}
+
+\newpage
+\section{Funcion de Probabilidad}
+\indent
+Sea $\Omega$ un espacio muestral y sea $A$ un evento de $\Omega$. Se llamará función de
+probabilidad sobre el espacio muestral a $P(A)$ si satisface los siguientes axiomas:
+\begin{enumerate}
+    \item $0 \leq P(A) \leq 1 $
+    \item $P(\Omega) = 1 $
+    \item Sea $A,B,C,...$ eventos mutuamente excluyentes, entonces: \newline
+    $P(A \cup B \cup C \cup ...) = P(A) + P(B) + P(C) + ...$
+\end{enumerate}
+
+\section{Teoremas de Probabilidad}
+\subsection{Teorema 1}
+\indent
+Si vacío es el evento imposible, entonces:
+\begin{equation*}
+    P(\emptyset) = 0
+\end{equation*}
+
+\subsection{Teorema 2}
+\indent
+Sean $A$ y $B$ dos eventos cualesquiera de $\Omega$, entonces:
+\begin{equation*}
+    P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\end{equation*}
+
+\subsection{Teorema 3}
+\indent
+Sea $A$ un evento de $\Omega$, entonces:
+\begin{equation*}
+    P(A^c) = 1 - P(A)
+\end{equation*}
+
+\subsection{Teorema 4}
+\indent
+Sean $A$ y $B$ dos eventos cualesquiera de $\Omega$, entonces:
+\begin{equation*}
+    P(A \cap B^c) = P(A) - P(A \cap B)
+\end{equation*}
+
+\subsection{Teorema 5}
+\indent
+Sean $A$ y $B$ eventos de $\Omega$, tales que $A \subseteq B$, entonces:
+\begin{equation*}
+    P(A) \leq P(B)
+\end{equation*}
+\section{Propiedades de la Probabilidad}
+\begin{enumerate}
+    \item $P(A^c \cap B^c) = P((A \cup B)^c)$
+    \item $P(A^c \cup B^c) = P((A \cap B)^c)$
+\end{enumerate}
+
+\newpage
+\section{Tecnicas de Conteo}
+\subsection{Principio de Multiplicación}
+\indent
+Si un evento $A$ puede ocurrir de $n_1$ formas distintas y si para cada una de estas formas, un evento $B$ puede ocurrir de $n_2$ formas distintas, entonces el evento $A$ seguido del evento $B$ puede ocurrir de $n_1 \cdot n_2$ formas distintas.
+\subsection{Principio de Adición}
+\indent
+Si un evento $A$ puede ocurrir de $n_1$ formas distintas y si para cada una de estas formas, un evento $B$ puede ocurrir de $n_2$ formas distintas, entonces el evento $A$ o el evento $B$ puede ocurrir de $n_1 + n_2$ formas distintas.
+
+\subsection{Permutaciones (Importa el orden)}
+\indent
+Una permutación de $n$ objetos distintos es un arreglo de los $n$ objetos en una secuencia ordenada. El número de permutaciones de $n$ objetos distintos es $n!$ :
+\begin{equation*}
+    P(n, r) = \frac{n!}{(n - r)!}
+\end{equation*}
+
+\subsection{Combinaciones (No importa el orden)}
+\indent
+Una combinación de $n$ objetos distintos tomados en grupos de $r$ es un subconjunto de $r$ objetos de un conjunto de $n$ objetos distintos. El número de combinaciones de $n$ objetos distintos tomados en grupos de $r$ es:
+\begin{equation*}
+    C(n, r) = \binom{n}{r} = \frac{n!}{r!(n - r)!} \quad \text{,} \quad r \leq n
+\end{equation*}
+
+\begin{figure}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|L|L|}
+        \hline
+        \textbf{Combinaciones} & \textbf{Permutaciones} \\
+        \hline
+        abc & abc acb bca bac cab cba \\
+        bcd & bcd bdc cbd cdb dbc dcb \\
+        abd & abd adb bad bda dab dba \\
+        acd & acd adc cad cda dac dca \\
+        \hline
+    \end{tabularx}
+    \caption{Tabla ejemplo: Sea a,b,c,d elegir 3 letras a la vez}
+\end{figure}
+
+\section{Espacio muestral equiprobable}
+\indent
+Un espacio muestral $\Omega$ es equiprobable si todos los eventos elementales tienen la misma probabilidad de ocurrir. En este caso, la probabilidad de un evento $A$ es:
+\begin{equation*}
+    P(A) = \frac{\text{número de maneras de como puede ocurrir el evento A}}{\text{número de maneras de como puede ocurrir el espacio muestral } \Omega}
+\end{equation*}
+
+\newpage
+\section{Probabilidad Condicional}
+La probabilidad condicional de que $A$ ocurra, dado que ocurrió $B$, está dada por:
+\begin{equation*}
+    P(A / B) = \left\{ \begin{array}{ll}\frac{P(A \cap B)}{P(B)} & \text{,} \quad P(B) > 0 \\ 0 & \text{,} \quad P(B) = 0\end{array}\right.
+\end{equation*}
+\textbf{Obs:}
+\begin{enumerate}
+    \item La probabilidad condicional cumple todas las propiedades vistas anteriormente.
+    \begin{enumerate}
+        \item $P(\Omega/A) = 1$
+        \item $P(A \cup B / C) = P(A/C) + P(B/c)$, si $A \cap B = \emptyset$
+        \item $P(A^c/B) = 1 - P(A/B) \leftarrow$ Complemento Condicional
+    \end{enumerate}
+    
+    \item De la definición anterior se tiene que la probabilidad condicional de la
+    intersección entre $A$ y $B$ puede ser escrita como $P(A \cap B) = P(B) \cdot P(A/B)$, llamada
+    \textbf{Regla de la Multiplicación}.
+    
+    \item Por Simetría, se tiene que si $P(A) > 0$, entonces:
+    \begin{equation*}
+        P(B / A) = \left\{ \begin{array}{ll}\frac{P(B \cap A)}{P(A)} & \text{,} \quad P(A) > 0 \\ 0 & \text{,} \quad P(A) = 0\end{array}\right.
+    \end{equation*}
+    * \textbf{Obs 3.1:} La Regla de la Multiplicación se utiliza cuando se seleccionan personas
+    de un grupo o artículos de un lote \textbf{sin sustitución}. \\
+    * \textbf{Obs 3.2:} Cuando seleccionan personas de grupo o artículos de un lote \textbf{con
+    sustitución}, se dice que los eventos son independientes y en ese caso, la probabilidad
+    de la intersección de los eventos es el producto de las probabilidades.
+    
+    \item De las observaciones 2 y 3, se tiene que $ P(B) \cdot P(A/B) = P(A) \cdot P(B/A)$
+    
+    \item  La probabilidad condicional de $A$ dado $B_1,B_2, ... , B_n$ se escribe de la siguiente forma $P(A/B_1, B_2, ... , B_n)$ y se define $P(A / B_1 \cap B_2 \cap ... \cap B_n)$, cualesquiera sean los eventos $ A, B_1,B_2, ... , B_n$ tales que $P(B_1 \cap B_2 \cap ... \cap B_n ) > 0$. Un desarrollo algebraico simple
+    conduce a la Regla de la Multiplicación Generalizada, que está dada por:
+    $P(B_1 \cap B_2 \cap ... \cap B_n) = P(B_1) \cdot P(B_2/B_1) \cdot P(B_3 / B_1 \cap B_2) \cdot ... \cdot P(B_n / B_1 \cap B_2 \cap ... \cap B_{n-1})$
+    
+    \item La definición de probabilidad condicional puede extenderse para incluir
+    cualquier número de eventos que se encuentren en el espacio muestral $\Omega$. Por
+    ejemplo, puede demostrarse que para tres eventos $A$, $B$ y $C$.
+    \begin{equation*}
+        P(A / B \cap C) = \frac{P(A \cap B \cap C)}{P(B \cap C)} \quad \text{,} \quad P(B \cap C) > 0
+    \end{equation*}
+    \begin{equation*}
+        P(A \cap B / C) = \frac{P(A \cap B \cap C)}{P(C)} \quad \text{,} \quad P(C) > 0
+    \end{equation*}
+    
+\end{enumerate}
+
+\newpage
+\section{def 7 buscar nombre}
+\indent
+Diremos que los sucesos $B_1, B_2, ... , B_n$, representan una partición del
+espacio muestral $\Omega$ si:
+\begin{enumerate}
+    \item $B_i \cap B_j = \emptyset, \forall i \neq j$
+    \item $\displaystyle \bigcup_{i=1}^{n} B_i = \Omega$
+    \item $P(B_i) > 0, \quad \forall i, \text{ o bien }, \displaystyle \sum_{i=1}^{n} P(B_i) = 1 $
+\end{enumerate}
+
+\section{Teorema de la probabilidad total}
+\indent
+Sean los eventos $B_1,B_2, ... , B_n$, representan una partición del espacio muestral $\Omega$ y $A$
+un evento cualquiera de $\Omega$, entonces:
+\begin{equation*}
+    P(A) = \displaystyle \sum_{i=1}^{n} P(B_i) \cdot P(A / B_i)
+\end{equation*}
+
+\section{Teorema de Bayes}
+\indent
+Sean los eventos $B_1,B_2, ... , B_n$, representan una partición del espacio muestral $\Omega$ y $A$
+un evento cualquiera de $\Omega$, entonces:
+\begin{equation*}
+    P(B_j/A) = \displaystyle \frac{P(B_j) \cdot P(A/B_j)}{\displaystyle \sum_{i=0}^{n} P(B_i) \cdot P(A/B_i)}
+\end{equation*}
+
+\section{Independencia de Eventos}
+Dos eventos $A$ y $B$ se dicen estadísticamente independientes si se
+verifica que:
+\begin{equation*}
+    P(A \cap B) = P(A) \cdot P(B)
+\end{equation*}
+\textbf{Obs:}
+\begin{enumerate}
+    \item $P(A/B) = P(A); \quad P(A/B) = \frac{P(A \cap B)}{P(B)} = \frac{P(A) \cdot P(B)}{P(B)} = P(A)$
+    \item $P(B/A) = P(B)$
+    \item $P(A^c/B) = P(A^c)$
+    \item $P(B^c/A) = P(B^c)$
+    \item $P(A^c \cap B^c) = P(A^c) \cdot P(B^c)$
+    \item $P(A^c \cap B) = P(A^c) \cdot P(B)$
+    \item $P(A \cap B^c) = P(A) \cdot P(B^c)$
+\end{enumerate}
+
+\end{document}
