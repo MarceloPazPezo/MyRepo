@@ -16,7 +16,7 @@
 \autor{
     \indent
     Marcelo \textsc{Paz}
-}   
+}
 \portada
 \margenes % Crear márgenes
 
@@ -119,12 +119,12 @@
     \end{itemize}
     \item \textbf{Utilidad Marginal:} Es el cambio en la utilidad total que se produce al aumentar en una unidad la cantidad consumida de un bien, manteniendo constante la cantidad consumida de los demás bienes.
     \begin{align*}
-        U_m &= \frac{\Delta U}{\Delta x}
+        U_m &= \frac{\Delta U}{\Delta x} \quad \textbf{, discreta} \quad U_m = \frac{\mathrm{d} U}{\mathrm{d}x} \quad \textbf{, continua}
     \end{align*}
 
     \item \textbf{Tasa margial de sustitución (TMS):} Es la tasa a la que un consumidor está dispuesto a cambiar un bien por otro, manteniendo el mismo nivel de utilidad.\\
     \begin{equation*}
-        TMS =- \frac{U_1}{U_2} = \frac{\mathbf{d} q_2}{\mathbf{d} q_1}
+        TMS =- \frac{U_1}{U_2} = \frac{\mathrm{d} q_2}{\mathrm{d} q_1} = - \left(\frac{\partial U}{\partial q_1} / \frac{\partial U}{\partial q_2}\right) 
     \end{equation*}
 
     \item \textbf{Tasa marginal de transformación (TMT):} Es la tasa a la que un consumidor puede cambiar un bien por otro, manteniendo el mismo nivel de utilidad.\\
@@ -152,189 +152,303 @@
         \item \textbf{Paso 3:} Calcular la condición de primer orden con respecto a la variable que no se despejo.
         \item \textbf{Paso 4:} Despejar la variable que no se despejo en el paso 1.
     \end{itemize}
-    \section*{Proxima clase 7}
+
+    \newpage
+    \item \textbf{Analisis de estatica comparativa:} Es un método para analizar cómo cambia el equilibrio de un modelo económico cuando cambian los parámetros del modelo.\\
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.3]{img/Analisis.png}
+        \caption{Analisis de estatica comparativa}
+    \end{figure}
+
+    \item \textbf{Curva de Engel:} Es una curva que muestra la relación entre la cantidad demandada de un bien y el ingreso del consumidor, manteniendo constante el precio del bien y los precios de los demás bienes.\\
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \begin{axis}[ 
+                axis lines = left,
+                xlabel style={at={(rel axis cs:1.04,0)}, anchor=west},
+                ylabel style={rotate =-90 ,at={(rel axis cs:0.10,1.03)}, anchor=south},
+                xmax = 10,
+                ymax = 10,
+                height = 10cm,
+                width = 10cm,
+                xmin = 0,
+                ymin = 0,
+                xlabel = $q_x$,
+                ylabel = $Y$,
+            ]
+            \addplot [
+                domain=0:10, 
+                samples=100, 
+                color=red,
+            ]
+            {x^2/5};
+            \addplot [
+                domain=0:4, 
+                dashed,
+                samples=100, 
+                color=blue,
+            ]
+            {16/5};
+            \addplot [
+            domain=0:16/5,
+            dashed,
+            samples=100,
+            color=blue
+            ] coordinates {(4, 0) (4, 16/5)};
+            \addplot [
+                domain=0:6, 
+                dashed,
+                samples=100, 
+                color=blue,
+            ]
+            {36/5};
+            \addplot [
+            domain=0:36/5,
+            dashed,
+            samples=100,
+            color=blue
+            ] coordinates {(6, 0) (6, 36/5)};
+            \draw (axis cs:4,3.5) node[above] {${E_1}^*$};
+            \draw (axis cs:6,7.7) node[above] {${E_2}^*$};
+            \addlegendentry{$q_x = Y$}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Curva de Engel}
+    \end{figure}
+
+    \newpage
+    \item \textbf{Elasticidad:} El cambio porcentual en una variable debido a un cambio porcentual en
+    otra variable.
+    \begin{itemize}
+        \item \textbf{Elasticidad precio de la demanda:}
+        \begin{align*}
+            \mathcal{E}_D &= \frac{\%\Delta q}{\%\Delta p} \\
+            \mathcal{E}_D &= \displaystyle \frac{100 \times \left[\frac{q_{nuevo} - q_{previo}}{q_{previo}}\right]}{100 \times \left[\frac{p_{nuevo} - p_{previo}}{p_{previo}}\right]} \\
+            \mathcal{E}_D &= \frac{\Delta q/q}{\Delta p/p} \\
+            \mathcal{E}_D &= \frac{\partial q}{\partial p} \frac{p}{q}
+        \end{align*}
+        * Donde $\Delta q = q_{nuevo} - q_{previo}$ y $q = q_{previo}$ \\
+        * Donde $\Delta p = p_{nuevo} - p_{previo}$ y $p = p_{previo}$
+
+        \textbf{Los bienes tienen una demanda:}
+        \begin{itemize}
+            \item $ 0 > \mathcal{E}_D > -1$: Inelástica.
+            \item $ \mathcal{E}_D = 1$: Elasticidad unitaria.
+            \item $ \mathcal{E}_D < -1$: Elástica.
+        \end{itemize}
+
+        \item \textbf{Elasticidad renta de la demanda:}
+        \begin{align*}
+            \mathcal{E}_Y = \frac{\partial q}{\partial Y} \frac{Y}{q}
+        \end{align*}
+        \begin{itemize}
+            \item $ \mathcal{E}_Y > 0 $: Bien normal.
+            \item $ \mathcal{E}_Y < 0 $: Bien inferior.
+            \item $ \mathcal{E}_Y > 1 $: Bien de lujo.
+        \end{itemize}
+
+        \item \textbf{Elasticidad precio cruzado de la demanda:}
+        \begin{align*}
+            \mathcal{E}_{AB} = \frac{\partial q_A}{\partial p_B} \frac{p_B}{q_A}
+        \end{align*}
+        \begin{itemize}
+            \item $ \mathcal{E}_{AB} > 0 $: Bienes sustitutos en demanda.
+            \item $ \mathcal{E}_{AB} < 0 $: Bienes complementarios en demanda.
+        \end{itemize}
+
+        \item \textbf{Elasticidad precio de la oferta:}
+        \begin{align*}
+            \mathcal{E}_o = \frac{\% \text{cambio en la cantidad ofrecida}}{\% \text{cambio en el precio}} \frac{p}{q}
+            \mathcal{E}_o = \frac{\partial q}{\partial p} \frac{p}{q}
+        \end{align*}
+    \end{itemize}
+    \item 
+    \section*{Falta clase 8}
 \end{itemize}
 
-\newpage
-\section*{Clase 1}
-\section{Conceptos básicos}
-\begin{enumerate}
-    \item \textbf{Economía:} Es la ciencia que estudia la forma en que los individuos y la sociedad efectúan las elecciones y decisiones para lograr el mejor uso posible de los recursos escasos, que tienen usos alternativos, para satisfacer sus necesidades ilimitadas.\\
+% \newpage
+% \section*{Clase 1}
+% \section{Conceptos básicos}
+% \begin{enumerate}
+%     \item \textbf{Economía:} Es la ciencia que estudia la forma en que los individuos y la sociedad efectúan las elecciones y decisiones para lograr el mejor uso posible de los recursos escasos, que tienen usos alternativos, para satisfacer sus necesidades ilimitadas.\\
     
-    Enfoque de:
-    \begin{enumerate}
-        \item \textbf{Microeconómico:} estudia los comportamientos básicos de los
-        agentes económicos individuales.
-        \item \textbf{Macroeconómico:} analiza comportamientos agregados o
-        globales, y se ocupa de temas como el empleo, la inflación o el
-        producto total de una economía.
-    \end{enumerate}
+%     Enfoque de:
+%     \begin{enumerate}
+%         \item \textbf{Microeconómico:} estudia los comportamientos básicos de los
+%         agentes económicos individuales.
+%         \item \textbf{Macroeconómico:} analiza comportamientos agregados o
+%         globales, y se ocupa de temas como el empleo, la inflación o el
+%         producto total de una economía.
+%     \end{enumerate}
     
-\end{enumerate}
+% \end{enumerate}
 
-\section{Microeconomía}
-\indent
-Es la disciplina que estudia la forma en la cual
-se asignan los recursos escasos, entre los diversos usos que
-compiten por ellos, con el proposito de satisfacer parte de los
-deseos ilimitados de los individuos.\\
-Actores:
-\begin{enumerate}
-    \item \textbf{Productores:} Recursos escasos, usos alternativos y múltiples.
-    \item \textbf{Consumidores:} Necesidades múltiples, jerarquizables y progresivas. 
-    \item \textbf{Relación de intercambio.}
-\end{enumerate} 
+% \section{Microeconomía}
+% \indent
+% Es la disciplina que estudia la forma en la cual
+% se asignan los recursos escasos, entre los diversos usos que
+% compiten por ellos, con el proposito de satisfacer parte de los
+% deseos ilimitados de los individuos.\\
+% Actores:
+% \begin{enumerate}
+%     \item \textbf{Productores:} Recursos escasos, usos alternativos y múltiples.
+%     \item \textbf{Consumidores:} Necesidades múltiples, jerarquizables y progresivas. 
+%     \item \textbf{Relación de intercambio.}
+% \end{enumerate} 
 
-\subsection{Aspectos}
-\begin{enumerate}
-    \item Los precios, cantidad, demanda de factores, determinantes del
-    comportamiento.
+% \subsection{Aspectos}
+% \begin{enumerate}
+%     \item Los precios, cantidad, demanda de factores, determinantes del
+%     comportamiento.
     
-    \item Fenómenos económicos desagregados de cada agente (empresa,
-    consumidor, etc.) considerando las decisiones que toma cada uno
-    para cumplir ciertos objetivos propios y considerando algunos
-    supuestos de libre empresa o libre mercado.
-\end{enumerate}
-\subsection{Objetivos}
-\begin{enumerate}
-    \item Se considera a la microeconomía como el estudio de la asignación
-de recursos escasos frente a necesidades múltiples.
+%     \item Fenómenos económicos desagregados de cada agente (empresa,
+%     consumidor, etc.) considerando las decisiones que toma cada uno
+%     para cumplir ciertos objetivos propios y considerando algunos
+%     supuestos de libre empresa o libre mercado.
+% \end{enumerate}
+% \subsection{Objetivos}
+% \begin{enumerate}
+%     \item Se considera a la microeconomía como el estudio de la asignación
+% de recursos escasos frente a necesidades múltiples.
     
-    \item Uno de los principales objetivos de la microeconomía es analizar
-los mecanismos que establecen los precios relativos de los bienes
-y factores.
+%     \item Uno de los principales objetivos de la microeconomía es analizar
+% los mecanismos que establecen los precios relativos de los bienes
+% y factores.
     
-    \item La Microeconomía estudia el modo en que toman decisiones los
-hogares y las empresas y la forma en que interactuan.
-\end{enumerate}
+%     \item La Microeconomía estudia el modo en que toman decisiones los
+% hogares y las empresas y la forma en que interactuan.
+% \end{enumerate}
 
-\newpage
-\section{Racionalidad económica}
-\begin{enumerate}
-    \item \textbf{Costo de oportunidad:} Es el \destacar{sacrificio asociado a una decisión.} Se
-    busca maximizar o minimizar su función objetivo, sujeta a
-    restricciones. Por lo general empleamos la matemática para
-    representar estas situaciones.
+% \newpage
+% \section{Racionalidad económica}
+% \begin{enumerate}
+%     \item \textbf{Costo de oportunidad:} Es el \destacar{sacrificio asociado a una decisión.} Se
+%     busca maximizar o minimizar su función objetivo, sujeta a
+%     restricciones. Por lo general empleamos la matemática para
+%     representar estas situaciones.
     
-    \item \textbf{Consumidor:} Su objetivo es \destacar{maximizar la utilidad} derivada del consumo de bienes, sujeta a precios y restricción presupuestaria. \\
-\\
-* Por tanto, el objetivo del consumidor se encuentra en consumir o alcanzar un nivel
-de consumo determinado que nos permita llegar al nivel de utilidad
-o bienestar deseado. \\
+%     \item \textbf{Consumidor:} Su objetivo es \destacar{maximizar la utilidad} derivada del consumo de bienes, sujeta a precios y restricción presupuestaria. \\
+% \\
+% * Por tanto, el objetivo del consumidor se encuentra en consumir o alcanzar un nivel
+% de consumo determinado que nos permita llegar al nivel de utilidad
+% o bienestar deseado. \\
 
-    \item \textbf{Productor:} Su objetivo es \destacar{maximizar los beneficios} (netos) de la producción (máximo ingreso, mínimo costo). \\
-\end{enumerate}
-* \textbf{Modelos económicos:} Es capaz de explicar y predecir los acontecimientos del mundo real (la mejor aproximación).
+%     \item \textbf{Productor:} Su objetivo es \destacar{maximizar los beneficios} (netos) de la producción (máximo ingreso, mínimo costo). \\
+% \end{enumerate}
+% * \textbf{Modelos económicos:} Es capaz de explicar y predecir los acontecimientos del mundo real (la mejor aproximación).
 
-\section{Supuestos}
-\begin{enumerate}
-    \item \textbf{Ceteris paribus:} Las variables que no se están estudiando, se
-    asumen constante (no varían) durante el periodo estudiado. En otras palabras, \colorbox{yellow}{las demás cosas se mantienen} 
-    \colorbox{yellow}{constantes/iguales}.
+% \section{Supuestos}
+% \begin{enumerate}
+%     \item \textbf{Ceteris paribus:} Las variables que no se están estudiando, se
+%     asumen constante (no varían) durante el periodo estudiado. En otras palabras, \colorbox{yellow}{las demás cosas se mantienen} 
+%     \colorbox{yellow}{constantes/iguales}.
 
-    \item \textbf{Los agentes} toman decisiones para optimizar algo (maximizar o
-    minimizar).
+%     \item \textbf{Los agentes} toman decisiones para optimizar algo (maximizar o
+%     minimizar).
 
-    \item \textbf{Distinción entre economía positiva (lo que es) y economía
-    normativa (lo que debería ser).}
+%     \item \textbf{Distinción entre economía positiva (lo que es) y economía
+%     normativa (lo que debería ser).}
 
-    \item \textbf{Mercado:} Lugar físico o virtual donde se encuentran los compradores y vendedores de un bien o servicio para realizar transacciones comerciales.\\ 
-    \begin{enumerate}
-        \item \textbf{El principio de la optimización:} Los individuos tratan de elegir las
-        mejores pautas de consumo que estan a su alcance.
+%     \item \textbf{Mercado:} Lugar físico o virtual donde se encuentran los compradores y vendedores de un bien o servicio para realizar transacciones comerciales.\\ 
+%     \begin{enumerate}
+%         \item \textbf{El principio de la optimización:} Los individuos tratan de elegir las
+%         mejores pautas de consumo que estan a su alcance.
 
-        \item \textbf{El principio de equilibrio:} Los precios se ajustan hasta que la
-        cantidad que demanden los individuos de una cosa es igual a la
-        que se ofrece.
+%         \item \textbf{El principio de equilibrio:} Los precios se ajustan hasta que la
+%         cantidad que demanden los individuos de una cosa es igual a la
+%         que se ofrece.
 
-        \item \textbf{El consumidor elige la cesta de consumo} que prefiere dado el
-        conjunto de combinaciones de bienes, y la optimización que
-        puede alcanzar.
+%         \item \textbf{El consumidor elige la cesta de consumo} que prefiere dado el
+%         conjunto de combinaciones de bienes, y la optimización que
+%         puede alcanzar.
 
-        \item \textbf{Los consumidores tienen preferencias} sobre algunos bienes y servicios.
+%         \item \textbf{Los consumidores tienen preferencias} sobre algunos bienes y servicios.
         
-    \end{enumerate}
-* Lo anterior se refiere a que los consumidores, dados los precios
-de estos bienes preferirán una canasta sobre la otra.
-\end{enumerate}
+%     \end{enumerate}
+% * Lo anterior se refiere a que los consumidores, dados los precios
+% de estos bienes preferirán una canasta sobre la otra.
+% \end{enumerate}
 
-\section{Montaña de la felicidad}
-\indent
+% \section{Montaña de la felicidad}
+% \indent
 
-La montaña de la felicidad es una representación gráfica de las preferencias de un individuo.\\
-\begin{itemize}
-    \item Donde $U_5$ es la mayor utilidad y $U_1$ la menor utilidad.
-    \item Cada nivel esta limitado por la restricción presupuestaria.
-\end{itemize}
+% La montaña de la felicidad es una representación gráfica de las preferencias de un individuo.\\
+% \begin{itemize}
+%     \item Donde $U_5$ es la mayor utilidad y $U_1$ la menor utilidad.
+%     \item Cada nivel esta limitado por la restricción presupuestaria.
+% \end{itemize}
 
-\begin{equation*}
-    U_5 > U_4 > U_3 > U_2 > U_1
-\end{equation*}
+% \begin{equation*}
+%     U_5 > U_4 > U_3 > U_2 > U_1
+% \end{equation*}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{img/Mountain.png}
-    \caption{Montaña de la felicidad}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[scale=0.5]{img/Mountain.png}
+%     \caption{Montaña de la felicidad}
+% \end{figure}
 
-\section{Mercado}
+% \section{Mercado}
 
-\begin{enumerate}
-    \item \textbf{Monopolio(único vendedor):}Es una estructura de mercado
-    caracterizada por la presencia de una \destacar{única empresa}, que
-    produce un bien homogéneo y que \destacar{define sus precios}, calidad,
-    cantidad y mercado.
+% \begin{enumerate}
+%     \item \textbf{Monopolio(único vendedor):}Es una estructura de mercado
+%     caracterizada por la presencia de una \destacar{única empresa}, que
+%     produce un bien homogéneo y que \destacar{define sus precios}, calidad,
+%     cantidad y mercado.
 
-    \item \textbf{Competencia perfecta:}
-    \begin{itemize}
-        \item Aquella en que hay varios productores que \destacar{compiten en igualdad
-        de condiciones} para atraer la demanda de los consumidores.
+%     \item \textbf{Competencia perfecta:}
+%     \begin{itemize}
+%         \item Aquella en que hay varios productores que \destacar{compiten en igualdad
+%         de condiciones} para atraer la demanda de los consumidores.
 
-        \item Una economía liberal es el sistema ideal de desarrollo para los
-        mercados y lograr satisfacer al consumidor
-    \end{itemize}
+%         \item Una economía liberal es el sistema ideal de desarrollo para los
+%         mercados y lograr satisfacer al consumidor
+%     \end{itemize}
 
-\newpage
-    \item \textbf{Oligopolio:}
-    \begin{itemize}
-        \item Del griego, pocos vendedores. \destacar{Se supone que hay pocas
-        empresas, pero de tal} \destacar{forma que, ninguna de ellas puede
-        controlar totalmente el mercado.}
+% \newpage
+%     \item \textbf{Oligopolio:}
+%     \begin{itemize}
+%         \item Del griego, pocos vendedores. \destacar{Se supone que hay pocas
+%         empresas, pero de tal} \destacar{forma que, ninguna de ellas puede
+%         controlar totalmente el mercado.}
 
-        \item Hay por ello una constante lucha entre las mismas, para poder
-        llevarse la mayor parte de la cuota de mercado.
+%         \item Hay por ello una constante lucha entre las mismas, para poder
+%         llevarse la mayor parte de la cuota de mercado.
 
-        \item Así las empresas toman decisiones estratégicas, teniendo
-        encuenta las fortalezas y debilidades de la estructura empresarial
-        de cada una.        
-    \end{itemize}
+%         \item Así las empresas toman decisiones estratégicas, teniendo
+%         encuenta las fortalezas y debilidades de la estructura empresarial
+%         de cada una.        
+%     \end{itemize}
 
-    \item \textbf{Competencia monopolística:}
-    \begin{itemize}
-        \item Es una estructura de mercado caracterizada por la presencia de
-        muchas empresas que venden productos homogéneos,
-        sustitutivos cercanos, pero distintos, entre sí.
+%     \item \textbf{Competencia monopolística:}
+%     \begin{itemize}
+%         \item Es una estructura de mercado caracterizada por la presencia de
+%         muchas empresas que venden productos homogéneos,
+%         sustitutivos cercanos, pero distintos, entre sí.
 
-        \item Al tratarse de productos heterogéneos, cada productor tiene un
-        cierto poder de mercado sobre el bien que produce, por lo que la
-        competencia monopolística puede definirse como una estructura
-        de mercado intermedia entre monopolio en competencia
-        perfecta.
-    \end{itemize}
-\end{enumerate}
+%         \item Al tratarse de productos heterogéneos, cada productor tiene un
+%         cierto poder de mercado sobre el bien que produce, por lo que la
+%         competencia monopolística puede definirse como una estructura
+%         de mercado intermedia entre monopolio en competencia
+%         perfecta.
+%     \end{itemize}
+% \end{enumerate}
 
-\section{Grandes Interrogantes}
-\subsection{¿Qué y cuánto producir?}
-\indent
-Elección de bienes y servicios a ofertar según las necesidades.
+% \section{Grandes Interrogantes}
+% \subsection{¿Qué y cuánto producir?}
+% \indent
+% Elección de bienes y servicios a ofertar según las necesidades.
 
-\subsection{¿Cómo producir?}
-\indent
-Elección de la forma a utilizar para transformar los bienes.
+% \subsection{¿Cómo producir?}
+% \indent
+% Elección de la forma a utilizar para transformar los bienes.
 
-\subsection{¿Para quién producir?}
-\indent
-Decidir sobre la distribución de la producción entre los individuos.
+% \subsection{¿Para quién producir?}
+% \indent
+% Decidir sobre la distribución de la producción entre los individuos.
 
 \newpage
 \section{Ejercicios}
@@ -361,7 +475,7 @@ Entonces:
     
     \item \textbf{Paso 2:} Reemplazar la restricción en la función de utilidad.
     \begin{align*}
-        max_{q_1} (q_1) &= q_1 \cdot (200 -4q_1) \\
+        max_{q_1} (q_1 \cdot (200 -4q_1)) &= q_1 \cdot (200 -4q_1) \\
         &= 200q_1 -4 {q_1}^2
     \end{align*}
     
@@ -853,24 +967,17 @@ Entonces:
 \end{equation*}
 
 \begin{align*}
-    q_2 &= 2000 -2q_1 \\
+    q_1 &= 1000 - \frac{1}{2}q_2 \\
     \\
-    max_{q_1} (q_1 \cdot (2000 -2q_1)^2) &= {2000}^2 q_1 - 8000 {q_1}^2 + 4{q_1}^3 \\
+    max_{q_2} (1000 - \frac{1}{2}q_2) \cdot {q_2}^2 &= 1000{q_2}^2 - \frac{1}{2} {q_2}^3 \\
     \\
-    \frac{\mathrm{d} U(q_1)}{\mathrm{d}q_1} &= 4000 - 16000q_1 + 12{q_1}^2 = 0 \\
-    12{q_1}^2 - 16000q_1 + 4000 &= 0 \\
-    {q_1}^* &= \frac{16000 \pm \sqrt{16000^2 - 4(12)(4000)}}{2(12)} \\
-    &= \frac{16000 \pm \sqrt{160000000 - 19200000}}{24} \\
-    &= \frac{16000 \pm \sqrt{140800000}}{24} \\
-    &= \frac{16000 \pm 11860,5}{24} \\
-    &= \frac{27860,5}{24} = 1160,854 \quad \text{, no sirve}\\
-    &= \frac{4140,5}{24} = 172,521 \\
+    \frac{\mathrm{d} U(q_2)}{\mathrm{d}q_2} &= 2000q_2 - \frac{3}{2} {q_2}^2 = 0 \Leftrightarrow {q_2}^* = 1333,33 \\
     \\
-    {q_2}^* &= 2000 -2 \times 172,521 \\
-    &= 1654,958 \\
+    {q_1}^* &= 1000 - \frac{1}{2} \times 1333,33 \\
+    &= 333,33 \\
     \\
-    \therefore \quad U({q_1}^*, {q_2}^*) &= 172,521 \times (1654,958)^2 \\
-    &= 472.000.000
+    \therefore \quad U({q_1}^*, {q_2}^*) &= 333,33 \times {1333,33}^2 \\
+    &= 592583703,7
 \end{align*}
 
 \newpage
@@ -1073,15 +1180,15 @@ Entonces:
 \begin{align*}
     Y &= 100 - \frac{3}{5}X \\
     \\
-    max_{X} (10X \cdot (100 - \frac{3}{5}X)) &= 1000X - 30 {X}^2 \\
+    max_{X} (10X \cdot (100 - \frac{3}{5}X)) &= 1000X - 6 {X}^2 \\
     \\
-    \frac{\mathrm{d} U(X)}{\mathrm{d}X} &= 1000 - 60X = 0 \Leftrightarrow {X}^* = 16,667 \\
+    \frac{\mathrm{d} U(X)}{\mathrm{d}X} &= 1000 - 12X = 0 \Leftrightarrow {X}^* = 83,33 \\
     \\
-    {Y}^* &= 100 - \frac{3}{5} \times 16,667 \\
-    &= 90 \\
+    {Y}^* &= 100 - \frac{3}{5} \times 83,33 \\
+    &= 50 \\
     \\
-    \therefore \quad U({X}^*, {Y}^*) &= 10(16,667 \times 90) \\
-    &= 15000,3
+    \therefore \quad U({X}^*, {Y}^*) &= 10 \times (83,33 \times 50) \\
+    &= 41665,5
 \end{align*}
 
 \newpage
