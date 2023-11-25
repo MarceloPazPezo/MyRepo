@@ -72,7 +72,7 @@
     \pagestyle{fancy}
     \fancyheadoffset{1cm}
     \setlength{\headheight}{2cm}
-    \lhead{\includegraphics[scale=0.15]{img/logoUBB.png}} % Logo
+    \lhead{\includegraphics[scale=0.10]{\imagenlogo}} % Logo
     \rhead{\nouppercase{\leftmark}}
     \rfoot{\thepage}
     \cfoot{Apunte - \textbf{\titulo}}
