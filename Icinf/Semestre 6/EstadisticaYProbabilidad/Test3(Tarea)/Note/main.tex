@@ -1,0 +1,421 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+\usepackage{tabularx}
+
+
+\pgfplotsset{compat=1.18}
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+\begin{document}
+
+\imagenlogo{img/logoubb.png}
+\universidad{Universidad del Bío-Bío}
+\titulo{TAREA-220149} % Titulo
+\asignatura{Estadistica y Probabilidad} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada
+\margenes % Crear márgenes
+
+\section{Problema 1}
+\indent
+Suponga que el número de autos X, que pasan a través de una máquina lavadora, entre las 16:00 y las 17:00
+horas de un día viernes determinado, tiene la siguiente función de probabilidad:
+
+\begin{figure}[H]
+    \begin{center}
+        \begin{tabularx}{\textwidth}{|L|L|L|L|L|L|L|}
+            \hline
+            \textbf{x} & 4 & 5 & 6 & 7 & 8 & 9 \\
+            \hline
+            & & & & & & \\
+            \textbf{P(X=x)} & $\displaystyle\frac{1}{12}$ & $\displaystyle\frac{1}{12}$ & $\displaystyle\frac{1}{4}$ & $\displaystyle\frac{1}{4}$ & $\displaystyle\frac{1}{6}$ & $\displaystyle\frac{1}{6}$ \\
+            & & & & & & \\
+            \hline
+        \end{tabularx}
+        \caption{Tabla de probabilidad}
+    \end{center}
+\end{figure}
+
+Sea $g(X) = 2X - 1$ que representa la cantidad de dinero en dólares que el gerente del negocio le paga al
+encargado.
+
+Definición de evento:
+\begin{itemize}
+    \item $X$: ''Auto pasa por la lavadora''
+\end{itemize}
+
+\begin{figure}[H]
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+                xtick distance=1,
+                xlabel style={at={(rel axis cs:1.04,0)}, anchor=west},
+                xlabel={$x$},
+                ylabel style={rotate =-90 ,at={(rel axis cs:0.0,1.03)}, anchor=south},
+                ymin = 0,
+                ymax = 1,
+                xmax = 10,
+                ylabel={$P(X=x)$},
+                grid=none,
+                axis lines = left,
+                tick style={draw=none} % Esto 
+            ]
+            \addplot+[ycomb] plot coordinates
+            {(1,0) (2,0) (3,0) (4,0.08333) (5,0.08333) (6,0.25) (7,0.25) (8,0.16667) (9,0.16667)};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Representación gráfica de la función de probabilidad}
+    \end{center}
+\end{figure}
+
+\newpage
+\subsection{a}
+Encuentre las ganancias esperadas en este período de tiempo en particular.
+
+\begin{align*}
+    E(g(x)) &= \displaystyle \sum_{i=1}^{n}{g(x) \cdot P(X=x)} && \text{Remplazando} \\
+    &= (7 \cdot \frac{1}{12}) + (9 \cdot \frac{1}{12}) + (11 \cdot \frac{1}{4}) + (13 \cdot \frac{1}{4}) + (15 \cdot \frac{1}{6}) + (17 \cdot \frac{1}{6}) \\
+    &= \frac{7}{12} + \frac{9}{12} + \frac{33}{12} + \frac{39}{12} + \frac{30}{12} + \frac{34}{12} \\
+    &= \frac{154}{12} \\
+    &= 12,66666666666667
+\end{align*}
+
+Por lo tanto, las ganancias esperadas en este período de tiempo en particular son de \$12,66666666666667 aproximadamente \$13 dólares.  
+
+\subsection{b}
+¿Cuál es la probabilidad de que pasen 9 autos el día viernes entre las 16:00 y las 17:00 horas?
+
+\begin{align*}
+    P(X=9) &= \frac{1}{6}
+\end{align*}
+
+Por lo tanto, la probabilidad de que pasen 9 autos el día viernes entre las 16:00 y las 17:00 horas es de $\frac{1}{6}$.
+
+\subsection{c}
+Determine: $V(4+3X)$, $V(4)$, $E(6X)$, $E(5+5X)$, $V(9X)$.
+
+Primero se calculara $V(X) = E(X^2) - (E(X)^2)$:
+\begin{align*}
+    E(X^2) &= \sum_{i=1}^{n}{x^2 \cdot P(X=x)} && \text{Remplazando} \\
+    &= (16 \cdot \frac{1}{12}) + (25 \cdot \frac{1}{12}) + (36 \cdot \frac{1}{4}) + (49 \cdot \frac{1}{4}) + (64 \cdot \frac{1}{6}) + (81 \cdot \frac{1}{6}) \\
+    &= \frac{16}{12} + \frac{25}{12} + 9 + \frac{49}{4} + \frac{64}{6} + \frac{81}{6} \\
+    &= \frac{16}{12} + \frac{25}{12} + \frac{108}{12} + \frac{147}{12} + \frac{128}{12} + \frac{162}{12} \\
+    &= \frac{586}{12} \\
+    &= 48,83333333333333
+\end{align*}
+
+\begin{align*}
+    E(X) &= \sum_{i=1}^{n}{x \cdot P(X=x)} && \text{Remplazando} \\
+    &= (4 \cdot \frac{1}{12}) + (5 \cdot \frac{1}{12}) + (6 \cdot \frac{1}{4}) + (7 \cdot \frac{1}{4}) + (8 \cdot \frac{1}{6}) + (9 \cdot \frac{1}{6}) \\
+    &= \frac{4}{12} + \frac{5}{12} + \frac{6}{4} + \frac{7}{4} + \frac{8}{6} + \frac{9}{6} \\
+    &= \frac{4}{12} + \frac{5}{12} + \frac{18}{12} + \frac{21}{12} + \frac{16}{12} + \frac{18}{12} \\
+    &= \frac{82}{12} \\
+    &= 6,833333333333333
+\end{align*}
+
+Asi:
+\begin{align*}
+    V(X) &= E(X^2) - (E(X)^2) \\
+    &= 48,83333333333333 - (6,833333333333333)^2 \\
+    &= 48,83333333333333 - 46,69444444444444 \\
+    &= 2,138888888888889
+\end{align*}
+
+Para $V(4+3X)$:
+\begin{align*}
+    V(4+3X) &= V(4) + V(3X)  && \text{Aplicando Propiedad 1 y 3} \\
+    &= 0 + 9 \cdot V(X) && \text{Remplazando}
+    &= 9 \cdot 2,138888888888889 \\
+    &= 19,25
+\end{align*}
+
+Para $V(4)$:
+\begin{align*}
+    E(4) &= 0 && \text{Aplicando Propiedad 1}
+\end{align*}
+
+Para $E(6X)$:
+\begin{align*}
+    E(6X) &= 6 \cdot E(X) && \text{Aplicando Propiedad 2} \\
+    &= 6 \cdot 6,833333333333333 \\
+    &= 41
+\end{align*}
+
+Para $E(5+5X)$:
+\begin{align*}
+    E(5+5X) &= 5 + E(5X) && \text{Aplicando Propiedad 2} \\
+    &= 5 + 5 \cdot E(X) && \text{Aplicando Propiedad 2} \\
+    &= 5 + 5 \cdot 6,833333333333333 \\
+    &= 40,16666666666667
+\end{align*}
+
+Para $V(9X)$:
+\begin{align*}
+    V(9X) &= 81 \cdot V(X) && \text{Aplicando Propiedad 3} \\
+    &= 81 \cdot 2,138888888888889 \\
+    &= 173,25
+\end{align*}
+
+\subsection{d}
+Obtenga la f.d.a. y grafíquela.
+
+\begin{align*}
+    F(X) =
+    \displaystyle \begin{cases}
+        0 \quad \text{ , } \quad \quad x < 4\\
+        \frac{1}{12} \quad \text{, }4 \leq x < 5 \\
+        \frac{2}{12} \quad \text{, }5 \leq x < 6 \\
+        \frac{5}{12} \quad \text{, }6 \leq x < 7 \\
+        \frac{8}{12} \quad \text{, }6 \leq x < 8 \\
+        \frac{10}{12} \quad \text{, }8 \leq x < 9 \\
+        \frac{12}{12} \quad \text{, }9 \leq x < 10
+    \end{cases}
+\end{align*}
+
+
+// Hacer gráfico que si coincida
+\begin{figure}[H]
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+                xtick distance=1,
+                xlabel style={at={(rel axis cs:1.04,0)}, anchor=west},
+                xlabel={$x$},
+                ylabel style={rotate =-90 ,at={(rel axis cs:0.0,1.03)}, anchor=south},
+                ymin = 0,
+                ymax = 1.2,
+                xmax = 10,
+                ylabel={$P(X=x)$},
+                grid=none,
+                axis lines = left,
+                % tick style={draw=none} % Esto 
+            ]
+            \filldraw (0,0) circle (2pt);
+            \addplot [
+                domain=0:4, 
+                samples=100, 
+                color=blue,
+            ]
+            {0};
+            \draw (4,0) circle (2pt);
+
+            \filldraw (4,1/12) circle (2pt);
+            \addplot [
+                domain=4:5, 
+                samples=100, 
+                color=blue,
+            ]
+            {1/12};
+            \draw (5,1/12) circle (2pt);
+
+            \filldraw (5,2/12) circle (2pt);
+            \addplot [
+                domain=5:6, 
+                samples=100, 
+                color=blue,
+            ]
+            {2/12};
+            \draw (6,2/12) circle (2pt);
+
+            \filldraw (6,5/12) circle (2pt);
+            \addplot [
+                domain=6:7, 
+                samples=100, 
+                color=blue,
+            ]
+            {5/12};
+            \draw (7,5/12) circle (2pt);
+
+            \filldraw (7,8/12) circle (2pt);
+            \addplot [
+                domain=7:8, 
+                samples=100, 
+                color=blue,
+            ]
+            {8/12};
+            \draw (8,8/12) circle (2pt);
+
+            \filldraw (8,10/12) circle (2pt);
+            \addplot [
+                domain=8:9, 
+                samples=100, 
+                color=blue,
+            ]
+            {10/12};
+            \draw (9,10/12) circle (2pt);
+
+            \filldraw (9,12/12) circle (2pt);
+            \addplot [
+                domain=9:10, 
+                samples=100, 
+                color=blue,
+            ]
+            {12/12};
+
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Representación gráfica de la función de probabilidad}
+    \end{center}
+\end{figure}
+
+\subsection{e}
+Calcule: $P(X > 6)$, $P(X \leq 8)$ y $P(5 \leq X \leq 8)$.
+
+Para $P(X > 6)$:
+\begin{align*}
+    P(X > 6) &= 1 - F(6) \\
+    &= 1 - \frac{5}{12} \\
+    &= \frac{7}{12} \\
+    &= 0,5833333333333334
+\end{align*}
+
+Para $P(X \leq 8)$:
+\begin{align*}
+    P(X \leq 8) = \displaystyle \sum_{i=1}^{n}{P(X=x)} && \text{Remplazando} \\
+    &= \frac{1}{12} + \frac{1}{12} + \frac{1}{4} + \frac{1}{4} + \frac{1}{6} \\
+    &= \frac{1}{12} + \frac{1}{12} + \frac{3}{12} + \frac{3}{12} + \frac{2}{12} \\
+    &= \frac{10}{12} \\
+    &= 0,8333333333333334
+\end{align*}
+\begin{align*}
+    P(X \leq 8) &= F(8) && \text{Remplazando} \\
+    &= \frac{10}{12} \\
+    &= 0,8333333333333334
+\end{align*}
+\begin{align*}
+    P(X \leq 8) &= 1 - P(X = 9) && \text{Remplazando} \\
+    &= 1 - \frac{1}{6} \\
+    &= \frac{5}{6} \\
+    &= 0,8333333333333334
+\end{align*}
+
+Para $P(5 \leq X \leq 8)$:
+\begin{align*}
+    P(5 \leq X \leq 8) &= F(8) - F(4) && \text{Remplazando} \\
+    &= \frac{10}{12} - \frac{1}{12} \\
+    &= \frac{9}{12} \\
+    &= 0,75
+\end{align*}
+
+\newpage
+\section{Problema 2}
+\indent
+Considera la función $f(x)$ de la variable aleatoria X, que está dada por:
+\begin{align*}
+    f(x) = \begin{cases}
+        kx \quad \quad \text{, } \quad 0 \leq x < 1 \\
+        k - x \quad \text{, }\quad 1 \leq x < 2 \\
+        0 \quad \quad \quad \text{, } \quad \quad \text{e.o.c}
+    \end{cases}
+\end{align*}
+
+\subsection{a}
+Determine el valor de k para que $f(x)$ sea una función de densidad de probabilidad.
+
+Para que $f(x)$ sea una función de densidad de probabilidad, se debe cumplir que:
+\begin{align*}
+    \int_{R_x}{f(x)dx} = 1
+\end{align*}
+
+Por lo tanto es necesario calcular el valor de $k$ para que se cumpla la condición anterior:
+\begin{align*}
+    \int_{0}^{1}{(kx)dx} + \int_{1}^{2}{(k-x)dx} = 1 && \text{Aplicando la integral} \\
+    \frac{kx^2}{2} \Big|_{0}^{1} + (kx - \frac{x^2}{2}) \Big|_{1}^{2} = 1 && \text{Remplazando} \\
+    \frac{k}{2} + (2k - 2 - k + \frac{1}{2}) = 1 && \text{Despejando k}\\
+    \frac{k}{2} + (k - \frac{3}{2}) = 1 \\
+    \frac{k}{2} + k - \frac{3}{2} = 1 \\
+    \frac{3k}{2} - \frac{3}{2} = 1 \\
+    \frac{3k}{2} = \frac{5}{2} \\
+    k = \frac{5}{3}
+\end{align*}
+
+Por lo tanto, para que $f(x)$ sea una función de densidad de probabilidad:
+
+\begin{align*}
+    f(x) = \begin{cases}
+        \frac{5}{3}x \quad \quad \text{, } \quad 0 \leq x < 1 \\
+        \frac{5}{3} - x \quad \text{, }\quad 1 \leq x < 2 \\
+        0 \quad \quad \quad \text{, } \quad \quad \text{e.o.c}
+    \end{cases}
+\end{align*}
+
+\newpage
+\subsection{b}
+Grafique $f(x)$
+
+\begin{figure}[H]
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+                xtick distance=1,
+                xlabel style={at={(rel axis cs:1.04,0)}, anchor=west},
+                xlabel={$x$},
+                ylabel style={rotate =-90 ,at={(rel axis cs:0.0,1.03)}, anchor=south},
+                ymin = 0,
+                ymax = 2,
+                xmax = 2,
+                ylabel={$P(X=x)$},
+                grid=none,
+                axis lines = left,
+            ]
+            \addplot [
+                domain=0:1, 
+                samples=100, 
+                color=blue,
+            ]
+            {(5/3)*x};
+            \draw (1,5/3) circle (2pt);
+
+            \filldraw (1,5/3 - 1) circle (2pt);
+            \addplot [
+                domain=1:2, 
+                samples=100, 
+                color=blue,
+            ]
+            {(5/3) - x};
+            \draw (1,5/3 - 1) circle (2pt);
+
+            \addplot [
+                domain=2:3, 
+                samples=100, 
+                color=blue,
+            ]
+            {0};
+
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+\subsection{c}
+Calcule: $\displaystyle P\left(\frac{1}{2} \leq X \leq \frac{3}{2}\right)$  y $\displaystyle P\left(X \geq \frac{3}{8}\right)$
+
+Para $\displaystyle P\left(\frac{1}{2} \leq X \leq \frac{3}{2}\right)$:
+\begin{align*}
+    \displaystyle P\left(\frac{1}{2} \leq X \leq \frac{3}{2}\right) &= \int_{\frac{1}{2}}^{1}{(\frac{5}{3}x)dx} + \int_{1}^{\frac{3}{2}}{{(\frac{5}{3} - x)dx}} && \text{Aplicando la integral} \\
+    &= \frac{5}{6}x^2 \Big|_{\frac{1}{2}}^{1} + (\frac{5}{3}x - \frac{x^2}{2}) \Big|_{1}^{\frac{3}{2}} && \text{Remplazando} \\
+    &= \frac{5}{6} - \frac{5}{24} + (\frac{5}{2} - \frac{9}{8} - \frac{5}{3} + \frac{1}{2}) \\
+    &= \frac{20}{24} - \frac{5}{24} + (3 - \frac{67}{24}) \\
+    &= \frac{15}{24} + 3 - \frac{67}{24} \\
+    &= \frac{15}{24} + \frac{72}{24} - \frac{67}{24} \\
+    &= \frac{20}{24} \\
+    &= \frac{5}{6} \\
+    &= 0,8333333333333334
+\end{align*}
+
+Para $\displaystyle P\left(X \geq \frac{3}{8}\right)$:
+\begin{align*}
+    \displaystyle P\left(X \geq \frac{3}{8}\right) &= 1 - F(\frac{3}{8})\\
+    &= 1 - \int_{0}^{\frac{3}{8}}{(\frac{5}{3}x)dx} && \text{Aplicando la integral} \\
+    &= 1 - \frac{5}{6}x^2 \Big|_{0}^{\frac{3}{8}} && \text{Remplazando} \\
+    &= 1 - \frac{5}{6} \cdot \frac{9}{64} \\
+    &= 1 - \frac{15}{128} \\
+    &= \frac{113}{128} \\
+    &= 0,8828125
+\end{align*}
+\end{document}
