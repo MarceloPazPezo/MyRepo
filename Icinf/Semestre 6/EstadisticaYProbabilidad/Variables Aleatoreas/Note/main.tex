@@ -1,0 +1,143 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+\begin{document}
+
+\imagenlogo{img/LogoElNube.png}
+\universidad{Universidad del Bío-Bío}
+\titulo{Practico 3} % Titulo
+\asignatura{Estadistica y Probabilidades} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada
+\margenes % Crear márgenes
+
+\section{Teoría}
+\begin{itemize}
+    \item \textbf{Definición 1:} Una variable aleatoria (v.a.) es una función que transforma los resultados del
+    espacio muestral asociado a un experimento en números.
+
+    \item \textbf{Definición 2:} Las variables aleatorias pueden ser de dos tipos: Discretas y Continuas. Una
+    variable aleatoria discreta es aquella que solo puede tomar valores enteros. Una variable
+    aleatoria continua es aquella cuyos resultados pertenecen a uno o más conjuntos de los reales. 
+
+    \item \textbf{Definición 3:} : Llamaremos función de probabilidad o función de cuantía de la v.a. discreta X, a
+    $P(X = x)$ o bien a $p(x)$ si satisface las siguientes dos condiciones:
+    \begin{align*}
+        P(X=x) \geq 0, \forall x \in R_{X} \\
+        \displaystyle\sum_{i=1}^{n}{P(X=x) = 1}
+    \end{align*}
+
+    \item \textbf{Definición 4:} Llamaremos función de densidad de la v.a. continua X, a $f(x)$, si satisface las
+    siguientes dos condiciones:
+    \begin{align*}
+        f(x) \geq 0, \forall x \in R_{X} \\
+        \int_{R_x}{f(x)dx} = 1
+    \end{align*}
+
+    \item \textbf{Definición 5:} Llamaremos función de distribución acumulada (f.d.a.) a la probabilidad de que
+    X sea menor o igual que x y la denotaremos por $F(x)$. Formalmente,
+    \begin{align*}
+        F(x) := P(X \leq x) = \begin{cases}
+            \displaystyle\sum_{i=1}^{n}{P(X=x)}, 
+            & \text{si X es discreta} \\
+            \\
+            \displaystyle\int_{-\infty}^{x}{f(u)du},
+            & \text{si U es continua}
+        \end{cases}
+    \end{align*}
+
+    \textbf{Propiedades} de $F(x)$, cuando $X$ es discreta:
+    \begin{enumerate}
+        \item $\quad 0 \leq F(x) \leq 1$
+        
+        \item $\quad P(X>x) = 1 - F(X)$
+        
+        \item $\quad P(X=x) = F(x) - F(x-1)$
+        
+        \item $\quad P(x_i < X \leq x_j) = F(x_j) - F(x_{i-1})$
+    \end{enumerate}  
+
+    \newpage
+    \textbf{Propiedades} de $F(x)$, cuando $X$ es continua:
+    \begin{enumerate}
+        \item $\quad 0 \leq F(x) \leq 1$
+        
+        \item $\quad P(X>x) = 1 - F(X)$
+        
+        \item $\quad P(X=x) = 0$
+        
+        \item $\quad P(x_i < X \leq x_j) = F(x_j) - F(x_{i-1}) = \int_{x_i}^{x_j}{f(x)dx}$
+        
+        \item $\quad \lim_{x \rightarrow-\infty}{F(x)} = 0 \quad y \quad \lim_{x \rightarrow+\infty}{F(x)} = 1$
+    
+        \item $ \frac{\partial}{\partial x}F(x) = f(x)$
+    \end{enumerate} 
+
+    \item \textbf{Definición 6:} Llamaremos Esperanza de una variable aleatoria X al promedio o media de ella y
+    la denotaremos por $E(X)$. Formalmente, está definida por:
+    \begin{align*}
+        E(X) = \begin{cases}
+            \displaystyle\sum_{i=1}^{n}{x_iP(X=x_i)}, 
+            & \text{si X es discreta} \\
+            \\
+            \displaystyle\int_{-\infty}^{+\infty}{xf(x)dx},
+            & \text{si U es continua}
+        \end{cases}
+    \end{align*}
+    \textbf{Propiedades} de $E(X)$
+
+    Consideremos c constante:
+
+    \begin{enumerate}
+        \item $\quad E(c) = c$
+        
+        \item $\quad E(X + c) = E(X) + c$
+        
+        \item $\quad E(cX) = cE(X)$
+        
+        \item $\quad E(g(X) + h(X)) = E(g(X)) + E(h(X))$
+        
+        Donde:
+        \begin{align*}
+            E(g(X)) = 
+            \begin{cases}
+                \displaystyle\sum_{i=1}^{n}{g(x)P(X=x)}, 
+                & \text{si X es discreta} \\
+                \\
+                \displaystyle\int_{-\infty}^{+\infty}{g(x)f(x)dx},
+                & \text{si U es continua}
+            \end{cases}
+        \end{align*}
+    \end{enumerate}
+
+    \item \textbf{Definición 7:} Llamaremos Varianza de la variable aleatoria $X$ a $V(X)$ o $Var(X)$ que está definida
+    por:
+
+    \begin{align*}
+        V(X) = E(X - E(X))^2 = E(X^2) - E(X)^2
+    \end{align*}
+
+    \textbf{Propiedades} de $V(X)$
+
+    Consideremos c constante:
+    \begin{enumerate}
+        \item $\quad V(c) = 0$
+        \item $\quad V(X + c) = V(X)$
+        \item $\quad V(cX) = c^2V(X)$
+        \item $\quad V(X + Y) = V(X) + V(Y)$, si $X$ e $Y$ son independientes
+    \end{enumerate}
+    
+\end{itemize}
+\end{document}
