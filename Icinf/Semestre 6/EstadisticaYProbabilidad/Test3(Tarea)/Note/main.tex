@@ -15,9 +15,14 @@
 \titulo{TAREA-220149} % Titulo
 \asignatura{Estadistica y Probabilidad} % Asignatura
 \autor{
-    \indent
     Marcelo \textsc{Paz}
-}   
+    \qquad
+    José \textsc{Peña}
+    % \qquad
+    % Bastian \textsc{Rodriguez}
+    \qquad
+    Claudia \textsc{Sobino}
+}
 \portada
 \margenes % Crear márgenes
 
@@ -46,7 +51,7 @@ encargado.
 
 Definición de evento:
 \begin{itemize}
-    \item $X$: ''Auto pasa por la lavadora''
+    \item $X$: ''Número de autos que pasan por la lavadora''
 \end{itemize}
 
 \begin{figure}[H]
@@ -82,10 +87,10 @@ Encuentre las ganancias esperadas en este período de tiempo en particular.
     &= (7 \cdot \frac{1}{12}) + (9 \cdot \frac{1}{12}) + (11 \cdot \frac{1}{4}) + (13 \cdot \frac{1}{4}) + (15 \cdot \frac{1}{6}) + (17 \cdot \frac{1}{6}) \\
     &= \frac{7}{12} + \frac{9}{12} + \frac{33}{12} + \frac{39}{12} + \frac{30}{12} + \frac{34}{12} \\
     &= \frac{154}{12} \\
-    &= 12,66666666666667
+    &= 12,6667
 \end{align*}
 
-Por lo tanto, las ganancias esperadas en este período de tiempo en particular son de \$12,66666666666667 aproximadamente \$13 dólares.  
+Por lo tanto, las ganancias esperadas en este período de tiempo en particular son de \$12,6667 aproximadamente \$13 dólares.  
 
 \subsection{b}
 ¿Cuál es la probabilidad de que pasen 9 autos el día viernes entre las 16:00 y las 17:00 horas?
@@ -106,7 +111,7 @@ Primero se calculara $V(X) = E(X^2) - (E(X)^2)$:
     &= \frac{16}{12} + \frac{25}{12} + 9 + \frac{49}{4} + \frac{64}{6} + \frac{81}{6} \\
     &= \frac{16}{12} + \frac{25}{12} + \frac{108}{12} + \frac{147}{12} + \frac{128}{12} + \frac{162}{12} \\
     &= \frac{586}{12} \\
-    &= 48,83333333333333
+    &= 48,8333
 \end{align*}
 
 \begin{align*}
@@ -115,50 +120,50 @@ Primero se calculara $V(X) = E(X^2) - (E(X)^2)$:
     &= \frac{4}{12} + \frac{5}{12} + \frac{6}{4} + \frac{7}{4} + \frac{8}{6} + \frac{9}{6} \\
     &= \frac{4}{12} + \frac{5}{12} + \frac{18}{12} + \frac{21}{12} + \frac{16}{12} + \frac{18}{12} \\
     &= \frac{82}{12} \\
-    &= 6,833333333333333
+    &= 6,8333
 \end{align*}
 
 Asi:
 \begin{align*}
     V(X) &= E(X^2) - (E(X)^2) \\
-    &= 48,83333333333333 - (6,833333333333333)^2 \\
-    &= 48,83333333333333 - 46,69444444444444 \\
-    &= 2,138888888888889
+    &= 48,8333 - (6,8333)^2 \\
+    &= 48,8333 - 46,6944 \\
+    &= 2,1389
 \end{align*}
 
 Para $V(4+3X)$:
 \begin{align*}
-    V(4+3X) &= V(4) + V(3X)  && \text{Aplicando Propiedad 1 y 3} \\
-    &= 0 + 9 \cdot V(X) && \text{Remplazando}
-    &= 9 \cdot 2,138888888888889 \\
-    &= 19,25
+    V(4+3X) &= V(4) + V(3X) \\
+    &= 0 + 9 \cdot V(X) \\
+    &= 9 \cdot 2,1389 \\
+    &= 19,2501
 \end{align*}
 
 Para $V(4)$:
 \begin{align*}
-    E(4) &= 0 && \text{Aplicando Propiedad 1}
+    V(4) &= 0
 \end{align*}
 
 Para $E(6X)$:
 \begin{align*}
-    E(6X) &= 6 \cdot E(X) && \text{Aplicando Propiedad 2} \\
-    &= 6 \cdot 6,833333333333333 \\
-    &= 41
+    E(6X) &= 6 \cdot E(X) \\
+    &= 6 \cdot 6,8333 \\
+    &= 40,9998
 \end{align*}
 
 Para $E(5+5X)$:
 \begin{align*}
-    E(5+5X) &= 5 + E(5X) && \text{Aplicando Propiedad 2} \\
-    &= 5 + 5 \cdot E(X) && \text{Aplicando Propiedad 2} \\
-    &= 5 + 5 \cdot 6,833333333333333 \\
-    &= 40,16666666666667
+    E(5+5X) &= 5 + E(5X) \\
+    &= 5 + 5 \cdot E(X) \\
+    &= 5 + 5 \cdot 6,8333 \\
+    &= 39,1665
 \end{align*}
 
 Para $V(9X)$:
 \begin{align*}
-    V(9X) &= 81 \cdot V(X) && \text{Aplicando Propiedad 3} \\
-    &= 81 \cdot 2,138888888888889 \\
-    &= 173,25
+    V(9X) &= 81 \cdot V(X) \\
+    &= 81 \cdot 2,1389 \\
+    &= 173,2509
 \end{align*}
 
 \subsection{d}
@@ -173,7 +178,7 @@ Obtenga la f.d.a. y grafíquela.
         \frac{5}{12} \quad \text{, }6 \leq x < 7 \\
         \frac{8}{12} \quad \text{, }6 \leq x < 8 \\
         \frac{10}{12} \quad \text{, }8 \leq x < 9 \\
-        \frac{12}{12} \quad \text{, }9 \leq x < 10
+        \frac{12}{12} \quad \text{, }9 \leq x
     \end{cases}
 \end{align*}
 
@@ -195,68 +200,76 @@ Obtenga la f.d.a. y grafíquela.
                 axis lines = left,
                 % tick style={draw=none} % Esto 
             ]
-            \filldraw (0,0) circle (2pt);
+
             \addplot [
                 domain=0:4, 
                 samples=100, 
                 color=blue,
             ]
             {0};
-            \draw (4,0) circle (2pt);
 
-            \filldraw (4,1/12) circle (2pt);
+            
             \addplot [
                 domain=4:5, 
                 samples=100, 
                 color=blue,
             ]
             {1/12};
-            \draw (5,1/12) circle (2pt);
-
-            \filldraw (5,2/12) circle (2pt);
+            
             \addplot [
                 domain=5:6, 
                 samples=100, 
                 color=blue,
             ]
             {2/12};
-            \draw (6,2/12) circle (2pt);
-
-            \filldraw (6,5/12) circle (2pt);
+            
             \addplot [
                 domain=6:7, 
                 samples=100, 
                 color=blue,
             ]
             {5/12};
-            \draw (7,5/12) circle (2pt);
-
-            \filldraw (7,8/12) circle (2pt);
+            
             \addplot [
                 domain=7:8, 
                 samples=100, 
                 color=blue,
             ]
             {8/12};
-            \draw (8,8/12) circle (2pt);
-
-            \filldraw (8,10/12) circle (2pt);
+            
             \addplot [
                 domain=8:9, 
                 samples=100, 
                 color=blue,
             ]
             {10/12};
-            \draw (9,10/12) circle (2pt);
-
-            \filldraw (9,12/12) circle (2pt);
+            
             \addplot [
                 domain=9:10, 
                 samples=100, 
                 color=blue,
             ]
             {12/12};
+            
+            \filldraw (0,0) circle (2pt);
+             (4,0) circle (2pt);
+            
+            \filldraw (4,1/12) circle (2pt);
+            \filldraw[fill=white, draw=black] (5,1/12) circle (2pt);
 
+            \filldraw (5,2/12) circle (2pt);
+            \filldraw[fill=white, draw=black] (6,2/12) circle (2pt);
+
+            \filldraw (6,5/12) circle (2pt);
+            \filldraw[fill=white, draw=black] (7,5/12) circle (2pt);
+
+            \filldraw (7,8/12) circle (2pt);
+            \filldraw[fill=white, draw=black] (8,8/12) circle (2pt);
+
+            \filldraw (8,10/12) circle (2pt);
+            \filldraw[fill=white, draw=black] (9,10/12) circle (2pt);
+
+            \filldraw (9,12/12) circle (2pt);
             \end{axis}
         \end{tikzpicture}
         \caption{Representación gráfica de la función de probabilidad}
@@ -271,7 +284,7 @@ Para $P(X > 6)$:
     P(X > 6) &= 1 - F(6) \\
     &= 1 - \frac{5}{12} \\
     &= \frac{7}{12} \\
-    &= 0,5833333333333334
+    &= 0,5833
 \end{align*}
 
 Para $P(X \leq 8)$:
@@ -280,18 +293,18 @@ Para $P(X \leq 8)$:
     &= \frac{1}{12} + \frac{1}{12} + \frac{1}{4} + \frac{1}{4} + \frac{1}{6} \\
     &= \frac{1}{12} + \frac{1}{12} + \frac{3}{12} + \frac{3}{12} + \frac{2}{12} \\
     &= \frac{10}{12} \\
-    &= 0,8333333333333334
+    &= 0,8333
 \end{align*}
 \begin{align*}
     P(X \leq 8) &= F(8) && \text{Remplazando} \\
     &= \frac{10}{12} \\
-    &= 0,8333333333333334
+    &= 0,8333
 \end{align*}
 \begin{align*}
     P(X \leq 8) &= 1 - P(X = 9) && \text{Remplazando} \\
     &= 1 - \frac{1}{6} \\
     &= \frac{5}{6} \\
-    &= 0,8333333333333334
+    &= 0,8333
 \end{align*}
 
 Para $P(5 \leq X \leq 8)$:
@@ -355,13 +368,14 @@ Grafique $f(x)$
                 xtick distance=1,
                 xlabel style={at={(rel axis cs:1.04,0)}, anchor=west},
                 xlabel={$x$},
-                ylabel style={rotate =-90 ,at={(rel axis cs:0.0,1.03)}, anchor=south},
-                ymin = 0,
+                ylabel style={rotate =-90 ,at={(rel axis cs:0.0,2.0)}, anchor=south},
+                ymin = -1,
                 ymax = 2,
-                xmax = 2,
+                xmax = 0,
+                xmax = 3,
                 ylabel={$f(x)$},
                 grid=none,
-                axis lines = left,
+                axis lines = middle,
             ]
             \addplot [
                 domain=0:1, 
@@ -369,7 +383,7 @@ Grafique $f(x)$
                 color=blue,
             ]
             {(5/3)*x};
-            \draw (1,5/3) circle (2pt);
+            \filldraw[fill=white, draw=black] (1,5/3) circle (2pt);
 
             \filldraw (1,5/3 - 1) circle (2pt);
             \addplot [
@@ -378,7 +392,7 @@ Grafique $f(x)$
                 color=blue,
             ]
             {(5/3) - x};
-            \draw (1,5/3 - 1) circle (2pt);
+            \filldraw[fill=white, draw=black] (2,5/3 - 2) circle (2pt);
 
             \addplot [
                 domain=2:3, 
@@ -405,7 +419,7 @@ Para $\displaystyle P\left(\frac{1}{2} \leq X \leq \frac{3}{2}\right)$:
     &= \frac{15}{24} + \frac{72}{24} - \frac{67}{24} \\
     &= \frac{20}{24} \\
     &= \frac{5}{6} \\
-    &= 0,8333333333333334
+    &= 0,8333
 \end{align*}
 
 Para $\displaystyle P\left(X \geq \frac{3}{8}\right)$:
@@ -416,7 +430,7 @@ Para $\displaystyle P\left(X \geq \frac{3}{8}\right)$:
     &= 1 - \frac{5}{6} \cdot \frac{9}{64} \\
     &= 1 - \frac{15}{128} \\
     &= \frac{113}{128} \\
-    &= 0,8828125
+    &= 0,8828
 \end{align*}
 
 \subsection{d}
@@ -426,14 +440,14 @@ Para $E(6-5X)$:
 
 Es necesario:
 \begin{align*}
-    E(X) &= \left(\int_{-\infty}^{+\infty}{(x\cdot f(x))dx}\right) \\
-    &= \left(\int_{0}^{1}{(x\cdot \frac{5}{3}x)dx} + \int_{1}^{2}{(x\cdot (\frac{5}{3} - x))dx}\right) \\
-    &= \left(\frac{5x^3}{9}\Big|_{0}^{1} + \left(\frac{5x^2}{6} - \frac{x^3}{3}\right)\Big|_{1}^{2}\right) \\
-    &= \left(\frac{5}{9} + \frac{20}{6} - \frac{8}{3} - \left(\frac{5}{6} - \frac{1}{3}\right)\right) \\
-    &= \left(\frac{5}{9} + \frac{20}{6} - \frac{16}{6} - \frac{15-6}{18}\right) \\
-    &= \left(\frac{5}{9} + \frac{4}{6} - \frac{1}{2}\right) \\
-    &= \left(\frac{5}{9} + \frac{1}{6}\right) \\
-    &= \frac{13}{18} \\
+    E(X) &= \int_{-\infty}^{+\infty}{(x\cdot f(x))dx} \\
+    &= \int_{0}^{1}{(x\cdot \frac{5}{3}x)dx} + \int_{1}^{2}{(x\cdot (\frac{5}{3} - x))dx} \\
+    &= \frac{5x^3}{9}\Big|_{0}^{1} + \left(\frac{5x^2}{6} - \frac{x^3}{3}\right)\Big|_{1}^{2} \\
+    &= \frac{5}{9} + \frac{20}{6} - \frac{8}{3} - \left(\frac{5}{6} - \frac{1}{3}\right) \\
+    &= \frac{5}{9} + \frac{20}{6} - \frac{16}{6} - \frac{15-6}{18} \\
+    &= \frac{5}{9} + \frac{4}{6} - \frac{1}{2} \\
+    &= \frac{5}{9} + \frac{1}{6} \\
+    &= \frac{13}{18}
 \end{align*}
 \begin{align*}
     E(6-5X) &= E(6) - E(5X) \\
@@ -441,19 +455,19 @@ Es necesario:
     &= 6 - 5 \left(\frac{13}{18}\right) \\
     &= 6 - \frac{65}{18}\\
     &= \frac{43}{18} \\
-    &= 2,38889
+    &= 2,3889
 \end{align*}
 
 Para $V(6-5X)$:
 
 Es necesario:
 \begin{align*}
-    E(X^2) &= \left(\int_{-\infty}^{+\infty}{(x^2\cdot f(x))dx}\right) \\
-    &= \left(\int_{0}^{1}{(x^2\cdot \frac{5}{3}x)dx} + \int_{1}^{2}{(x^2\cdot (\frac{5}{3} - x))dx}\right) \\
-    &= \left(\frac{5x^4}{12}\Big|_{0}^{1} + \left(\frac{5x^3}{9} - \frac{x^4}{4}\right)\Big|_{1}^{2}\right) \\
-    &= \left(\frac{5}{12} + \frac{40}{9} - \frac{16}{4} - \left(\frac{5}{9} - \frac{1}{4}\right)\right) \\
-    &= \left(\frac{5}{12} + \frac{40}{9} - \frac{16}{6} - \frac{15-6}{18}\right) \\
-    &= \left(\frac{5}{12} + \frac{5}{36}\right) \\
+    E(X^2) &= \int_{-\infty}^{+\infty}{(x^2\cdot f(x))dx} \\
+    &= \int_{0}^{1}{(x^2\cdot \frac{5}{3}x)dx} + \int_{1}^{2}{(x^2\cdot (\frac{5}{3} - x))dx} \\
+    &= \frac{5x^4}{12}\Big|_{0}^{1} + \left(\frac{5x^3}{9} - \frac{x^4}{4}\right)\Big|_{1}^{2} \\
+    &= \frac{5}{12} + \frac{40}{9} - \frac{16}{4} - \left(\frac{5}{9} - \frac{1}{4}\right) \\
+    &= \frac{5}{12} + \frac{40}{9} - \frac{16}{6} - \frac{15-6}{18} \\
+    &= \frac{5}{12} + \frac{5}{36} \\
     &= \frac{5}{9}
 \end{align*}
 \begin{align*}
@@ -464,7 +478,7 @@ Es necesario:
     &= -25 \left(\frac{5}{9} - \frac{169}{324}\right) \\
     &= -25 \left(\frac{11}{324}\right) \\
     &= - \frac{275}{324} \\
-    &= -0,848765
+    &= -0,8488
 \end{align*}
 
 \newpage
@@ -473,17 +487,79 @@ Si un banco de Concepción recibe en promedio 6 cheques sin fondo por día:
 \subsection{a}
 ¿Cuál es la probabilidad de que se reciban 4 cheques sin fondo en un día determinado?
 
+Sea $X$: número de cheques sin fondo por día.
+
+$X \sim P(6)$
+\begin{align*}
+    P(X=4) &= \frac{\lambda^x \cdot e^{-\lambda}}{x!} \\
+    &= \frac{6^4 \cdot e^{-6}}{4!} \\
+    &= 0,1339
+\end{align*}
+
 \subsection{b}
 ¿Cuál es la probabilidad de que no se reciba ningún cheque sin fondo en 2 días?
 
+Sea $X$: número de cheques sin fondo en 2 días.
+
+$X \sim P(12)$
+\begin{align*}
+    P(X=0) &= \frac{\lambda^x \cdot e^{-\lambda}}{x!} \\
+    &= \frac{12^0 \cdot e^{-12}}{0!} \\
+    &= \frac{1 \cdot e^{-12}}{1} \\
+    &= e^{-12} \\
+    &= \frac{1}{e^{12}} \\
+    &= 0,000006144
+\end{align*}
 \subsection{c}
 ¿Cuál es la probabilidad de que se reciban más de tres cheques sin fondo en 2 días?
+\begin{align*}
+    P(X>3) &= 1 - P(X \leq 3)\\
+    &= 1 - \left(P(X=0) + P(X=1) + P(X=2) + P(X=3)\right) \\
+    &= 1 - \left(\frac{12^0 \cdot e^{-12}}{0!} + \frac{12^1 \cdot e^{-12}}{1!} + \frac{12^2 \cdot e^{-12}}{2!} + \frac{12^3 \cdot e^{-12}}{3!}\right) \\
+    &= 1 - 0,0023 \\
+    &= 0,9977
+\end{align*}
 
+\newpage
 \subsection{d}
-¿Cuántos ches sin fondo se reciben en promedio por año?
+¿Cuántos cheques sin fondo se reciben en promedio por año?
 
+Sea $X$: número de cheques sin fondo en 365 día.
+
+$X \sim P(2190)$
+\begin{align*}
+    E(X) &= \lambda \\
+    &= 2190
+\end{align*}
 \subsection{e}
 Si en un día determinado el banco recibe 10 cheques, ¿cuál es la probabilidad de que exactamente 4
 no tengan fondos?
+
+$X \sim P(6)$
+\begin{align*}
+    P(X=4) &= \frac{\lambda^x \cdot e^{-\lambda}}{x!} \\
+    &= \frac{6^4 \cdot e^{-6}}{4!} \\
+    &= 0,1339
+\end{align*}
+
+\section{Problema 4}
+En un determinado aeropuerto del país, se sabe que 7 de 14 maletas contienen artículos de contrabando.
+Determine la probabilidad de que exactamente 4 de 6 maletas seleccionadas en la inspección al azar de
+pasajeros, contengan artículos de contrabando.
+
+Sea $X$: Número de maletas que contienen artículos de contrabando.
+
+$X \sim H(14, 6, 7)$
+\begin{align*}
+    P(X=x) &=  \frac{\displaystyle \binom{7}{x} \binom{7}{6-x}}{\displaystyle \binom{14}{6}}  && \text{, x=0, 1, 2, ..., min\{6,7\}}\\
+    \\
+    P(X=4) &= \frac{\displaystyle \binom{7}{4} \binom{14-7}{6-4}}{\displaystyle \binom{14}{6}} = \frac{\displaystyle \binom{7}{4} \binom{7}{2}}{\displaystyle \binom{14}{6}} \\
+    \\
+    &= \frac{\displaystyle \frac{7 \cdot 6 \cdot 5}{3!} \cdot \frac{7 \cdot 6}{2!}}{\displaystyle \frac{14 \cdot 13 \cdot 12 \cdot 11 \cdot 10 \cdot 9}{6!}} \\
+    \\
+    &= \frac{35}{143} \\
+    &= 0,2448
+\end{align*}
+
 
 \end{document}

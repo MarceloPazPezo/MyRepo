@@ -80,47 +80,17 @@
 }
 
 \newcommand{\portada}{
-	% \pagestyle{fancy}
-	% \fancyhf{}
-	% \renewcommand{\headrulewidth}{0pt} % Elimina la línea del encabezado
-    % \begin{titlepage}
-        
-        \begin{center}
-            \title{\titulo}
-        
-            % \thispagestyle{empty}
-            % \begin{flushleft}
-            %     {\large \bf Asignatura} \hspace{1cm}
-            % \end{flushleft}
-    
-            % \begin{flushright}
-            %     \today
-            % \end{flushright}
-                
-            \begin{center}
-                % \rule{\linewidth}{0.2 mm} \\[0.2 cm]
-                {\LARGE \bf \titulo}\\
-                \rule{\linewidth}{0.2 mm} \\[0.1 cm]
-                { \bf \autor} \hspace{1cm}
-            \end{center}
-            {\large \bf \asignatura} \hspace{0.5cm} \today
-        \end{center}
-    % \end{titlepage}
-    % \centering % Centralizar contenido
-    % \setcounter{section}{8}
-	% \includegraphics[width=0.05\textwidth]{img/logoUBB.png}\par\vspace{0.5cm} % Logo
-	% {\scshape\LARGE \universidad \par} % Nombre de la Universidad
-	% \vspace{1cm} % Espacio de 1,5cm
-	% \fancyhead[C]{%
-	% 	\begin{tabular}{c}
-	% 	{\huge\bfseries \titulo \par} \
-	% 	\rule{\linewidth}{0.2 mm} \\[0.15 cm]
-	% 	\emph{\textbf{Estudiantes :}}\\
-	% 	\autor\\ % Nombre del autor
-	% 	\today % Fecha actual
-	% 	\end{tabular}%
-	% }
-	
+    \begin{center}
+        \title{\titulo}
 
+        \begin{center}
+            % \rule{\linewidth}{0.2 mm} \\[0.2 cm]
+            {\LARGE \bf \titulo}\\
+            \rule{\linewidth}{0.2 mm} \\[0.1 cm]
+            { \bf \autor} \hspace{1cm}
+            \\[0.2 cm]
+        \end{center}
+        {\large \bf \asignatura} \hspace{0.5cm} \today
+    \end{center}
 }
 
