@@ -1,0 +1,254 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+\begin{document}
+
+\imagenlogo{img/LogoElNube.png}
+\universidad{Universidad del Bío-Bío}
+\titulo{Practico distribución normal} % Titulo
+\asignatura{Estadistica y Probabilidades} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada
+\margenes % Crear márgenes
+
+\section*{Ejercicio 1}
+Las longitudes de las sardinas recibidas por cierta enlatadora tienen una distribución normal con media  $\mu = 4.62$ pulgadas y desviación estándar $\sigma = 0.23$ pulgadas.
+
+\textbf{X:} longitudes de las sardinas.
+
+Notación: $X \sim N(4.62, 0.23^2)$
+\begin{itemize}
+  \item \textbf{a)} ¿Qué porcentaje de todas estas sardinas son mayores de 5 pulgadas?
+  
+  Notación normal estándar: $Z \sim N(0, 1)$
+  \begin{align*}
+    P(X > 5) &= 1 - P(X \leq 5) && \text{Estandarización}\\
+    &= 1 - P\left(\frac{X - \mu}{\sigma} \leq \frac{5 - 4.62}{0.23}\right) \\
+    &= 1 - P\left(Z \leq \frac{5 - 4.62}{0.23}\right) && \text{, } Z = \frac{X - \mu}{\sigma} \\
+    &= 1 - P(Z \leq 1.65) \\
+    &= 1 - 0.9505 \\
+    &= 0.0495
+  \end{align*}
+  
+  \textbf{Respuesta:} Por lo tanto, el $4.95\%$ de las sardinas son mayores a 5 pulgadas.
+
+  \item \textbf{b)} ¿Qué porcentaje de las sardinas miden entre 4.35 y 4.85 pulgadas?
+  \begin{align*}
+    P(4.35 \leq X \leq 4.85) &= P\left(\frac{4.35 - 4.62}{0.23} \leq Z \leq \frac{4.85 - 4.62}{0.23}\right) \\
+    &= P(-1.17 \leq Z \leq 1.00) \\
+    &= P(Z \leq 1.00) - P(Z \leq -1.17) \\
+    &= 0.8413 - 0.1210 \\
+    &= 0.7203
+  \end{align*}
+
+  \textbf{Respuesta:} Por lo tanto, el $72.03\%$ de las sardinas miden entre 4.35 y 4.85 pulgadas.
+  
+  \item \textbf{c)} ¿Qué porcentaje de las sardinas miden como máximo 4.62 pulgadas?
+  \begin{align*}
+    P(X \leq 4.62) &= P\left(\frac{X - \mu}{\sigma} \leq \frac{4.62 - 4.62}{0.23}\right) \\
+    &= P(Z \leq 0) \\
+    &= 0.5000
+  \end{align*}
+
+  \textbf{Respuesta:} Por lo tanto, el $50\%$ de las sardinas miden como máximo 4.62 pulgadas.
+\end{itemize}
+
+\newpage
+\section*{Ejercicio 2}
+Dos estudiantes fueron informados de sus puntajes estandarizados en un examen de inglés, y corresponden a $0.8$ y $-0.4$, respectivamente. Si sus puntuaciones fueron $88$ y $64$, respectivamente, ¿cuál fue el promedio y la desviación estándar del examen de inglés?
+
+\textbf{X:} puntajes en el examen de inglés.
+
+Notación: $X \sim N(\mu, \sigma^2)$
+
+Recordemos:
+\begin{align*}
+  Z = \frac{X - \mu}{\sigma}
+\end{align*}
+
+Para el primer estudiante:
+\begin{align*}
+  Z &= \frac{X - \mu}{\sigma} \\
+  0.8 &= \frac{88 - \mu}{\sigma} && \text{Remplazando} \\
+  0.8\sigma &= 88 - \mu \\
+  \sigma &= \frac{88 - \mu}{0.8}
+\end{align*}
+
+Para el segundo estudiante:
+\begin{align*}
+  Z &= \frac{X - \mu}{\sigma} \\
+  -0.4 &= \frac{64 - \mu}{\sigma} && \text{Remplazando} \\
+  -0.4\sigma &= 64 - \mu \\
+  \sigma &= \frac{64 + 0.4}{-0.4}
+\end{align*}
+
+Igualando ambas ecuaciones:
+\begin{align*}
+  \frac{88 - \mu}{0.8} &= \frac{64 - \mu}{-0.4} \\
+  -0.4(88 - \mu) &= 0.8(64 - \mu) \\
+  -35.2 + 0.4\mu &= 51.2 - 0.8\mu \\
+  0.4\mu + 0.8\mu &= 51.2 + 35.2 \\
+  1.2\mu &= 86.4 \\
+  \mu &= \frac{86.4}{1.2} \\
+  \mu &= 72
+\end{align*}
+
+Remplazando en la ecuación del primer estudiante:
+\begin{align*}
+  \sigma &= \frac{88 - 72}{0.8} \\
+  \sigma &= \frac{16}{0.8} \\
+  \sigma &= 20
+\end{align*}
+
+\textbf{Respuesta}: Asi, $\mu = 72$ y $\sigma = 20$
+
+Notación: $X \sim N(72, 20^2)$
+
+\newpage
+\section*{Ejercicio 3}
+En una industria alimenticia se envasa café instantáneo en frascos cuyos pesos netos tienen una distribución normal con desviación estándar de 5.5 gramos. Si el 5\% de los frascos pesa a lo menos 139 gramos, ¿cuál es el promedio de ellos?
+
+\textbf{X:} pesos netos de los frascos.
+
+Notación: $X \sim N(\mu, 5.5^2)$
+
+\begin{align*}
+  P(X \geq 139) &= 0.05 \\
+  P\left(\frac{X - \mu}{5.5} \geq \frac{139 - \mu}{5.5}\right) &= 0.05 \\
+  P\left(Z \geq \frac{139 - \mu}{5.5}\right) &= 0.05 && \text{, } Z = \frac{X - \mu}{5.5} \\
+  1 - P\left(Z \leq \frac{139 - \mu}{5.5}\right) &= 0.05 \\
+  P\left(Z \leq \frac{139 - \mu}{5.5}\right) &= 0.95 \\
+  \frac{139 - \mu}{5.5} &= 1.65 \\
+  139 - \mu &= 9.075 \\
+  \mu &= 129.925
+\end{align*}
+
+\textbf{Respuesta:} Por lo tanto, el promedio de los frascos es de 129.925 gramos.
+
+\newpage
+\section*{Ejercicio 4}
+Las alturas de los naranjos están distribuidos en forma normal. Se sabe que un 2.28\% miden más de 14pies y un 84.13\% menos de 12 pies. Determine la altura media de los naranjos y la desviación estándar de los naranjos.
+
+\textbf{X:} alturas de los naranjos.
+
+Notación: $X \sim N(\mu, \sigma^2)$
+
+Sabemos que:
+\begin{align*}
+  P(X > 14) &= 0.0228 \\
+  P(X < 12) &= 0.8413
+\end{align*}
+
+Resolviendo $P(X > 14)$:
+\begin{align*}
+  P(X > 14) &= 0.0228 \\
+  P\left(\frac{X - \mu}{\sigma} > \frac{14 - \mu}{\sigma}\right) &= 0.0228 \\
+  P\left(Z > \frac{14 - \mu}{\sigma}\right) &= 0.0228 && \text{, } Z = \frac{X - \mu}{\sigma} \\
+  1 - P\left(Z \leq \frac{14 - \mu}{\sigma}\right) &= 0.0228 \\
+  P\left(Z \leq \frac{14 - \mu}{\sigma}\right) &= 0.9772 \\
+  \frac{14 - \mu}{\sigma} &= 2 \\
+  14 - \mu &= 2\sigma && \text{Despejando } \mu \\
+  \mu &= 14 - 2\sigma
+\end{align*}
+
+Resolviendo $P(X < 12)$:
+\begin{align*}
+  P(X < 12) &= 0.8413 \\
+  P\left(\frac{X - \mu}{\sigma} < \frac{12 - \mu}{\sigma}\right) &= 0.8413 \\
+  P\left(Z < \frac{12 - \mu}{\sigma}\right) &= 0.8413 && \text{, } Z = \frac{X - \mu}{\sigma} \\
+  \frac{12 - \mu}{\sigma} &= 1 \\
+  12 - \mu &= \sigma && \text{Despejando } \mu \\
+  \mu &= 12 - \sigma
+\end{align*}
+
+\newpage
+Igualando ambas ecuaciones:
+\begin{align*}
+  14 - 2\sigma &= 12 - \sigma \\
+  2\sigma - \sigma &= 14 - 12 \\
+  \sigma &= 2
+\end{align*}
+
+Remplazando en la ecuación de $P(X > 14)$:
+\begin{align*}
+  \mu &= 14 - 2\sigma \\
+  \mu &= 14 - 2(2) \\
+  \mu &= 14 - 4 \\
+  \mu &= 10
+\end{align*}
+
+\textbf{Respuesta:} Por lo tanto, la altura media de los naranjos es de 10 pies y la desviación estándar de los naranjos es de 2 pies.
+
+\section*{Ejercicio 5}
+El tiempo de trabajo (en horas) que emplean los ejecutivos de ciertas empresas sigue una distribución normal con media  $\mu = 8$ y desviación estándar  $\sigma = 4$.
+
+\begin{itemize}
+  \item \textbf{a)} ¿Qué porcentaje de estos ejecutivos trabaja más de 7 horas?
+  \begin{align*}
+    P(X > 7) &= 1 - P(X \leq 7) && \text{Estandarización}\\
+    &= 1 - P\left(\frac{X - \mu}{\sigma} \leq \frac{7 - 8}{4}\right) \\
+    &= 1 - P\left(Z \leq \frac{7 - 8}{4}\right) && \text{, } Z = \frac{X - \mu}{\sigma} \\
+    &= 1 - P(Z \leq -0.25) \\
+    &= 1 - 0.4013 \\
+    &= 0.5987
+  \end{align*}
+
+  \textbf{Respuesta:} Por lo tanto, el $59.87\%$ de los ejecutivos trabaja más de 7 horas.
+  
+  \item \textbf{b)}	¿Si el 20\% de los ejecutivos trabajan menos de $x_0$ horas. Encuentre $x_0$.
+  \begin{align*}
+    P(X < x_0) &= 0.20 \\
+    P\left(\frac{X - \mu}{\sigma} < \frac{x_0 - \mu}{\sigma}\right) &= 0.20 \\
+    P\left(Z < \frac{x_0 - \mu}{\sigma}\right) &= 0.20 && \text{, } Z = \frac{X - \mu}{\sigma} \\
+    \frac{x_0 - \mu}{\sigma} &= -0.84 \\
+    x_0 &= -0.84\sigma + \mu \\
+    x_0 &= -0.84(4) + 8 \\
+    x_0 &= 4.64
+  \end{align*}
+
+  \textbf{Respuesta:} Por lo tanto, $x_0 = 4.64$.
+  
+  \newpage
+  \item \textbf{c)} ¿Cuál es la probabilidad de que un ejecutivo cualquiera trabaje entre 3 y 6 horas diarias?
+  \begin{align*}
+    P(3 \leq X \leq 6) &= P\left(\frac{3 - 8}{4} \leq Z \leq \frac{6 - 8}{4}\right) \\
+    &= P(-1.25 \leq Z \leq -0.5) \\
+    &= P(Z \leq -0.5) - P(Z \leq -1.25) \\
+    &= 0.3085 - 0.1056 \\
+    &= 0.2029
+  \end{align*}
+  
+  \textbf{Respuesta:} Por lo tanto, la probabilidad de que un ejecutivo cualquiera trabaje entre 3 y 6 horas diarias es de $20.29\%$.
+
+  \item \textbf{d)}	La cantidad de tiempo que dedica un ejecutivo a realizar tareas propias de sus subalternos, también sigue una distribución normal con media $\mu = 2.4$ horas. Determine la desviación estándar,$\sigma$, de este tiempo, si se sabe que el 10\% de los ejecutivos gasta más de 3.5 horas en tareas de este tipo.
+  \begin{align*}
+    P(X > 3.5) &= 0.10 \\
+    P\left(\frac{X - \mu}{\sigma} > \frac{3.5 - \mu}{\sigma}\right) &= 0.10 \\
+    P\left(Z > \frac{3.5 - \mu}{\sigma}\right) &= 0.10 && \text{, } Z = \frac{X - \mu}{\sigma} \\
+    1 - P\left(Z \leq \frac{3.5 - \mu}{\sigma}\right) &= 0.10 \\
+    P\left(Z \leq \frac{3.5 - \mu}{\sigma}\right) &= 0.90 \\
+    \frac{3.5 - \mu}{\sigma} &= 1.28 \\
+    3.5 - \mu &= 1.28\sigma \\
+    \sigma &= \frac{3.5 - \mu}{1.28} && \text{Remplazando } \\
+    \sigma &= \frac{3.5 - 2.4}{1.28} \\
+    \sigma &= \frac{1.1}{1.28} \\
+    \sigma &= 0.8594
+  \end{align*}
+
+  \textbf{Respuesta:} Por lo tanto, la desviación estándar es de 0.8594 horas.
+\end{itemize}
+\end{document}
