@@ -1,0 +1,186 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+\begin{document}
+
+\imagenlogo{img/LogoElNube.png}
+\universidad{Universidad del Bío-Bío}
+\titulo{Distribuciones} % Titulo
+\asignatura{Estadistica y Probabilidades} % Asignatura
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}   
+\portada
+\margenes % Crear márgenes
+
+\section{Teoría}
+\subsection*{Para valores Discretos}
+\begin{itemize}
+  \item \textbf{Distribución Binomial:} Una variable aleatoria X se dice Binomial cuando indica el número de éxitos que
+  ocurren en n ensayos Bernoulli.
+
+  Supuestos:
+  \begin{enumerate}
+    \item La probabilidad de éxito “p” permanece constante durante los n ensayos Bernoulli.
+    \item Los n ensayos son independientes.
+  \end{enumerate}
+
+  Función de Probabilidad:
+  \begin{align*}
+    P(X=x) = \binom{n}{x} p^x \cdot q^{n-x} \qquad \text{, x = 0, 1, ..., n; q = 1 - p}
+  \end{align*}
+
+  Notación:
+  \begin{align*}
+    X \sim B(n, p)
+  \end{align*}
+
+  Esperanza y Varianza:
+  \begin{align*}
+    E(X) = n \cdot p \qquad V(X) = n \cdot p \cdot q
+  \end{align*}
+
+  \item \textbf{Distribución Hipergeométrica:} Una variable aleatoria X se dice Hipergeométrica cuando a partir de una población
+  de tamaño N que se encuentra dividida en solo dos grupos, $k$ y $N - k$, donde $k$ es una
+  característica o atributo de interés, se toma un tamaño de muestra $n$ y $X$ es el número de éxitos
+  que se obtienen en la muestra.
+
+  Función de Probabilidad:
+  \begin{align*}
+    P(X=x) = \frac{\displaystyle \binom{k}{x} \cdot \binom{N-k}{n-x}}{\displaystyle \binom{N}{n}} \qquad \text{, x = 0, 1, ..., min\{n,k\}}
+  \end{align*}
+
+  Notación:
+  \begin{align*}
+    X \sim H(N, k, n)
+  \end{align*}
+
+  \newpage
+  \item \textbf{Distribución de Poisson:} Una variable aleatoria se dice Poisson cuando indica el número de ocurrencias de
+  un evento por intervalo de tiempo o unidad de área.
+  
+  El parámetro que caracteriza a esta distribución es $\lambda$ e indica el promedio o tasa de ocurrencia
+  del evento por intervalo de tiempo o unidad de área.
+
+  Función de Probabilidad:
+  \begin{align*}
+    P(X=x) = \frac{\lambda^x \cdot e^{-\lambda}}{x!} \qquad \text{, x = 0, 1, 2, ..., } \infty
+  \end{align*}
+
+  Notación:
+  \begin{align*}
+    X \sim P(\lambda)
+  \end{align*}
+
+  Esperanza y Varianza:
+  \begin{align*}
+    E(X) = \lambda \qquad V(X) = \lambda
+  \end{align*}
+\end{itemize}
+
+\subsection*{Para valores Continuos}
+\begin{itemize}
+  \item \textbf{Distribución Uniforme:} Una variable aleatoria continua X se dice distribuida Uniforme en el intervalo [$a, b$] si su función
+  de densidad de probabilidad está dada por:
+  \begin{align*}
+    f(x) =
+    \begin{cases}
+      \displaystyle \frac{1}{b-a} \qquad \text{, a $\leq$ x $\leq$ b} \\
+      \\
+      0 \qquad \text{, en otro caso}
+    \end{cases}
+  \end{align*}
+
+  Notación:
+  \begin{align*}
+    X \sim U[a, b]
+  \end{align*}
+
+  Esperanza y Varianza:
+  \begin{align*}
+    E(X) = \frac{a+b}{2} \qquad V(X) = \frac{(b-a)^2}{12}
+  \end{align*}
+
+  \newpage
+  \item \textbf{Distribución Exponencial:} Una variable aleatoria continua X se dice exponencialmente distribuida con parámetro $\lambda$ si su
+  función de densidad de probabilidad está dada por:
+  \begin{align*}
+    f(x) =
+    \begin{cases}
+      \displaystyle \lambda \cdot e^{-\lambda x} \qquad \text{, x $\geq$ 0} \\
+      \\
+      0 \qquad \text{, en otro caso}
+    \end{cases}
+  \end{align*}
+
+  Notación:
+  \begin{align*}
+    X \sim \varepsilon(\lambda)
+  \end{align*}
+
+  Esperanza y Varianza:
+  \begin{align*}
+    E(X) = \frac{1}{\lambda} \qquad V(X) = \frac{1}{\lambda^2}
+  \end{align*}
+
+  Función de Distribución Acumulada:
+  \begin{align*}
+    F(x) = P(X \leq x) =
+    \begin{cases}
+      \displaystyle 1 - e^{-\lambda x} \qquad \text{, x $\geq$ 0} \\
+      \\
+      0 \qquad \text{, en otro caso}
+    \end{cases}
+  \end{align*}
+
+  \item \textbf{Distribución Normal:} Una variable aleatoria continua X que toma todos los valores reales, tiene una
+  distribución normal si su función de densidad de probabilidades es de la forma.
+
+  \begin{align*}
+    f_x(x) = \frac{1}{\sigma \sqrt{2 \pi}} \cdot e^{\displaystyle -\frac{1}{2} \left( \frac{x - \mu}{\sigma} \right)^2} \qquad \text{, $-\infty < x < \infty$}
+  \end{align*}
+  Donde, $\mu \in \mathbb{R}$ y $\sigma > 0 $
+
+  Notación:
+  \begin{align*}
+    X \sim N(\mu, \sigma^2)
+  \end{align*}
+
+  Esperanza y Varianza:
+  \begin{align*}
+    E(X) = \mu \qquad V(X) = \sigma^2
+  \end{align*}
+\end{itemize}
+
+\newpage
+\subitem \textbf{Variable aleatoria normal estándar:} Si Z es una variable normal con medio cero y varianza uno, con
+\begin{align*}
+  Z = \frac{X - \mu}{\sigma}
+\end{align*}
+Función de densidad:
+\begin{align*}
+  \varphi_z(z) = \frac{1}{\sqrt{2 \pi}} \cdot e^{\displaystyle -\frac{1}{2} z^2} \qquad \text{, $-\infty < z < \infty$}
+\end{align*}
+Función de distribución:
+\begin{align*}
+  F_z(z) = \phi(z) = \int_{-\infty}^{z} \varphi_z(t) \cdot dt
+\end{align*}
+
+\subsection*{Teorema}
+Sea $X \sim N(\mu, \sigma^2)$. Si, $Y = aX + b \qquad \text{, a > 0}$
+
+Entonces, $Y$ es una variable normal con media $a\mu + b$ y varianza $a^2 \sigma^2$.
+
+\end{document}
