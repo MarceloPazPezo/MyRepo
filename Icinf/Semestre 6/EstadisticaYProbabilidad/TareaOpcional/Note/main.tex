@@ -1,0 +1,91 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+\usepackage{tabularx}
+
+
+\pgfplotsset{compat=1.18}
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+\begin{document}
+
+\imagenlogo{img/logoubb.png}
+\universidad{Universidad del Bío-Bío}
+\titulo{TAREA-OPCIONAL} % Titulo
+\asignatura{Estadistica y Probabilidad} % Asignatura
+\autor{
+    Marcelo \textsc{Paz}
+}
+\portada
+\margenes % Crear márgenes
+
+\section{Enunciado}
+\indent
+Demostrar que $E(x) = \displaystyle \frac{1}{\lambda}$ y $V(x) = \displaystyle \frac{1}{\lambda^2}$:
+
+Para demostrar que $E(x) = \displaystyle \frac{1}{\lambda}$:
+\begin{align*}
+    E(x) &= \int_{- \infty}^{\infty} x f(x) dx = \int_{0}^{\infty} x \lambda e^{- \lambda x} dx \\
+    &= \lambda \int_{0}^{\infty} x e^{- \lambda x} dx
+\end{align*}
+
+Integral por partes, ILATE nos sugiere que $u = x$ y $dv = e^{- \lambda x}$ por lo tanto:
+\begin{align*}
+    du &= dx \\
+    v &= - \frac{1}{\lambda} e^{- \lambda x} \\
+    \int{u dv} &= uv - \int v du
+\end{align*}
+
+Sustituyendo:
+\begin{align*}
+    \int_{0}^{\infty} x e^{- \lambda x} dx &= - x \cdot \frac{1}{\lambda} e^{- \lambda x} \Big|_{0}^{\infty} - \int_{0}^{\infty} - \frac{1}{\lambda} e^{- \lambda x} dx \\
+    &= - \frac{x}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} + \frac{1}{\lambda} \int_{0}^{\infty} e^{- \lambda x} dx \\
+    &= - \frac{x}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} + \frac{1}{\lambda} \left[- \frac{1}{\lambda} e^{- \lambda x} \Big|_{0}^{\infty}\right] \\
+    &= - \frac{x}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} - \frac{1}{\lambda^2 e^{\lambda x}} \Big|_{0}^{\infty} \\
+    &= - \lim_{x \to \infty} \frac{x}{\lambda e^{\lambda x}} - \lim_{x \to \infty} \frac{1}{\lambda^2 e^{\lambda x}} - \left[- \frac{0}{\lambda e^{\lambda 0}} - \frac{1}{\lambda^2 e^{\lambda 0}}\right] \\
+    &= - 0 - 0 - \left[- \frac{0}{\lambda} - \frac{1}{\lambda^2}\right] \\
+    &= \frac{1}{\lambda^2}
+\end{align*}
+
+\begin{align*}
+    E(x) &= \lambda \left[\frac{1}{\lambda^2}\right] && \qquad \text{Remplazando}\\
+    &= \displaystyle \frac{1}{\lambda}
+\end{align*}
+
+\begin{align*}
+    \textbf{Q.E.D.} \qquad E(x) = \displaystyle \frac{1}{\lambda}
+\end{align*}
+
+\newpage
+Para demostrar que $V(x) = \displaystyle \frac{1}{\lambda^2}$:
+\begin{align*}
+    V(x) &= E(x^2) - [E(x)]^2 \\
+\end{align*}
+
+Es necesario calcular $E(x^2)$:
+\begin{align*}
+    E(x^2) &= \int_{- \infty}^{\infty} x^2 f(x) dx = \int_{0}^{\infty} x^2 \lambda e^{- \lambda x} dx \\
+    &= \lambda \int_{0}^{\infty} x^2 e^{- \lambda x} dx \\
+    &= \lambda \left[x^2 \cdot \frac{-1}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} - \int_{0}^{\infty}{\frac{-1}{\lambda e^{\lambda x}}\cdot 2x dx}\right] \\
+    &= \lambda \left[\frac{-x^2}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} + \frac{2}{\lambda} \int_{0}^{\infty}{\frac{x}{e^{\lambda x}}dx}\right] \\
+    &= \lambda \left[- \lim_{x \to \infty}{\frac{x^2}{\lambda e^{\lambda x}}} + \frac{0^2}{\lambda e^{\lambda 0}} + \frac{2}{\lambda} \left(\frac{-x}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} - \frac{1}{\lambda} \int_{0}^{\infty}{\frac{-1}{\lambda e^{\lambda x}}dx}\right)\right] \\
+    &= \lambda \left[- 0 + 0 + \frac{2}{\lambda} \left(- \lim_{x \to \infty}{\frac{x}{\lambda e^{\lambda x}}} + \frac{0}{\lambda e^{\lambda 0}}+ \frac{1}{\lambda^2} \int_{0}^{\infty}{\frac{1}{e^{\lambda x}}dx}\right)\right] \\
+    &= \lambda \left[\frac{2}{\lambda} \left(- 0 + 0 + \frac{1}{\lambda^2} \left(\frac{-1}{\lambda e^{\lambda x}} \Big|_{0}^{\infty}\right)\right)\right] \\
+    &= \lambda \left[\frac{2}{\lambda} \left(\frac{1}{\lambda^2} \left(- \lim_{x \to \infty}{\frac{1}{\lambda e^{\lambda x}}} + \frac{1}{\lambda e^{\lambda 0}}\right)\right)\right] \\
+    &= \lambda \left[\frac{2}{\lambda} \left(\frac{1}{\lambda^2} \left(0 + 1\right)\right)\right] \\
+    &= \frac{2}{\lambda^2}
+\end{align*}
+
+Luego:
+\begin{align*}
+    V(x) &= \frac{2}{\lambda^2} - \left[\frac{1}{\lambda}\right]^2 && \qquad \text{Remplazando}\\
+    &= \frac{2}{\lambda^2} - \frac{1}{\lambda^2} \\
+    &= \frac{1}{\lambda^2}
+\end{align*}
+
+\begin{align*}
+    \textbf{Q.E.D.} \qquad V(x) = \displaystyle \frac{1}{\lambda^2}
+\end{align*}
+\end{document}
