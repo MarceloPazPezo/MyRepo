@@ -1,0 +1,221 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{pgf-pie}
+\usepackage{tabularx}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{soul}
+
+\pgfplotsset{compat=1.18}
+\newcolumntype{L}{>{\centering\arraybackslash}X}
+\begin{document}
+
+\imagenlogo{img/LogoElNube.png}
+\universidad{Universidad del Bío-Bío}
+\titulo{Apunte Certamen 2} % Titulo
+\asignatura{Analisis y Diseño de Algoritmos} % Asignatura
+\autor{
+    Marcelo \textsc{Paz}
+}
+\portada
+\margenes % Crear márgenes
+
+\section{Backtracking}
+\begin{itemize}
+    \item Es una meta-heurística que trata de podar el árbol de búsqueda, el cuál se va generando de manera dinámica.
+    
+    \item Se descartan soluciones intermedias que se puede determinar no llegarán a una solución.
+    
+    \item La búsqueda se hace en profundidad.
+
+    Para realizar backtracking, necesitamos:
+    \begin{enumerate}
+        \item Punto de partida del árbol.
+        
+        \item Función de rechazo.
+        
+        \item Función de aceptación.
+        
+        \item Funciones de hijo (primero y siguiente).
+        
+        \item Función de Output (completar).
+    \end{enumerate}
+\end{itemize}
+
+\begin{algorithm*}[H]
+    % \SetAlgoLined
+    \SetKwFunction{FMain}{Backtracking}
+    \SetKwProg{Fn}{Función}{:}{}
+    \Fn{\FMain{c}}{
+        \If{reject(P,c)}{
+            \KwRet\;
+        }
+
+        \If{accept(P,c)}{
+            output(P,c)\;
+            exit(0)\;
+        }
+        s = first(P,c)\;
+
+        \While{$s \neq \land$}{
+            Backtracking(s)\;
+            s = next(P,s)\;
+        }
+    }
+    \caption{PseudoCódigo Backtracking}
+\end{algorithm*}
+
+% \newpage
+\subsection*{Eficiencia de backtracking}
+
+\begin{itemize}
+    \item \textbf{Función de rechazo:} Mientras más cerca de la raíz, mejor.
+    
+    \item \textbf{Función de aceptación:} Mientras más cerca de la raíz, mejor.
+    
+    \item \textbf{Funciones de hijo (primero y siguiente):} Mientras más restrictiva, mejor.
+    
+    \item \textbf{Función de Output (completar):} Mientras más eficiente, mejor.
+\end{itemize}
+
+\subsection*{Cuando usar backtracking}
+\begin{itemize}
+    \item BackTracking está considerado para resolver Problemas de Satisfacción de Restricciones (CSP).
+    Éste se define como los problemas consistentes de una tripleta $(X,D,C)$.
+    \subitem $X$= Conjunto de variables.
+    \subitem $D$ = Conjunto de dominios.
+    \subitem $C$ = Conjunto de restricciones.
+    
+    \item Cada variable $x_i \in d_i$ y debe satisfacer $c_i$, el cual está formado por una relación entre elementos de $X$.
+    
+\end{itemize}
+
+
+\subsection*{Ejemplos de problemas CSP}
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!75!black,title=Aritmética Verbal]
+    Dado un problema de aritmética verbal, encontrar la solución.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!75!black,title=Coloración de mapas]
+    Dado un mapa, colorear las regiones de tal forma que dos regiones adyacentes no tengan el mismo color.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!75!black,title=Crucigramas]
+    Dado un crucigrama, encontrar las palabras que lo completan.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!75!black,title=Sudoku]
+    Dado un tablero de $9 \times 9$, colocar los números del 1 al 9 de tal forma que no se repitan en la misma fila, columna o submatriz de $3 \times 3$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!4!white,colframe=blue!75!black,title=Problema de las $n$ reinas]
+    Dado un tablero de $n \times n$, colocar $n$ reinas de tal forma que no se ataquen entre ellas.
+\end{tcolorbox}
+
+\newpage
+
+\section{Algoritmos Probabilísticos}
+\begin{itemize}
+    \item Los algoritmos probabilísticos son aquellos que introducen elementos al azar dentro de su lógica.
+    \item Puede que el tiempo, la memoria o la respuesta sean afectados positivamente (o negativa con baja probabilidad) por el azar.
+\end{itemize}
+
+\subsection*{Tipos}
+\begin{itemize}
+    \item Algoritmos Numéricos.
+    \begin{itemize}
+        \item Estos algoritmos dan una respuesta aproximada al problema que se quiere resolver.
+
+        \item Su precisión mejora conforme se realizan más ciclos de iteración.
+    \end{itemize}
+
+    \item \textbf{Algoritmos Monte Carlo} (Puede mentir).
+    \begin{itemize}
+        \item Se utilizan cuando no existen formas eficientes de resolver un problema de otra manera.
+
+        \item \hl{Estos algoritmos dan la respuesta exacta, pero puede dar una solución errada, con probabilidad baja.}
+
+        \item Mientras más larga la ejecución, mayor es la probabilidad de que la respuesta se la correcta.
+        
+        Se le dice a un algoritmo tipo Monte Carlo p-correcto si:
+        \begin{itemize}
+            \item La solución regresada es correcta con probabilidad p>0,5, no importando el dato de entrada.
+            \item p puede depender del tamaño de la entrada, pero no de los datos de la entrada.
+        \end{itemize}
+
+    \end{itemize}
+    
+    \item \textbf{Algoritmos Las Vegas} (No miente, dice que no puede dar la respuesta correcta).
+    \begin{itemize}
+        \item El algoritmo tipo Las Vegas funciona similar a Monte Carlo, pero cuando no puede dar una respuesta correcta, lo admite.
+        
+        Se distinguen 2 sub-tipos en general:
+        \begin{itemize}
+            \item Siempre encuentra una solución correcta. Si el azar no beneficia a la ejecución, esta tomará más tiempo.
+            \item \hl{A veces no es capaz de dar una solución, lo cual admite.}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\section{Algoritmos Genéticos}
+\begin{itemize}
+    \item Algoritmo genético es una metaheurística que se inspira en la evolución y selección natural para resolver problemas de optimización.
+    
+    \item En términos coloquiales, genera una población inicial y la hace evolucionar miles o millones de años, para finalmente elegir al individuo más fuerte.
+    
+    \newpage
+    En términos generales, los tópicos ligados a un algoritmo genético son los siguientes:
+    \begin{enumerate}
+        \item \textbf{Población Inicial:} La Población Inicial consta de soluciones (ya sean parciales y/o totales).
+
+        \item \textbf{Función de aptitud:}La Fitness Function o Función de Aptitud nos dice que tan apta es la solución para el problema.
+        
+        \item \textbf{Algoritmo de combinación (sexo):} Básicamente acá es que los individuos con mejor fitness tienen mayores posibilidades de procrear.
+
+        \item \textbf{Algoritmo y tasa de Mutación:} Con alguna probabilidad (generalmente muy baja), cada bit de hijos puede cambiar.
+        \begin{itemize}
+            \item Mutación bit por string.
+            
+            \item Flip.
+            
+            \item Límite (para números).
+            
+            \item No uniforme.
+            
+            \item Uniforme.
+            
+            \item Gausiano.
+            
+            \item Shrink.
+        \end{itemize}
+        \item \textbf{Selección:} Hay varias versiones sobre supervivencia a la siguiente generación. Una común es que sobrevivan los mejores (siempre mismo tamaño).
+
+    \end{enumerate}
+
+\end{itemize}
+
+\section{Búsqueda Informada (Heurística)}
+La búsqueda no informada trata ciegamente de encontrar una solución.
+\begin{itemize}
+    \item Fuerte: Se usa heurística para tratar de resolver el problema lo mejor posible, pero no se asegura la solución.
+    \item Débil: Heurística se conjuga con un método riguroso para llegar a la mejor solución. Muchas veces sigue siendo infactible de resolver en el peor caso.
+\end{itemize}
+
+\section{Complejidad Computacional}
+\begin{itemize}
+    \item La complejidad computacional trata sobre clasificación de problemas.
+    \subitem Dificultad inherente.
+    \subitem Clases de complejidad y sus relaciones.
+    
+    \item Mide Tiempo y Espacio utilizando modelos de cómputo.
+\end{itemize}
+
+\section{Teoría Algorítmica de la Información}
+
+\section{Dureza, Completitud y Reducciones}
+
+\section{Clases de Complejidad}
+\end{document}
