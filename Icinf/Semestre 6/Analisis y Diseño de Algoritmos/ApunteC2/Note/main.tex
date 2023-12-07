@@ -92,7 +92,7 @@
 \end{itemize}
 
 \section{Ejercicios:}
-\subsection*{Certamen 2}
+\subsection*{Certamen 2 G 2021}
 \begin{enumerate}
     \item Sean $A$, $B$, $C$ matrices de $n \times n$. Considere el siguiente algoritmo probabilístico para saber si $A \cdot B = C$:
 \begin{verbatim}
@@ -199,6 +199,109 @@ return true;
     \end{align*}
 
 \end{enumerate}
+
+\section*{Certamen 2 G 2017}
+\begin{enumerate}
+    \subsection*{Representación de un arreglo con un arreglo binario (?)}
+    \item Cuál es la mejor estrategia (Voraz, dinámica, divide y vencerás o backtracking) para resolver el problema de suma cero? Justifique.
+    Sea:
+    \begin{align*}
+        A = \left\{b_1, b_2, ..., b_n\right\}\\
+        \exists S \subseteq A : \sum S = 0 \\
+    \end{align*}
+
+    Ejemplo:
+    \begin{align*}
+        A &= \left\{1, 2, -3, 4, 5\right\}\\
+        S &= \left\{1, 2, -3\right\}\\
+        \sum S &= 0\\
+        S_{Bi} &= \left\{1,1,1,0,0\right\}
+    \end{align*}
+    
+    \item Considere el algoritmo para el resolver el problema de las N-Reinas visto en clases, donde se elegía la permutación al azar de las reinas en el tablero (por columna) y posteriormente se hacían cambios voraces hasta conseguir el resultado deseado. Si eso no era posible, se repetia el proceso. De que tipo de algoritmo probabilístico estamos hablando? Justifique.
+    
+    \textbf{Respuesta:} Algoritmo de backtracking, pues se descartan soluciones intermedias que se puede determinar no llegarán a una solución.
+
+    \item Tiene el archivo audio.mp3, que pesa 3.5MB. Suponga que tiene un sintetizador de voz y un mezclador que pueden reproducir de manera exacta el contenido del mp3,cada uno pesa 300Kb. Que puede decir respecto al Kolmogorov de audio.mp3? Justifique.
+    
+    \textbf{Respuesta COPILOT:} Que el Kolmogorov de audio.mp3 es aproximadamente 600Kb pues es la suma del sintetizador de voz y el mezclador, pues el Kolmogorov es el mínimo real, y el sintetizador de voz y el mezclador son programas que generan el mensaje audio.mp3.
+\end{enumerate}
+
+\newpage
+\section*{Reducción Karp}
+Sea: 
+\begin{align*}
+    EXP &= \left\{ \left( a,b,c \right) : a^b=c\right\} \\
+    LOG &= \left\{ \left( x,y,z \right) : \log_y x = z\right\} \\
+\end{align*}
+
+Demuestre que $EXP \leq_p LOG$:
+\begin{align*}
+    \left(a,b,c\right) \overset{f}{\rightarrow} \left(x,y,z\right) \\
+\end{align*}
+
+Donde:
+\begin{align*}
+    f \left( a,b,c \right) = \begin{cases}
+        a = y \\
+        b = z \\
+        c = x \\
+    \end{cases} \\
+\end{align*}
+
+Recordemos que:
+\begin{align*}
+    \log_a c = b \Leftrightarrow a^b = c \\
+\end{align*}
+
+Sea:
+\begin{align*}
+    SUM &= \left\{\left(a,b,c\right):  a+b=c\right\} \\
+    MULT &= \left\{\left(x,y,z\right):  x \cdot y=z\right\} \\
+\end{align*}
+Demuestre que $MULT \leq_p SUM$:
+\begin{align*}
+    \left(x,y,z\right) \overset{f}{\rightarrow} \left(a,b,c\right) \\
+\end{align*}
+
+Donde $f$:
+
+\begin{algorithm*}[H]
+    \SetKwFunction{FMain}{f}
+    \SetKwProg{Fn}{Función}{:}{}
+    \Fn{\FMain{}}{
+        z = 0\\
+        \For{: i = 1 to y}{
+            Encontrar: $z' : (z, x, z')$\\
+            $z' \leftarrow z'$\\
+        }
+    }
+\end{algorithm*}
+
+\newpage
+\section*{Satisfacción de Restricciones}
+\begin{itemize}
+    \item \textbf{Problema de Satisfacción de Restricciones (CSP):} Es un problema consistente de una tripleta $(X,D,C)$.
+    \subitem $X$= Conjunto de variables.
+    \subitem $D$ = Conjunto de dominios.
+    \subitem $C$ = Conjunto de restricciones.
+    
+    \item Cada variable $x_i \in d_i$ y debe satisfacer $c_i$, el cual está formado por una relación entre elementos de $X$.
+    
+    \item \textbf{Ejemplo:} Problema del Caballo.
+    \begin{itemize}
+        \item $X = \left\{ x_1, x_2, x_3, ..., x_{64} \right\}$ donde $x_i$ es la posición del caballo en el tablero.
+        
+        Ejemplo: X =$\left\{ 63, 14, 37, ..., 31 \right\}$
+        
+        \item $D$ = $\left\{ 1, 2, 3, ..., 64 \right\}$ \quad (?)
+        \item $C$ = \begin{itemize} \item Valores distintos. \item Posición en L con la casilla anterior. \{ $t[i-2][j-1]$, $t[i-2][j+1]$, $t[i-1][j+2]$, $t[i+1][j+2]$, $t[i+2][j+1]$, $t[i+2][j-1]$, $t[i+1][j-2]$, $t[i-1][j-2]$ \} \end{itemize}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.5]{img/ProblemaDelCaballo.png}
+        \end{figure}
+    \end{itemize}
+\end{itemize}
 
 \newpage
 \section{Backtracking}
@@ -396,6 +499,25 @@ La búsqueda no informada trata ciegamente de encontrar una solución.
 
 \section{Dureza, Completitud y Reducciones}
 
+\newpage
 \section{Clases de Complejidad}
+COPILOT
+\begin{itemize}
+    \item \textbf{Problemas NP:} Problemas que pueden ser resueltos en tiempo polinomial por una máquina de Turing no determinista.
+    \item \textbf{Problemas NP-Duros:} Problemas que son al menos tan difíciles como los problemas NP.
+    \item \textbf{Problemas NP-Completos:} Problemas que son NP y NP-Duros.
+    \item \textbf{Problemas P:} Problemas que pueden ser resueltos en tiempo polinomial por una máquina de Turing determinista.
+    \item \textbf{Problemas EXPTIME:} Problemas que pueden ser resueltos en tiempo exponencial por una máquina de Turing determinista.
+    \item \textbf{Problemas EXPSPACE:} Problemas que pueden ser resueltos en espacio exponencial por una máquina de Turing determinista.
+    \item \textbf{Problemas PSPACE:} Problemas que pueden ser resueltos en espacio polinomial por una máquina de Turing determinista.
+    \item \textbf{Problemas EXP:} Problemas que pueden ser resueltos en tiempo y espacio exponencial por una máquina de Turing determinista.
+    \item \textbf{Problemas LOGSPACE:} Problemas que pueden ser resueltos en espacio logarítmico por una máquina de Turing determinista.
+    \item \textbf{Problemas L:} Problemas que pueden ser resueltos en tiempo logarítmico por una máquina de Turing determinista.
+    \item \textbf{Problemas NL:} Problemas que pueden ser resueltos en tiempo logarítmico por una máquina de Turing no determinista.
+    \item \textbf{Problemas co-NP:} Problemas cuyas respuestas negativas pueden ser verificadas en tiempo polinomial por una máquina de Turing determinista.
+\end{itemize}
+
+\section{Problemas NP-Completos}
+
 
 \end{document}
