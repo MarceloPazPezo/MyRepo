@@ -22,6 +22,185 @@
 \portada
 \margenes % Crear márgenes
 
+\section{Importante}
+\begin{itemize}
+    \item \textbf{Backtracking:} Tipo de algoritmo que se utiliza para resolver problemas de satisfacción de restricciones (CSP).
+    \item \textbf{Algoritmos Probabilísticos:} Son aquellos que introducen elementos al azar dentro de su lógica.
+    
+    Tipos de algoritmos probabilísticos:
+    \begin{itemize}
+        \item \textbf{Algoritmos Monte Carlo (Probable que mienta):} Da la respuesta exacta, pero puede dar una solución errada, con probabilidad baja (puede mentir).
+        \item \textbf{Algoritmos Las Vegas (Probable que NO encuentre solución):} Funciona similar a Monte Carlo, pero cuando no puede dar una respuesta correcta, lo admite (no miente, dice que no puede dar la respuesta correcta).
+        
+        Se distinguen 2 sub-tipos en general:
+        \begin{itemize}
+            \item \textbf{Algoritmos de Sherwood:} Siempre encuentra una solución correcta. Si el azar no beneficia a la ejecución, esta tomará más tiempo.
+            \item \textbf{Algoritmos que, a veces, no dan respuesta:} A veces no es capaz de dar una solución, lo cual admite.
+        \end{itemize}
+        
+        \item \textbf{Algoritmos Genéticos:} Es una metaheurística que se inspira en la evolución y selección natural para resolver problemas de optimización, busca elegir al individuo más fuerte.
+        
+        \begin{itemize}
+            \item \textbf{Fitness:} Función de aptitud, nos dice que tan apta es la solución para el problema (que tan cerca estamos de la solución real).
+        \end{itemize}
+        
+        \item \textbf{Teoría de la Información:} Trata sobre clasificación de problemas, mide tiempo y espacio utilizando modelos de cómputo.
+        \begin{itemize}
+            \item \textbf{Entropía(mínimo teórico):} Mide la cantidad de información que tiene un mensaje.
+            \begin{align*}
+                h &=  \sum_{i=1}^{n} p_i \cdot \log_2 \left( \frac{1}{p_i} \right) \\
+            \end{align*}
+
+            \item \textbf{Kolmogorov(mínimo real):} Mide la cantidad de información que tiene un mensaje.
+            \begin{align*}
+                K &= \min \left\{ l(M) : U(M) = x \right\}
+            \end{align*}
+            Donde $l(M)$ es la longitud del mensaje y $U(M)$ es el programa que genera el mensaje $M$.
+        \end{itemize}
+
+        \item \textbf{Reducciones:} Son métodos para demostrar alguna característica de un problema.
+        \begin{itemize}
+            \item \textbf{Reducción Turing:} Es una reducción para demostrar que un problema es imposible de resolver, usando otro problema que ya se sabe que es imposible de resolver.
+            Ejemplo:
+
+            \begin{center}
+                HP $\leq_T$ EP
+            \end{center}
+            Donde HP es el problema de parada y EP es el problema del vacío.
+            \\
+            \item \textbf{Reducción Karp:} Es una reducción para demostrar que un problema es difícil de resolver, usando otro problema que ya se sabe que es difícil de resolver.
+            Ejemplo:
+
+            \begin{center}
+                3-SAT $\leq_p$ K-Clique
+            \end{center}
+            Donde 3-SAT es el problema de satisfacción de 3 variables y K-Clique es el problema de encontrar un clique de tamaño K.
+            \\
+        \end{itemize}
+    \end{itemize}
+    
+    \textbf{Problema visto en clase:}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.16]{img/Problema3-SATK-CliqueP1.jpeg}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.17]{img/Problema3-SATK-CliqueP2.jpg}
+    \end{figure}
+
+\end{itemize}
+
+\section{Ejercicios:}
+\subsection*{Certamen 2}
+\begin{enumerate}
+    \item Sean $A$, $B$, $C$ matrices de $n \times n$. Considere el siguiente algoritmo probabilístico para saber si $A \cdot B = C$:
+\begin{verbatim}
+for (i = 1; i <= k; i++) {
+    Generar un vector aleatorio x de n x 1 con entradas en {0 , 1}
+    if (A*(Bx) != Cx)
+        return false;
+}
+return true;
+\end{verbatim}
+
+    \textbf{Responda:}
+    \begin{itemize}
+        \item \textbf{a)} Tipo (MonteCarlo o las Vegas)
+        
+        \textbf{Respuesta:} MonteCarlo, pues el algoritmo puede mentir.
+        Ejemplo:
+        
+        Sea A = $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, B = $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, C = $\begin{pmatrix} 0 & 2 \\ 0 & 4 \end{pmatrix}$, k = 1 y x = $\begin{pmatrix} 0 \\ 1 \end{pmatrix}$. 
+        
+        \begin{align*}
+            A \cdot B &=^? C \\
+            \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \cdot \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} &=^? \begin{pmatrix} 0 & 2 \\ 0 & 4 \end{pmatrix} \\
+            \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} &\neq \begin{pmatrix} 0 & 2 \\ 0 & 4 \end{pmatrix}
+        \end{align*}
+
+        Primero:
+        \begin{align*}
+            A \cdot (B \cdot x) &= \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \cdot \left( \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right)\\
+            &= \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\
+            &= \begin{pmatrix} 2 \\ 4 \end{pmatrix}
+        \end{align*}
+
+        Luego:
+        \begin{align*}
+            C \cdot x &= \begin{pmatrix} 0 & 2 \\ 0 & 4 \end{pmatrix} \cdot \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\
+            &= \begin{pmatrix} 2 \\ 4 \end{pmatrix}
+        \end{align*}
+
+        Como $A \cdot (B \cdot x) = C \cdot x$, el algoritmo retorna true, pero la respuesta correcta es que $A \cdot B \neq C$.
+        
+        Por por lo tanto, el algoritmo puede mentir, por lo que es MonteCarlo.
+        
+        \newpage
+        \item \textbf{b)} Si $k \ll n$, es más rápido este algoritmo que simplemente multiplicar $A \cdot B$ y compararlo con C? Justifique con comportamiento asintótico.
+    
+        \textbf{Respuesta:} Si, pues el algoritmo tiene una complejidad de $O(k \cdot n^2)$, mientras que multiplicar $A \cdot B$ y compararlo con C tiene una complejidad de $O(n^3)$.
+        \\
+        \\
+        Pues el algoritmo tiene un ciclo que se repite k veces, y en cada iteración se multiplica una matriz de $n \times n$ con un vector de $n \times 1$, lo cual tiene una complejidad de $O(n^2)$, por lo que la complejidad del algoritmo es $O(k \cdot n^2)$.
+        \\
+        \\
+        Mientras que multiplicar $A \cdot B$ y compararlo con C tiene una complejidad de $O(n^3)$, pues se multiplica una matriz de $n \times n$ con otra matriz de $n \times n$, lo cual tiene una complejidad de $O(n^3)$, y luego se compara con otra matriz de $n \times n$, lo cual tiene una complejidad de $O(n^2)$, por lo que la complejidad de multiplicar $A \cdot B$ y compararlo con C es $O(n^3)$.
+    \end{itemize}
+
+    \item Sea una cadena de ADN de largo $10^9$. La cantidad de adeninas en la cadena son 300 millones, timinas 200 millones, citosinas son 100 millones y guaninas el resto. Cuál es el mínimo teórico de información que posee la cadena?
+    
+    El mínimo teórico es la entropía, la cual se calcula de la siguiente forma:
+    \begin{align*}
+        h = \sum_{i=1}^{n} p_i \cdot \log_2 \left( \frac{1}{p_i} \right)
+    \end{align*}
+
+    Para calcular la entropía, primero debemos calcular la probabilidad de cada elemento, la cual se calcula de la siguiente forma:
+
+    \begin{minipage}{0.45\textwidth}
+        Para adeninas:
+        \begin{align*}
+            p_{a} &= \frac{300 \cdot 10^6}{10^9} \\
+            &= 0,3
+        \end{align*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        Para timinas:
+        \begin{align*}
+            p_{t} &= \frac{200 \cdot 10^6}{10^9} \\
+            &= 0,2
+        \end{align*}
+    \end{minipage}
+
+    \begin{minipage}{0.45\textwidth}
+    Para citosinas:
+    \begin{align*}
+        p_{c} &= \frac{100 \cdot 10^6}{10^9} \\
+        &= 0,1
+    \end{align*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+    Para guaninas:
+    \begin{align*}
+        p_{g} &= 1 - p_{a} - p_{t} - p_{c} \\
+        &= 1 - 0,3 - 0,2 - 0,1 \\
+        &= 0,4
+    \end{align*}
+    \end{minipage}
+
+    Remplazando:
+    \begin{align*}
+        h &= \sum_{i=1}^{n} p_i \cdot \log_2 \left( \frac{1}{p_i} \right) \\
+        &= \left( p_{a} \cdot \log_2 \left( \frac{1}{p_{a}} \right) + p_{t} \cdot \log_2 \left( \frac{1}{p_{t}} \right) + p_{c} \cdot \log_2 \left( \frac{1}{p_{c}} \right) + p_{g} \cdot \log_2 \left( \frac{1}{p_{g}} \right) \right) \\
+        &= \left( 0,3 \cdot \log_2 \left( \frac{1}{0,3} \right) + 0,2 \cdot \log_2 \left( \frac{1}{0,2} \right) + 0,1 \cdot \log_2 \left( \frac{1}{0,1} \right) + 0,4 \cdot \log_2 \left( \frac{1}{0,4} \right) \right) \\
+        &= \left( 0,3 \cdot \log_2 \left( \frac{10}{3} \right) + 0,2 \cdot \log_2 \left( \frac{10}{2} \right) + 0,1 \cdot \log_2 \left( \frac{10}{1} \right) + 0,4 \cdot \log_2 \left( \frac{10}{4} \right) \right) \\        
+    \end{align*}
+
+\end{enumerate}
+
+\newpage
 \section{Backtracking}
 \begin{itemize}
     \item Es una meta-heurística que trata de podar el árbol de búsqueda, el cuál se va generando de manera dinámica.
@@ -218,4 +397,5 @@ La búsqueda no informada trata ciegamente de encontrar una solución.
 \section{Dureza, Completitud y Reducciones}
 
 \section{Clases de Complejidad}
+
 \end{document}
