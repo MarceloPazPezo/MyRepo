@@ -218,6 +218,8 @@ return true;
         S_{Bi} &= \left\{1,1,1,0,0\right\}
     \end{align*}
     
+    La mejor estrategia es programación dinámica.
+    \\
     \item Considere el algoritmo para el resolver el problema de las N-Reinas visto en clases, donde se elegía la permutación al azar de las reinas en el tablero (por columna) y posteriormente se hacían cambios voraces hasta conseguir el resultado deseado. Si eso no era posible, se repetia el proceso. De que tipo de algoritmo probabilístico estamos hablando? Justifique.
     
     \textbf{Respuesta:} Algoritmo de backtracking, pues se descartan soluciones intermedias que se puede determinar no llegarán a una solución.
@@ -273,7 +275,7 @@ Donde $f$:
         z = 0\\
         \For{: i = 1 to y}{
             Encontrar: $z' : (z, x, z')$\\
-            $z' \leftarrow z'$\\
+            $z \leftarrow z'$\\
         }
     }
 \end{algorithm*}
