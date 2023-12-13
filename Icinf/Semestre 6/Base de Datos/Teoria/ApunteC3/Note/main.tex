@@ -8,6 +8,7 @@
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usetikzlibrary{tikzmark,calc}
 
 \pgfplotsset{compat=1.18}
 
@@ -120,7 +121,7 @@
     \textbf{\href{https://www.youtube.com/playlist?list=PLE19WVM4rff1ion43QTNdbbejTKNhYs8x}{Video explicativo}}
     
     \begin{enumerate}
-        \item \textbf{1FN:} Todos los atributos son atómicos.
+        \item \textbf{1FN:} Todos los atributos son atómicos y posee alguna clave candidata.
         \\
 
         \begin{minipage}{0.5\textwidth}
@@ -593,7 +594,7 @@
             & \textcolor{green!80!black}{$X(B)$} \\
             & \textcolor{green!80!black}{$R(B)$} \\
             & \textcolor{green!80!black}{$W(B)$} \\
-            \textcolor{blue}{\textit{$Solitica$  ${X(B)}$}} & \\
+            \textcolor{blue}{\textit{$Solicita$  ${X(B)}$}} & \\
             & \textcolor{green!80!black}{\textit{$Solicita$ ${X(A)}$}} \\ \hline
         \end{tabular}
     \end{figure}
@@ -667,10 +668,10 @@
         \item $EC \rightarrow A$ \textcolor{red}{(3)}
         \item $ABC \rightarrow D$ \textcolor{red}{(4)}
     \end{itemize}
+    
+    \hrulefill
 
     \textbf{A)} Genere las posibles claves candidatas para R. Desarrolle paso a paso nombrando los axiomas de Armstrong. TIP: Existen 2 claves candidatas.
-
-    \hrulefill
 
     Para la 1° clave candidata comenzamos de $ABC$:
     \begin{align*}
@@ -706,7 +707,9 @@
     \textbf{B)} ¿En cuál forma normal se encuentra R y por qué no cumple con la siguiente forma normal? Justifique.
 
     \textbf{Respuesta:} R se encuentra en 1FN pues todos los atributos son atómicos. R no cumple con 2FN, porque hay DFs que dependen parcialmente de la clave candidata $E \rightarrow F$.
-    
+
+    \hrulefill
+
     \textbf{C)} Si R no está en FNBC descomponga R paulatinamente hasta dejar un conjunto de relaciones en FNBC (si es posible). Justifique cada paso.
 
     \textbf{Respuesta:} 
@@ -742,6 +745,8 @@
         * $R_{22}$ esta en 3FN y FNBC porque ABC es super clave.
     \end{itemize}
 
+    \hrulefill
+
     \item Considere la relación $R(A,B,C,D)$, donde el conjunto $AB$ es clave candidata para R.
     
     \textbf{A)} ¿Qué puede concluir a raíz de que $AB$ es clave candidata para R? TIP: nombre las dependencias funcionales que se cumplen en R.
@@ -755,6 +760,7 @@
 
     Estas DFs satisfacen R con AB como clave candidata.
 
+    \newpage
     \textbf{B)} Agregue una dependencia funcional de tal manera que R no cumpla con la 2FN.
 
     \textbf{Respuesta:}
@@ -766,17 +772,157 @@
         \item $B \rightarrow D$
     \end{itemize}
     
+    \hrulefill
+
     \item Considere el siguiente plan:
     \begin{align*}
         S = \left\{R_3(z), R_3(y), W_2(y), R_2(z), R_3(x), R_1(x), W_1(x), W_2(x)\right\}
     \end{align*}
 
+    \hrulefill
 
     \textbf{A)} Demuestre que S es conflicto equivalente a un plan serial.
     
+    \textbf{Respuesta:}
+
+    $S = $ \textcolor{orange}{$R_3(z), R_3(y),$} \textcolor{green!80!black}{$W_2(y), R_2(z),$} \textcolor{orange}{$R_3(x),$} \textcolor{blue}{$R_1(x), W_1(x),$} \textcolor{green!80!black}{$W_2(x)$}
+    
+    \qquad \textcolor{orange}{$R_3(z), R_3(y), R_3(x),$} \textcolor{green!80!black}{$W_2(y), R_2(z),$} \textcolor{blue}{$R_1(x), W_1(x),$} \textcolor{green!80!black}{$W_2(x)$}
+    
+    \qquad \textcolor{orange}{$R_3(z), R_3(y), R_3(x),$} \textcolor{blue}{$R_1(x), W_1(x),$} \textcolor{green!80!black}{$W_2(y), R_2(z), W_2(x)$}
+
+    \begin{figure}[H]
+        \begin{center}
+            
+            \caption*{Original}
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \textbf{$T_1$} & \textbf{$T_2$} & \textbf{$T_3$} \\ \hline
+                & & \textcolor{orange}{$R(z)$} \\
+                & & \tikzmarknode{a}{\textcolor{orange}{$R(y)$}} \\
+                & \tikzmarknode{b}{\textcolor{green!80!black}{$W(y)$}} & \\
+                & \textcolor{green!80!black}{$R(z)$} & \\
+                & & \tikzmarknode{c}{\textcolor{orange}{$R(x)$}} \\
+                \tikzmarknode{d}{\textcolor{blue}{$R(x)$}} & & \\
+                \tikzmarknode{e}{\textcolor{blue}{$W(x)$}} & & \\
+                & \tikzmarknode{f}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
+            \end{tabular}
+            \begin{tikzpicture}[overlay, remember picture]
+                \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (a.west) -- (b.east);
+                \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (c.west) -- (d.east);
+                \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (e.east) -- (f.west);
+            \end{tikzpicture}
+        \end{center}
+    \end{figure}
+
+    \begin{figure}[H]
+        \caption*{Plan Serial}     
+        \begin{minipage}{0.5\textwidth}
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    \textbf{$T_1$} & \textbf{$T_2$} & \textbf{$T_3$} \\ \hline
+                    & & \textcolor{orange}{$R(z)$} \\
+                    & & \tikzmarknode{a}{\textcolor{orange}{$R(y)$}} \\
+                    & & \tikzmarknode{c}{\textcolor{orange}{$R(x)$}} \\
+                    & \tikzmarknode{b}{\textcolor{green!80!black}{$W(y)$}} & \\
+                    & \textcolor{green!80!black}{$R(z)$} & \\
+                    \tikzmarknode{d}{\textcolor{blue}{$R(x)$}} & & \\
+                    \tikzmarknode{e}{\textcolor{blue}{$W(x)$}} & & \\
+                    & \tikzmarknode{f}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
+                \end{tabular}
+            \end{center}
+        \end{minipage}
+        \begin{tikzpicture}[overlay, remember picture]
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (a.west) -- (b.north);
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (c.west) -- (d.east);
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (e.east) -- (f.west);
+        \end{tikzpicture}
+        \hfill
+        \begin{minipage}{0.5\textwidth}
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    \textbf{$T_1$} & \textbf{$T_2$} & \textbf{$T_3$} \\ \hline
+                    & & \textcolor{orange}{$R(z)$} \\
+                    & & \tikzmarknode{a}{\textcolor{orange}{$R(y)$}} \\
+                    & & \tikzmarknode{c}{\textcolor{orange}{$R(x)$}} \\
+                    \tikzmarknode{d}{\textcolor{blue}{$R(x)$}} & & \\
+                    \tikzmarknode{e}{\textcolor{blue}{$W(x)$}} & & \\
+                    & \tikzmarknode{b}{\textcolor{green!80!black}{$W(y)$}} & \\
+                    & \textcolor{green!80!black}{$R(z)$} & \\
+                    & \tikzmarknode{f}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
+                \end{tabular}
+            \end{center}
+        \end{minipage}
+        \begin{tikzpicture}[overlay, remember picture]
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (a.west) -- (b.north);
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (c.west) -- (d.east);
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (e.east) -- (f.west);
+        \end{tikzpicture}
+    \end{figure}
+
+    \hrulefill
+
     \textbf{B)} Muestre la ejecución del plan bajo el protocolo 2PL estricto.
     
+    \textbf{Respuesta: 2PL Estricto}
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \textbf{$T_1$} & \textbf{$T_2$} & \textbf{$T_3$} \\ \hline
+            & & \textcolor{orange}{$S(z)$} \\
+            & & \textcolor{orange}{$R(z)$} \\
+            & & \textcolor{orange}{$S(y)$} \\
+            & & \textcolor{orange}{$R(y)$} \\
+            & \textcolor{green!80!black}{$X(y)$} & \\
+            & \textcolor{green!80!black}{Esperar $T_3$} & \\
+            & & \textcolor{orange}{$S(x)$} \\
+            & & \textcolor{orange}{$R(x)$} \\
+            & & \textcolor{orange}{$Commit_{T_{3}}$} \\
+            & \textcolor{green!80!black}{$W(y)$} & \\
+            & \textcolor{green!80!black}{$S(z)$} & \\
+            & \textcolor{green!80!black}{$R(z)$} & \\
+            \textcolor{blue}{$X(x)$} & & \\
+            \textcolor{blue}{$R(x)$} & & \\
+            \textcolor{blue}{$W(x)$} & & \\
+            \textcolor{blue}{$Commit_{T_{1}}$} & & \\
+            & \textcolor{green!80!black}{$X(x)$} & \\
+            & \textcolor{green!80!black}{$W(x)$} & \\
+            & \textcolor{green!80!black}{$Commit_{T_{2}}$} & \\ \hline
+        \end{tabular}
+    \end{center}
+
     \textbf{C)} Muestre la ejecución del plan bajo el protocolo 2PL.
+
+    \textbf{Respuesta: 2PL}
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \textbf{$T_1$} & \textbf{$T_2$} & \textbf{$T_3$} \\ \hline
+            & & \textcolor{orange}{$S(z)$} \\
+            & & \textcolor{orange}{$R(z)$} \\
+            & & \textcolor{orange}{$S(y)$} \\
+            & & \textcolor{orange}{$R(y)$} \\
+            & & \textcolor{orange}{$S(x)$} \\
+            & & \textcolor{orange}{Liberar "$z$" y "$y$"} \\
+            & \textcolor{green!80!black}{$X(y)$} & \\
+            & \textcolor{green!80!black}{$W(y)$} & \\
+            & \textcolor{green!80!black}{$S(z)$} & \\
+            & \textcolor{green!80!black}{$R(z)$} & \\
+            & & \textcolor{orange}{$R(x)$} \\
+            & & \textcolor{orange}{$Commit_{T_3}$ y Liberar "$x$"} \\
+            \textcolor{blue}{$X(x)$} & & \\
+            \textcolor{blue}{$R(x)$} & & \\
+            \textcolor{blue}{$W(x)$} & & \\
+            \textcolor{blue}{$Commit_{T_{1}}$ y Liberar "$x$"} & & \\
+            & \textcolor{green!80!black}{$X(x)$} & \\
+            & \textcolor{green!80!black}{$W(x)$} & \\
+            & \textcolor{green!80!black}{$Commit_{T_{2}}$} & \\ \hline
+        \end{tabular}
+    \end{center}
 
     \item Considere el siguiente historial:
     \begin{figure}[H]
@@ -817,5 +963,71 @@
     \end{figure}
 \end{enumerate}
 
+\newpage
+\section*{Guía Transacciones y Recuperación de Base de Datos}
+\textbf{Recuperación de BDs}
+
+\begin{enumerate}
+    \item Complete el historial con las acciones efectuadas en la etapa de Deshacer.
+    \begin{figure}[H]
+        \centering
+        \begin{tabular}{|c|c|l|}
+            \hline
+            \textbf{LSN} & & \textbf{LOG} \\ \hline
+            10 & - & \textcolor{green!80!black}{update: $T_1$ escribe $P_2$} \\
+            20 & - & \textcolor{green!80!black}{update: $T_1$ escribe $P_1$} \\
+            30 & - & \textcolor{orange}{update: $T_2$ escribe $P_5$} \\
+            40 & - & \textcolor{blue}{update: $T_3$ escribe $P_3$} \\
+            50 & - & \textcolor{blue}{$T_3$ commit} \\
+            60 & - & \textcolor{orange}{update: $T_2$ escribe $P_5$} \\
+            70 & - & \textcolor{orange}{update: $T_2$ escribe $P_3$} \\
+            80 & - & \textcolor{orange}{$T_2$ abort} \\
+            90 & - & \textcolor{green!80!black}{update: $T_1$ escribe $P_4$} \\
+            100 & - & \textcolor{blue}{$T_3$ end} \\
+            & X & \textcolor{red}{CRASH, RESTART} \\ \hline
+            110 & - & \textcolor{green!80!black}{Deshacer $T_1$ LSN 90} \\
+            120 & - & \textcolor{orange}{Deshacer $T_2$ LSN 70} \\
+            130 & - & \textcolor{orange}{Deshacer $T_2$ LSN 60} \\
+            140 & - & \textcolor{orange}{Deshacer $T_2$ LSN 30} \\
+            150 & - & \textcolor{orange}{$T_2$ end} \\
+            160 & - & \textcolor{green!80!black}{Deshacer $T_1$ LSN 20} \\
+            170 & - & \textcolor{green!80!black}{Deshacer $T_1$ LSN 10} \\
+            180 & - & \textcolor{green!80!black}{$T_1$ end} \\ \hline
+        \end{tabular}   
+    \end{figure}
+
+    \item Complete el historial con las acciones efectuadas en la etapa de Deshacer.
+    
+    \begin{minipage}{0.5\textwidth}
+        \begin{center}
+            \begin{tabular}{|c|c|l|}
+                \hline
+                \textbf{LSN} & & \textbf{LOG} \\ \hline
+                10 & - & \textcolor{green!80!black}{update: $T_3$ escribe $P_2$} \\
+                20 & - & \textcolor{orange}{update: $T_1$ escribe $P_1$} \\
+                30 & - & \textcolor{green!80!black}{update: $T_3$ escribe $P_3$} \\
+                40 & - & \textcolor{green!80!black}{$T_3$ abort} \\
+                50 & - & \textcolor{orange}{update: $T_1$ escribe $P_5$} \\
+                60 & - & \textcolor{blue}{update: $T_2$ escribe $P_4$} \\
+                70 & - & \textcolor{orange}{$T_1$ abort} \\
+                80 & - & \textcolor{blue}{update: $T_2$ escribe $P_6$} \\
+                90 & - & \textcolor{green!80!black}{Deshacer $T_3$ LSN 30} \\
+                100 & - & \textcolor{green!80!black}{Deshacer $T_3$ LSN 10} \\
+                110 & - & \textcolor{green!80!black}{$T_3$ end} \\
+                & X & \textcolor{red}{CRASH, RESTART} \\ \hline
+                120 & - & \textcolor{blue}{Deshacer $T_2$ LSN 80} \\
+                130 & - & \textcolor{orange}{Deshacer $T_1$ LSN 50} \\
+                140 & - & \textcolor{blue}{Deshacer $T_2$ LSN 60} \\
+                150 & - & \textcolor{blue}{$T_2$ end} \\
+                160 & - & \textcolor{orange}{Deshacer $T_1$ LSN 20} \\
+                170 & - & \textcolor{orange}{$T_1$ end} \\ \hline
+            \end{tabular}   
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        * Parece que el \textbf{abort} tiene preferencia en el Deshacer LSN 130.
+    \end{minipage}
+\end{enumerate}
 \end{document}
 
