@@ -832,14 +832,14 @@
                 & \tikzmarknode{b}{\textcolor{green!80!black}{$W(y)$}} & \\
                 & \textcolor{green!80!black}{$R(z)$} & \\
                 & & \tikzmarknode{c}{\textcolor{orange}{$R(x)$}} \\
-                \tikzmarknode{d}{\textcolor{blue}{$R(x)$}} & & \\
-                \tikzmarknode{e}{\textcolor{blue}{$W(x)$}} & & \\
-                & \tikzmarknode{f}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
+                \textcolor{blue}{$R(x)$} & & \\
+                \tikzmarknode{d}{\textcolor{blue}{$W(x)$}} & & \\
+                & \tikzmarknode{e}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
             \end{tabular}
             \begin{tikzpicture}[overlay, remember picture]
                 \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (a.west) -- (b.east);
                 \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (c.west) -- (d.east);
-                \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (e.east) -- (f.west);
+                \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (d.east) -- (e.west);
             \end{tikzpicture}
         \end{center}
     \end{figure}
@@ -856,16 +856,16 @@
                     & & \tikzmarknode{c}{\textcolor{orange}{$R(x)$}} \\
                     & \tikzmarknode{b}{\textcolor{green!80!black}{$W(y)$}} & \\
                     & \textcolor{green!80!black}{$R(z)$} & \\
-                    \tikzmarknode{d}{\textcolor{blue}{$R(x)$}} & & \\
-                    \tikzmarknode{e}{\textcolor{blue}{$W(x)$}} & & \\
-                    & \tikzmarknode{f}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
+                    \textcolor{blue}{$R(x)$} & & \\
+                    \tikzmarknode{d}{\textcolor{blue}{$W(x)$}} & & \\
+                    & \tikzmarknode{e}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
                 \end{tabular}
             \end{center}
         \end{minipage}
         \begin{tikzpicture}[overlay, remember picture]
             \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (a.west) -- (b.north);
             \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (c.west) -- (d.east);
-            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (e.east) -- (f.west);
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (d.east) -- (e.west);
         \end{tikzpicture}
         \hfill
         \begin{minipage}{0.5\textwidth}
@@ -876,18 +876,18 @@
                     & & \textcolor{orange}{$R(z)$} \\
                     & & \tikzmarknode{a}{\textcolor{orange}{$R(y)$}} \\
                     & & \tikzmarknode{c}{\textcolor{orange}{$R(x)$}} \\
-                    \tikzmarknode{d}{\textcolor{blue}{$R(x)$}} & & \\
-                    \tikzmarknode{e}{\textcolor{blue}{$W(x)$}} & & \\
+                    \textcolor{blue}{$R(x)$} & & \\
+                    \tikzmarknode{d}{\textcolor{blue}{$W(x)$}} & & \\
                     & \tikzmarknode{b}{\textcolor{green!80!black}{$W(y)$}} & \\
                     & \textcolor{green!80!black}{$R(z)$} & \\
-                    & \tikzmarknode{f}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
+                    & \tikzmarknode{e}{\textcolor{green!80!black}{$W(x)$}} & \\ \hline
                 \end{tabular}
             \end{center}
         \end{minipage}
         \begin{tikzpicture}[overlay, remember picture]
             \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (a.west) -- (b.north);
             \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (c.west) -- (d.east);
-            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (e.east) -- (f.west);
+            \draw[->, shorten >=3pt, shorten <=3pt, line width=3pt, red] (d.east) -- (e.west);
         \end{tikzpicture}
     \end{figure}
 
