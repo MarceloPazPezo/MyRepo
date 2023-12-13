@@ -218,7 +218,36 @@
         
         \item \textbf{FNBC:} Está en 3FN y existen dos o más llaves candidatas para la relación, éstas son llaves compuestas (con más de un atributo) y su intersección no es vacía.
         
+        \begin{minipage}{0.4\textwidth}
+            \begin{center}
+                Sea $R(A,B,C,D,E)$ con DFs:
+                \begin{itemize}
+                    \item $AB \rightarrow CDE$
+                    \item $C \rightarrow A$
+                \end{itemize}
+                \begin{figure}[H]
+                    \centering
+                    \colorbox{red!20!white}{\includegraphics[scale=0.08]{img/NOFNBC.png}}
+                \end{figure}
 
+                R NO está en FNBC porque $C$ depende de $A$ y $A$ no es clave.
+            \end{center}
+        \end{minipage}
+        \vline
+        \begin{minipage}{0.4\textwidth}
+            \begin{center}
+                Sea $R(A,B,C,D,E)$ con DFs:
+                \begin{itemize}
+                    \item $AB \rightarrow CDE$
+                \end{itemize}
+                \begin{figure}[H]
+                    \centering
+                    \colorbox{green!20!white}{\includegraphics[scale=0.08]{img/FNBC.png}}
+                \end{figure}
+                R está en FNBC porque $AB$ es clave.
+            \end{center}
+        \end{minipage}
+        
     \end{enumerate}
 
     \newpage
