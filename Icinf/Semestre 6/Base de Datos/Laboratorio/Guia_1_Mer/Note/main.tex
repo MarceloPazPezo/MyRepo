@@ -1,10 +1,12 @@
 \documentclass{templateNote}
 \usepackage{tcolorbox}
-
+\usepackage{hyperref}
 
 \begin{document}
 
-\imagenlogo{img/LogoElNube.png}
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%206/Base\%20de\%20Datos/Laboratorio/Guia_1_Mer/Guia1MER.pdf}
 \universidad{Universidad del Bío-Bío}
 \titulo{Guia 1 MER} % Titulo
 \asignatura{Base de Datos} % Asignatura
@@ -15,7 +17,7 @@
 \portada 
 \margenes % Crear márgenes
 
-\section{Teoria}
+\section{Teoría}
 \subsection{MER}
 \indent
 Modelo de datos entidad-relación está basado en un percepción del mundo real que consta de un conjunto de objetos
@@ -26,48 +28,49 @@ básicos llamados entidades y de relaciones entre estos objetos.
 Un objeto del mundo real que puede distinguirse de otros objetos, pueden tener existencia física o conceptual.
 objeto singular (persona, lugar, cosa, concepto, suceso) dentro de una empresa que hay que representar
 en una BD. Una entidad es descrita por un conjunto de atributos. Ademas una entidad posee una clave primaria (*) para 
-identificarla univocamente.
+identificarla unívocamente.
 
-\insertarfigura{img/Entidad.png}{2.5cm}{Entidad Persona con algunos atributos}{fig:Figura}
+\insertarfigura{img/Entidad.png}{2.5cm}{Entidad Persona con algunos atributos}
 
 \subsection{Atributo}
 \indent
 Los atributos describen propiedades que posee cada entidad.
 
-\subsection{Relacion}
+\subsection{Relación}
 \indent
 Asociación entre dos o más entidades. Una relación puede tener atributos propios (descriptivos).
 
-\insertarfigura{img/Relacion.png}{2.5cm}{Relacion entre Persona y una Empresa}{fig:Figura}
+\insertarfigura{img/Relacion.png}{2.5cm}{Relacion entre Persona y una Empresa}
 
-\subsection{Restriccion}
+\newpage
+\subsection{Restricción}
 \subsubsection{Uno a Muchos}
 \indent
 Una relación de uno a muchos (1:M) se refiere a la situación en la que un registro
 de una tabla se puede asociar a uno o varios registros de otra tabla.
 
-\insertarfigura{img/unoAMuchos.png}{3cm}{Relacion 1:M}{fig:Figura}
+\insertarfigura{img/unoAMuchos.png}{3cm}{Relacion 1:M}
 
 \subsubsection{Muchos a Muchos}
 \indent
 Una relación de muchos a muchos (M:N) se refiere a la situación en la que varios 
 registros de una tabla pueden estar asociados con varios registros de otra tabla. 
 
-\insertarfigura{img/muchosAMuchos.png}{3cm}{Relacion N:M}{fig:Figura}
+\insertarfigura{img/muchosAMuchos.png}{3cm}{Relacion N:M}
 
 \subsubsection{Uno a Uno}
 \indent
 Una relación de uno a uno (1:1) se refiere a la situación en la que un registro
 de una tabla está asociado con un único registro de otra tabla.
 
-\insertarfigura{img/unoAUno.png}{3cm}{Relacion 1:1}{fig:Figura}
+\insertarfigura{img/unoAUno.png}{3cm}{Relacion 1:1}
 
 \newpage
 \subsection{Herencia}
 \indent
 Se refiere a la capacidad de una entidad de heredar atributos y relaciones de otra entidad. 
 
-\insertarfigura{img/Herencia.png}{4.5cm}{Herencia}{fig:Figura}
+\insertarfigura{img/Herencia.png}{4.5cm}{Herencia}
 
 \subsection{Dependencia}
 \indent
@@ -85,7 +88,7 @@ considerando las entidades, relaciones, atributos, clave principal y cardinalida
 Los huéspedes de un hotel se alojan en una habitación, la cual tiene una valor único por tipo de
 habitación; Single, doble o suite.
 
-\insertarfigura{img/Ejercicio1.png}{4cm}{MER 1}{fig:Figura}
+\insertarfigura{img/Ejercicio1.png}{4cm}{MER 1}
 
 \newpage
 \subsection{Enunciado 2}
@@ -94,7 +97,7 @@ Cada académico participa, durante cada semestre, en distintos proyectos: de inv
 extensión o capacitación. Donde para cada uno es los proyectos es necesario conocer el Jefe de
 proyecto que es uno de los académicos que participa en el proyecto.
 
-\insertarfigura{img/Ejercicio2.png}{12cm}{MER 2}{fig:Figura}
+\insertarfigura{img/Ejercicio2.png}{12cm}{MER 2}
 
 \newpage
 \subsection{Enunciado 3}
@@ -102,7 +105,7 @@ proyecto que es uno de los académicos que participa en el proyecto.
 Los alumnos memoristas de cada carrera preparan un proyecto durante su proyecto de título.
 Cada proyecto de título es guiado por uno o varios profesores.
 
-\insertarfigura{img/Ejercicio3.png}{8cm}{MER 3}{fig:Figura}
+\insertarfigura{img/Ejercicio3.png}{8cm}{MER 3}
 
 \subsection{Enunciado 4}
 \indent
@@ -110,7 +113,7 @@ Todos los docentes que dictan clases en la Universidad son contratados por una o
 facultades, como jornada completa, jornada parcial, media jornada. Los que son evaluados
 semestralmente.
 
-\insertarfigura{img/Ejercicio4.png}{8cm}{MER 4}{fig:Figura}
+\insertarfigura{img/Ejercicio4.png}{8cm}{MER 4}
 
 \newpage
 \subsection{Enunciado 5}
@@ -129,7 +132,7 @@ La información a manejar es la siguiente:
     sin arrendatario.
 \end{enumerate}
 
-\insertarfigura{img/Ejercicio5.png}{10cm}{MER 5}{fig:Figura}
+\insertarfigura{img/Ejercicio5.png}{10cm}{MER 5}
 
 % \subsection{Enunciado 6}
 % La biblioteca de la Universidad del Bío-Bío desea diseñar una base de datos para manejar la
@@ -153,8 +156,7 @@ La información a manejar es la siguiente:
 %     \item A la biblioteca le interesa emitir un listado de alumnos morosos por carrera.
 % \end{enumerate}
     
-% \insertarfigura{img/Ejercicio6.png}{4cm}{MER 6}{fig:Figura}
-
+% \insertarfigura{img/Ejercicio6.png}{4cm}{MER 6}
 % \subsection{Enunciado 7}
 
 % \begin{enumerate}
@@ -176,7 +178,7 @@ La información a manejar es la siguiente:
 % también será declarado como desierto. De lo contrario se registran los estudiantes contratados
 % en el mismo.
 % \end{enumerate}
-% \insertarfigura{img/Ejercicio7.png}{4cm}{MER 7}{fig:Figura}
+% \insertarfigura{img/Ejercicio7.png}{4cm}{MER 7}
 
 
 \end{document}

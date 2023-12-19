@@ -4,8 +4,10 @@
 
 \begin{document}
 
-\imagenlogo{img/LogoElNube.png} % Logo Universidad
-\universidad{Universidad del Bío-Bío} % Universidad
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%206/Base\%20de\%20Datos/Laboratorio/Guia_1_SQL/Guia1SQL.pdf}
+\universidad{Universidad del Bío-Bío}
 \titulo{SQL en PostgreSQL} % Titulo
 \asignatura{Base de Datos 1} % Asignatura
 \autor{
@@ -16,7 +18,7 @@
 \margenes % Crear márgenes
 
 
-\section{Teoria}
+\section{Teoría}
 \indent
 Pequeño apunte hecho en clase, y pasado en limpio a LaTeX sobre algunos comandos para PostgreSQL.
 
@@ -47,6 +49,7 @@ FROM PROPIEDAD;
     \end{verbatim}
 \end{tcolorbox}
 
+\newpage
 \subsection{Poner alias a tablas}
 \indent
 Para ponerle un alias a una tabla solo se le agrega el nombre al lado.
@@ -60,7 +63,6 @@ FROM PROPIEDAD P;
     \end{verbatim}
 \end{tcolorbox}
 
-\newpage
 \subsection{Para filtrar}
 \indent
 Para filtrar se utiliza la palabra reservada `WHERE` seguida de la condición que se quiere aplicar `(AND, OR)`.
@@ -78,15 +80,15 @@ WHERE P.TIPOPROPIEDAD='CASA' AND P.NUMDORM>2;
 \newpage
 \section{Instancias de la Base de Datos}
 \begin{samepage}
-    \insertarfigura{img/TablaArrendatario.png}{2.5cm}{Tabla de instancia de Arrendatarios}{fig:Figura}
+    \insertarfigura{img/TablaArrendatario.png}{2.5cm}{Tabla de instancia de Arrendatarios}
     \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
-    \insertarfigura{img/TablaArriendo.png}{3cm}{Tabla de instancia de Arriendos}{fig:Figura}
+    \insertarfigura{img/TablaArriendo.png}{3cm}{Tabla de instancia de Arriendos}
     \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
-    \insertarfigura{img/TablaDueño.png}{2cm}{Tabla de instancia de Dueños}{fig:Figura}
+    \insertarfigura{img/TablaDueño.png}{2cm}{Tabla de instancia de Dueños}
     \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
-    \insertarfigura{img/TablaPropiedad.png}{1.7cm}{Tabla de instancia de Propiedades}{fig:Figura}
+    \insertarfigura{img/TablaPropiedad.png}{1.7cm}{Tabla de instancia de Propiedades}
     \rule{\linewidth}{0.2 mm}\\[-0.4 cm]
-    \insertarfigura{img/TablaTelefono.png}{2.5cm}{Tabla de instancia de Telefonos}{fig:Figura}
+    \insertarfigura{img/TablaTelefono.png}{2.5cm}{Tabla de instancia de Telefonos}
 \end{samepage}
 
 \newpage

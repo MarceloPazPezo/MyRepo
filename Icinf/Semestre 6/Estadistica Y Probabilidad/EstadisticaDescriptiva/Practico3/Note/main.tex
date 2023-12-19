@@ -6,13 +6,17 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 
+\pgfplotsset{compat=1.18}
+
 \newcolumntype{L}{>{\centering\arraybackslash}X}
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
 \begin{document}
 
-\imagenlogo{img/LogoElNube.png}
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%206/Estadistica\%20Y\%20Probabilidad/EstadisticaDescriptiva/Practico3/Practico\%203.pdf}
 \universidad{Universidad del Bío-Bío}
 \titulo{Practico 3} % Titulo
 \asignatura{Estadistica y Probabilidades} % Asignatura
@@ -811,7 +815,7 @@ A continuación, se muestran los tiempos invertidos en cierta actividad por homb
 \end{figure}
 
 \textbf{a)} Construya la tabla de distribución de frecuencias para cada conjunto de datos. 
-* Para los hombres:\\
+* Para los hombres:
 \begin{itemize}
     \item Rango: Xmax - Xmin $ = 7 - 2,2 = 4,8$
     
@@ -840,14 +844,13 @@ A continuación, se muestran los tiempos invertidos en cierta actividad por homb
         \hline
         $6,4;7,0$ & $6,35;7,05$ & 2 & 44 & 4,55\% & 100\% & 6,7 \\
         \hline
-        \textbf{Total} & 44 &  & 100\% &  \\
+        \textbf{Total} & 44 &  & 100\% & & &  \\
         \hline
     \end{tabularx}
-    \caption{Tabla de distribución de frecuencias para hombres}
 \end{figure}
 
 \newpage
-* Para los hombres:\\
+* Para las mujeres:\\
 \begin{itemize}
     \item Rango: Xmax - Xmin $ = 6,7 - 2,1 = 4,6$
     
@@ -873,10 +876,9 @@ A continuación, se muestran los tiempos invertidos en cierta actividad por homb
         \hline
         $6,1;6,8$ & $6,05;6,85$ & 7 & 44 & 15,91\% & 100\% & 6 \\
         \hline
-        \textbf{Total} & 44 &  & 100\% &  \\
+        \textbf{Total} & 44 &  & 100\% & & & \\
         \hline
     \end{tabularx}
-    \caption{Tabla de distribución de frecuencias para mujeres}
 \end{figure}
 
 \textbf{b)} Calcule las medidas de tendencia central para los datos no agrupados en cada grupo. Interprete cada medida descriptiva.

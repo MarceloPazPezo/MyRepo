@@ -4,13 +4,15 @@
 \usepackage{pgfplots}
 \usepackage{pgf-pie}
 \usepackage{tabularx}
-
+\usepackage{hyperref}
 
 \pgfplotsset{compat=1.18}
 \newcolumntype{L}{>{\centering\arraybackslash}X}
 \begin{document}
 
-\imagenlogo{img/logoubb.png}
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%206/Estadistica\%20Y\%20Probabilidad/Test3(Tarea)/Tarea\%20Estadistica\%20Y\%20Probabilidad.pdf}
 \universidad{Universidad del Bío-Bío}
 \titulo{TAREA-220149} % Titulo
 \asignatura{Estadistica y Probabilidad} % Asignatura
@@ -533,14 +535,20 @@ $X \sim P(2190)$
 \subsection{e}
 Si en un día determinado el banco recibe 10 cheques, ¿cuál es la probabilidad de que exactamente 4
 no tengan fondos?
-
-$X \sim P(6)$
+Sea $X$: número de cheques sin fondo.
+$U \sim B(10, p = P(X=4))$
 \begin{align*}
     P(X=4) &= \frac{\lambda^x \cdot e^{-\lambda}}{x!} \\
     &= \frac{6^4 \cdot e^{-6}}{4!} \\
     &= 0,1339
 \end{align*}
 
+Remplazando:
+\begin{align*}
+    P(U=4) = \binom{10}{4} \cdot 0,1339^4 \cdot (1-0,1339)^{10-4} = 0,0001
+\end{align*}
+
+\newpage
 \section{Problema 4}
 En un determinado aeropuerto del país, se sabe que 7 de 14 maletas contienen artículos de contrabando.
 Determine la probabilidad de que exactamente 4 de 6 maletas seleccionadas en la inspección al azar de

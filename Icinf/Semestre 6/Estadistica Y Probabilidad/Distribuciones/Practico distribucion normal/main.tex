@@ -8,13 +8,17 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
+\pgfplotsset{compat=1.18}
+
 \newcolumntype{L}{>{\centering\arraybackslash}X}
 \pgfmathdeclarefunction{gauss}{2}{%
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
 \begin{document}
 
-\imagenlogo{img/LogoElNube.png}
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%206/Estadistica\%20Y\%20Probabilidad/Distribuciones/Practico\%20distribucion\%20normal.pdf}
 \universidad{Universidad del Bío-Bío}
 \titulo{Practico distribución normal} % Titulo
 \asignatura{Estadistica y Probabilidades} % Asignatura

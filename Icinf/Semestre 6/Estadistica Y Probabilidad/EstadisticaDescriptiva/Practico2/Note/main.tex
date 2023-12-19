@@ -3,12 +3,17 @@
 \usepackage{pgfplots}
 \usepackage{pgf-pie}
 \usepackage{tabularx}
+\usepackage{hyperref}
+
+\pgfplotsset{compat=1.18}
 
 \newcolumntype{L}{>{\centering\arraybackslash}X}
 
 \begin{document}
 
-\imagenlogo{img/LogoElNube.png}
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%206/Estadistica\%20Y\%20Probabilidad/EstadisticaDescriptiva/Practico2/Practico2.pdf}
 \universidad{Universidad del Bío-Bío}
 \titulo{Practico 2} % Titulo
 \asignatura{Estadistica y Probabilidades} % Asignatura
@@ -18,13 +23,6 @@
 }   
 \portada
 \margenes % Crear márgenes
-
-
-% \section{Teoria}
-% \indent
-% aqui el texto
-
-% \newpage
 
 \section{Ejercicios}
 Clasifique las siguientes variables. Indique si son cualitativas o cuantitativas. Si son cuantitativas, indique si corresponde a una variable discreta o continua.
@@ -51,15 +49,12 @@ Clasifique las siguientes variables. Indique si son cualitativas o cuantitativas
                 Uso de Laxantes & Hiperactividad & Uso de Laxantes \\
                 Uso de Ropa Holgada & Hiperactividad & Dieta Severa \\ \hline
             \end{tabular}
-            \caption{Estudio de Anorexia}
+            % \caption{Estudio de Anorexia}
         \end{center}
     \end{table}
-
-    
     \subsubsection{a}
     \indent
     Resuma la información anterior en una tabla de distribución de frecuencias que además contenga la frecuencia relativa porcentual.
-    
     \begin{table}[H]
         \begin{center}
             \begin{tabular}{| c | c | c |}
@@ -75,7 +70,7 @@ Clasifique las siguientes variables. Indique si son cualitativas o cuantitativas
                 Total & 27 & 100\% \\
                 \hline
             \end{tabular}
-            \caption{Distribución de frecuencias}
+            % \caption{Distribución de frecuencias}
         \end{center}
     \end{table}
 \end{samepage}

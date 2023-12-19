@@ -5,13 +5,15 @@
 \usepackage{pgfplots}
 \usepackage{pgf-pie}
 \usepackage{tabularx}
-
+\usepackage{hyperref}
 
 \pgfplotsset{compat=1.18}
 \newcolumntype{L}{>{\centering\arraybackslash}X}
 \begin{document}
 
-\imagenlogo{img/logoubb.png}
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%206/Estadistica\%20Y\%20Probabilidad/TareaOpcional/TareaOpcional.pdf}
 \universidad{Universidad del Bío-Bío}
 \titulo{TAREA-OPCIONAL} % Titulo
 \asignatura{Estadistica y Probabilidad} % Asignatura
@@ -41,12 +43,10 @@ Integral por partes, ILATE nos sugiere que $u = x$ y $dv = e^{- \lambda x}$ por 
 Sustituyendo:
 \begin{align*}
     \int_{0}^{\infty} x e^{- \lambda x} dx &= - x \cdot \frac{1}{\lambda} e^{- \lambda x} \Big|_{0}^{\infty} - \int_{0}^{\infty} - \frac{1}{\lambda} e^{- \lambda x} dx \\
-    &= - \frac{x}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} + \frac{1}{\lambda} \int_{0}^{\infty} e^{- \lambda x} dx \\
     &= - \frac{x}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} + \frac{1}{\lambda} \left[- \frac{1}{\lambda} e^{- \lambda x} \Big|_{0}^{\infty}\right] \\
     &= - \frac{x}{\lambda e^{\lambda x}} \Big|_{0}^{\infty} - \frac{1}{\lambda^2 e^{\lambda x}} \Big|_{0}^{\infty} \\
     &= - \lim_{x \to \infty} \frac{x}{\lambda e^{\lambda x}} - \lim_{x \to \infty} \frac{1}{\lambda^2 e^{\lambda x}} - \left[- \frac{0}{\lambda e^{\lambda 0}} - \frac{1}{\lambda^2 e^{\lambda 0}}\right] \\
-    &= - 0 - 0 - \left[- \frac{0}{\lambda} - \frac{1}{\lambda^2}\right] \\
-    &= \frac{1}{\lambda^2}
+    &= - 0 - 0 - \left[- \frac{0}{\lambda} - \frac{1}{\lambda^2}\right] = \frac{1}{\lambda^2}
 \end{align*}
 
 \begin{align*}
