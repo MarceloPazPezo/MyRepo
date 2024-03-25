@@ -1,0 +1,907 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+
+\begin{document}
+
+% \imagenlogoD{img/LogoNGM.png}
+% \linklogoD{https://github.com/NicoxlkboUni}
+% \universidad{Universidad del Bío-Bío}
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Programación Lineal}
+\asignatura{Investigación de Operaciones}
+\autor{
+    \indent
+    Marcelo \textsc{Paz}
+}
+\portada
+\margenes % Crear márgenes
+
+\section*{Diagrama de flujo: Programación Lineal}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{diagram/Fig1.png}
+\end{figure}
+
+\section{Modelo de Programación Lineal}
+\begin{equation*}
+    \begin{aligned}
+        \left(
+            \begin{array}{ccc}
+                \text{Max} \\
+                \text{o} \\
+                \text{Min} \\
+            \end{array}
+        \right) \quad & Z = c_1x_1 + c_2x_2 + \ldots + c_nx_n \\
+        &\left.
+            \begin{array}{llll}
+                \text{s.a} \quad & a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n \left(
+                    \begin{array}{ccc}
+                        \leq \\
+                        = \\
+                        \geq \\
+                    \end{array}
+                \right)  b_1 \\
+                & a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n \left(
+                    \begin{array}{ccc}
+                        \leq \\
+                        = \\
+                        \geq \\
+                    \end{array}
+                \right) b_2 \\
+                & \vdots \\
+                & a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n \left(
+                    \begin{array}{ccc}
+                        \leq \\
+                        = \\
+                        \geq \\
+                    \end{array}
+                \right) b_m \\
+            \end{array}
+        \right\} \text{Restricciones} \\
+        & x_1, x_2, \ldots, x_n \geq 0
+    \end{aligned}
+\end{equation*}    
+
+Donde:
+\begin{itemize}
+    \item $Z$ es la función objetivo.
+    \item $c_1, c_2, \ldots, c_n$ son los coeficientes de Costo.
+    \item $a_{ij}$ son los coeficientes Tecnologicos.
+    \item $b_i$ son Constantes RHS(Right Hand Side).
+    \item $x_j$ son las Variables de Decisión.
+\end{itemize}
+
+\newpage
+\subsection*{Problema 1: Método gráfico}
+Un colegio va a realizar un paseo. En total participarán 400 personas entre alumnos y profesores. Se requiere contratar buses para el traslado de dichas personas. Al llamar a una empresa de transportes se obtiene la siguiente información: La empresa dispone de 8 buses con 40 asientos y 10 buses con 50 asientos. Para el día del paseo habrá 9 choferes disponibles. El costo de arriendo es de \$ 30.000 por cada bus de 40 asientos y de \$40.000 por cada bus de 50 asientos. Antes de contratar los buses, el Director del colegio debe decidir cuántos buses de cada tipo les conviene arrendar para que el arriendo resulte lo más económico posible. Cuál será la decisión de menor costo?
+
+\subsubsection*{Variables de Decisión:}
+\begin{itemize}
+    \item $x_1$ = Cantidad de buses de 40 asientos por contratar.
+    \item $x_2$ = Cantidad de buses de 50 asientos por contratar.
+\end{itemize}
+
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Min} \quad & Z = 30000x_1 + 40000x_2 \\
+        \text{s.a} \quad & 40x_1 + 50x_2 \geq 400 \\
+        & x_1 \leq 8 \\
+        & x_2 \leq 10 \\
+        & x_1 + x_2 \leq 9 \\
+        & x_1, x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Solución por método gráfico:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/Problema1Grafica.png}
+\end{figure}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Vertice ($x_1,x_2$)} & Z &  \\ \hline
+        A(5, 4) & 310000 & * \\ \hline
+        B(0, 9) & 360000 & \\ \hline
+        C(0, 8) & 320000 & \\ \hline
+    \end{tabular}
+\end{center}
+
+% \subsubsection*{[Extra] (No comprobado) Solución por metodo simplex:}
+% \begin{equation*}
+%     \begin{aligned}
+%         \text{Min} \quad & Z = 30000x_1 + 40000x_2 \\
+%         \text{s.a} \quad & 40x_1 + 50x_2 + s_1 = 400 \\
+%         & x_1 + s_2 = 8 \\
+%         & x_2 + s_3 = 10 \\
+%         & x_1 + x_2 + s_4 = 9 \\
+%         & x_1, x_2, s_1, s_2, s_3, s_4 \geq 0
+%     \end{aligned}
+% \end{equation*}
+
+% \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+%         \hline
+%         & & 30000 & 40000 & 0 & 0 & 0 & 0 &  & \\ \hline
+%         $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & RHS &  \\ \hline
+%         0 & $s_1$ & 40 & 50 & 1 & 0 & 0 & 0 & 400 & 400/40=10 \\ \hline
+%         0 & $s_2$ & 1 & 0 & 0 & 1 & 0 & 0 & 8 & 8/1 = 8 \\ \hline
+%         0 & $s_3$ & 0 & 1 & 0 & 0 & 1 & 0 & 10 & 10/0 = - \\ \hline
+%         0 & $s_4$ & 1 & 1 & 0 & 0 & 0 & 1 & 9 & 0/1 = 0 \\ \hline
+%         & $Z_j$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 &  \\ \hline
+%         & $c_j - Z_j$ & 30000 & 40000 & 0 & 0 & 0 & 0 &  &  \\ \hline
+%     \end{tabular}
+% \end{center}
+
+% \begin{center}
+%     $V_{in} = \text{columna Min} \{c_j-Z_j\} = X_{J^*} \Rightarrow V_{in} = 30000 = x_1$ \\
+%     $V_{out} = \text{Max} \left\{ \frac{RHS}{X_{J^*}} \right\} = X_{I^*} \Rightarrow V_{out} = 10 = s_1 $\\
+%     $\text{Pivote} = 40$
+% \end{center}
+
+% \begin{equation*}
+%     \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+%     \Rightarrow \frac{\begin{array}{ccccccc}40 & 50 & 1 & 0 & 0 & 0 & 400\end{array}}{40} = \begin{array}{ccccccc} 1 & \frac{5}{4} & \frac{1}{40} & 0 & 0 & 0 & 10 \end{array}
+% \end{equation*}
+% \\ \\
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_2: & 1 & 0 & 0 & 1 & 0 & 0 & 8 \\
+%             -(1) & 1 & \frac{5}{4} & \frac{1}{40} & 0 & 0 & 0 & 10 \\
+%             \\ \hline \\
+%             & 0 & -\frac{5}{4} & -\frac{1}{40} & 1 & 0 & 0 & -2
+%         \end{array}
+%     \end{equation*}
+%     \\ \\
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_3: & 0 & 1 & 0 & 0 & 1 & 0 & 10 \\
+%             -(0) & 1 & \frac{5}{4} & \frac{1}{40} & 0 & 0 & 0 & 10 \\
+%             \\ \hline \\
+%             & 0 & 1 & 0 & 0 & 1 & 0 & 10
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_4: & 1 & 1 & 0 & 0 & 0 & 1 & 9 \\
+%             -(1) & 1 & \frac{5}{4} & \frac{1}{40} & 0 & 0 & 0 & 10 \\
+%             \\ \hline \\
+%             & 0 & -\frac{1}{4} & -\frac{1}{40} & 0 & 0 & 1 & -1
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+
+% \newpage
+
+% \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+%         \hline
+%         & & 30000 & 40000 & 0 & 0 & 0 & 0 &  & \\ \hline
+%         $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & RHS &  \\ \hline
+%         30000 & $x_1$ & 1 & 5/4 & 1/40 & 0 & 0 & 0 & 10 & 8 \\ \hline
+%         0 & $s_2$ & 0 & -5/4 & -1/40 & 1 & 0 & 0 & -2 & 8/5 \\ \hline
+%         0 & $s_3$ & 0 & 1 & 0 & 0 & 1 & 0 & 10 & 10 \\ \hline
+%         0 & $s_4$ & 0 & -1/4 & -1/40 & 0 & 0 & 1 & -1 & 4 \\ \hline
+%         & $Z_j$ & 30000 & 37500 & 750 & 0 & 0 & 0 & 30000 &  \\ \hline
+%         & $c_j - Z_j$ & 0 & 2500 & -750 & 0 & 0 & 0 &  &  \\ \hline
+%     \end{tabular}
+% \end{center}
+
+% \begin{center}
+%     $V_{in} = \text{columna Min} \{c_j-Z_j\} = X_{J^*} \Rightarrow V_{in} = 2500 = x_2 $\\
+%     $V_{out} = \text{Max} \left\{ \frac{RHS}{X_{J^*}} \right\} = X_{I^*} \Rightarrow V_{out} = 10 = s_3 $\\
+%     $\text{Pivote} = 1$
+% \end{center}
+
+% \begin{equation*}
+%     \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+%     \Rightarrow \frac{\begin{array}{ccccccc} 0 & 1 & 0 & 0 & 1 & 0 & 10\end{array}}{1} = \begin{array}{ccccccc} 0 & 1 & 0 & 0 & 1 & 0 & 10 \end{array}
+% \end{equation*}
+% \\ \\
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             x_1: & 1 & 5/4 & 1/40 & 0 & 0 & 0 & 10 \\
+%             -(5/4) & 0 & 1 & 0 & 0 & 1 & 0 & 10 \\
+%             \\ \hline \\
+%             & 1 & 0 & 1/40 & 0 & -5/4 & 0 & 5/2
+%         \end{array}
+%     \end{equation*}
+%     \\ \\
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_2: & 0 & -5/4 & -1/40 & 1 & 0 & 0 & -2 \\
+%             -(-5/4) & 0 & 1 & 1/8 & 0 & 0 & 0 & 8 \\
+%             \\ \hline \\
+%             & 0 & 0 & 21/160 & 1 & 0 & 0 & 8
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_4: & 0 & -1/4 & -1/40 & 0 & 0 & 1 & -1 \\
+%             -(-1/4) & 0 & 1 & 1/8 & 0 & 0 & 0 & 8 \\
+%             \\ \hline \\
+%             & 0 & 0 & 1/160 & 0 & 0 & 1 & 1
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+
+% \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+%         \hline
+%         & & 30000 & 40000 & 0 & 0 & 0 & 0 &  & \\ \hline
+%         $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & RHS &  \\ \hline
+%         30000 & $x_1$ & 1 & 0 & -21/160 & 0 & 0 & 0 & 0 &  \\ \hline
+%         0 & $s_2$ & 0 & 0 & 21/160 & 1 & 0 & 0 & 8 &  \\ \hline
+%         40000 & $x_2$ & 0 & 1 &  & 0 & 0 & 0 & 8 &  \\ \hline
+%         0 & $s_4$ & 0 & 0 & 1/160 & 0 & 0 & 1 & 1 &  \\ \hline
+%         & $Z_j$ & 30000 & 37500 & 750 & 0 & 0 & 0 & 30000 &  \\ \hline
+%         & $c_j - Z_j$ & 0 & 2500 & -750 & 0 & 0 & 0 &  &  \\ \hline
+%     \end{tabular}
+% \end{center}
+% \begin{center}
+%     $V_{in} = \text{columna Min} \{c_j-Z_j\} = X_{J^*} \Rightarrow V_{in} = 30000 = x_1$ \\
+%     $V_{out} = \text{Min} \left\{ \frac{RHS}{X_{J^*}} \right\} = X_{I^*} \Rightarrow V_{out} = 0 = s_4$ \\
+%     $\text{Pivote} = 1$
+% \end{center}
+
+% \begin{equation*}
+%     \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+%     \Rightarrow \frac{\begin{array}{ccccccc}1 & 1 & 0 & 0 & 0 & 1 & 9\end{array}}{1} = \begin{array}{ccccccc} 1 & 1 & 0 & 0 & 0 & 1 & 9 \end{array}
+% \end{equation*}
+% \\ \\
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_1: & 40 & 50 & 1 & 0 & 0 & 0 & 400 \\
+%             -(40) & 1 & 1 & 0 & 0 & 0 & 1 & 9 \\
+%             \\ \hline \\
+%             & 0 & 10 & 1 & 0 & 0 & -40 & 40
+%         \end{array}
+%     \end{equation*}
+%     \\ \\
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_2: & 1 & 0 & 0 & 1 & 0 & 0 & 8 \\
+%             -(1) & 1 & 1 & 0 & 0 & 0 & 1 & 9 \\
+%             \\ \hline \\
+%             & 0 & -1 & 0 & 1 & 0 & -1 & -1
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_3: & 0 & 1 & 0 & 0 & 1 & 0 & 10 \\
+%             -(0) & 1 & 1 & 0 & 0 & 0 & 1 & 9 \\
+%             \\ \hline \\
+%             & 0 & 1 & 0 & 0 & 1 & 0 & 10 
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+
+% \newpage
+
+% \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+%         \hline
+%         & & 30000 & 40000 & 0 & 0 & 0 & 0 &  & \\ \hline
+%         $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & RHS &  \\ \hline
+%         0 & $s_1$ & 0 & 10 & 1 & 0 & 0 & -40 & 40 & 40/10 = 4 \\ \hline
+%         0 & $s_2$ & 0 & -1 & 0 & 1 & 0 & -1 & -1 & -1/-1 = 1 \\ \hline
+%         0 & $s_3$ & 0 & 1 & 0 & 0 & 1 & 0 & 10 & 10/1 = 10 \\ \hline
+%         30000 & $x_1$ & 1 & 1 & 0 & 0 & 0 & 1 & 9 & 9/1 = 9 \\ \hline
+%         & $Z_j$ & 30000 & 30000 & 0 & 0 & 0 & 30000 & 270000 &  \\ \hline
+%         & $c_j - Z_j$ & 0 & 10000 & 0 & 0 & 0 & -30000 &  &  \\ \hline
+%     \end{tabular}
+% \end{center}
+
+% \begin{center}
+%     $V_{in} = \text{columna Min} \{c_j-Z_j\} = X_{J^*} \Rightarrow V_{in} = 10000 = x_2 $\\
+%     $V_{out} = \text{Min} \left\{ \frac{RHS}{X_{J^*}} \right\} = X_{I^*} \Rightarrow V_{out} = 1 = s_2 $\\
+%     $\text{Pivote} = -1$
+% \end{center}
+
+% \begin{equation*}
+%     \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+%     \Rightarrow \frac{\begin{array}{ccccccc}0 & -1 & 0 & 1 & 0 & -1 & -1\end{array}}{-1} = \begin{array}{ccccccc} 0 & 1 & 0 & -1 & 0 & 1 & 1 \end{array}
+% \end{equation*}
+% \\ \\
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_1: & 0 & 10 & 1 & 0 & 0 & -40 & 40 \\
+%             -(10) & 0 & 1 & 0 & -1 & 0 & 1 & 1 \\
+%             \\ \hline \\
+%             & 0 & 0 & 1 & 10 & 0 & -50 & 30
+%         \end{array}
+%     \end{equation*}
+%     \\ \\
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_3: & 0 & 1 & 0 & 0 & 1 & 0 & 10 \\
+%             -(1) & 0 & 1 & 0 & -1 & 0 & 1 & 1 \\
+%             \\ \hline \\
+%             & 0 & 0 & 0 & 1 & 1 & -1 & 9
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             x_1: & 1 & 1 & 0 & 0 & 0 & 1 & 9 \\
+%             -(1) & 0 & 1 & 0 & -1 & 0 & 1 & 1 \\
+%             \\ \hline \\
+%             & 1 & 0 & 0 & 1 & 0 & 0 & 8
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+% \\ \\
+% \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+%         \hline
+%         & & 30000 & 40000 & 0 & 0 & 0 & 0 &  & \\ \hline
+%         $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & RHS &  \\ \hline
+%         0 & $s_1$ & 0 & 0 & 1 & 10 & 0 & -50 & 30 & \\ \hline
+%         40000 & $x_2$ & 0 & 1 & 0 & -1 & 0 & 1 & 1 & \\ \hline
+%         0 & $s_3$ & 0 & 0 & 0 & 1 & 1 & -1 & 9 & \\ \hline
+%         30000 & $x_1$ & 1 & 0 & 0 & 1 & 0 & 0 & 8 & \\ \hline
+%         & $Z_j$ & 30000 & 40000 & 0 & 10000 & 0 & 40000 & 310000 &  \\ \hline
+%         & $c_j - Z_j$ & 0 & 0 & 0 & -10000 & 0 & -40000 &  &  \\ \hline
+%     \end{tabular}
+% \end{center}
+
+% \begin{center}
+%     $V_{in} = \text{columna Min} \{c_j-Z_j\} = X_{J^*} \Rightarrow V_{in} = 30000 = x_1$ \\
+%     $V_{out} = \text{Min} \left\{ \frac{RHS}{X_{J^*}} \right\} = X_{I^*} \Rightarrow V_{out} = 8 = s_2$ \\
+%     $\text{Pivote} = 1$
+% \end{center}
+
+% \begin{equation*}
+%     \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+%     \Rightarrow \frac{\begin{array}{ccccccc}1 & 0 & 0 & 1 & 0 & 0 & 8\end{array}}{1} = \begin{array}{ccccccc} 1 & 0 & 0 & 1 & 0 & 0 & 8 \end{array}
+% \end{equation*}
+% \\ \\
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_1: & 40 & 50 & 1 & 0 & 0 & 0 & 400 \\
+%             -(40) & 1 & 0 & 0 & 1 & 0 & 0 & 8 \\
+%             \\ \hline \\
+%             & 0 & 50 & 1 & -40 & 0 & 0 & 320
+%         \end{array}
+%     \end{equation*}
+%     \\ \\
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_3: & 0 & 1 & 0 & 0 & 1 & 0 & 10 \\
+%             -(1) & 1 & 0 & 0 & 1 & 0 & 0 & 8 \\
+%             \\ \hline \\
+%             & -1 & 1 & 0 & -1 & 1 & 0 & 2
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_4: & 1 & 1 & 0 & 0 & 0 & 1 & 9 \\
+%             -(1) & 1 & 0 & 0 & 1 & 0 & 0 & 8 \\
+%             \\ \hline \\
+%             & 0 & 1 & 0 & -1 & 0 & 1 & 1
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+
+% \newpage
+
+% \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+%         \hline
+%         & & 30000 & 40000 & 0 & 0 & 0 & 0 &  & \\ \hline
+%         $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & $s_4$ & RHS &  \\ \hline
+%         0 & $s_1$ & 0 & 50 & 1 & -40 & 0 & 0 & 320 & 320/50 = 6.4 \\ \hline
+%         30000 & $x_1$ & 1 & 0 & 0 & 1 & 0 & 0 & 8 & 8/0 = - \\ \hline
+%         0 & $s_3$ & -1 & 1 & 0 & -1 & 1 & 0 & 2 & 2/1 = 2 \\ \hline
+%         0 & $s_4$ & 0 & 1 & 0 & -1 & 0 & 1 & 1 & 1/1 = 1 \\ \hline
+%         & $Z_j$ & 30000 & 0 & 0 & 30000 & 0 & 0 & 240000 &  \\ \hline
+%         & $c_j - Z_j$ & 0 & 40000 & 0 & -30000 & 0 & 0 &  &  \\ \hline
+%     \end{tabular}
+% \end{center}
+
+% \begin{center}
+%     $V_{in} = \text{columna Min} \{c_j-Z_j\} = X_{J^*} \Rightarrow V_{in} = 40000 = x_2 $\\
+%     $V_{out} = \text{Min} \left\{ \frac{RHS}{X_{J^*}} \right\} = X_{I^*} \Rightarrow V_{out} = 1 = s_4 $\\
+%     $\text{Pivote} = 1$
+% \end{center}
+
+% \begin{equation*}
+%     \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+%     \Rightarrow \frac{\begin{array}{ccccccc} 0 & 1 & 0 & -1 & 0 & 1 & 1\end{array}}{1} = \begin{array}{ccccccc} 0 & 1 & 0 & -1 & 0 & 1 & 1 \end{array}
+% \end{equation*}
+% \\ \\
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_1: & 0 & 50 & 1 & -40 & 0 & 0 & 320 \\
+%             -(50) & 0 & 1 & 0 & -1 & 0 & 1 & 1 \\
+%             \\ \hline \\
+%             & 0 & 0 & 1 & 10 & 0 & 0 & 270
+%         \end{array}
+%     \end{equation*}
+%     \\ \\
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             x_1: & 1 & 0 & 0 & 1 & 0 & 0 & 8 \\
+%             -(0) & 0 & 1 & 0 & -1 & 0 & 1 & 1 \\
+%             \\ \hline \\
+%             & 1 & 0 & 0 & 1 & 0 & 0 & 8
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+% \hfill
+% \begin{minipage}{0.5\textwidth}
+%     \begin{equation*}
+%         \begin{array}{cccccccc}
+%             s_3: & -1 & 1 & 0 & -1 & 1 & 0 & 2 \\
+%             -(1) & 0 & 1 & 0 & -1 & 0 & 1 & 1 \\
+%             \\ \hline \\
+%             & -1 & 0 & 0 & 0 & 1 & -1 & 1
+%         \end{array}
+%     \end{equation*}
+% \end{minipage}
+
+\newpage
+\subsection*{Problema 2:}
+\subsubsection*{Función Objetivo: Restricción redundante}
+\begin{equation*}
+    \begin{aligned}
+        \text{Min} \quad & Z = 2x_1 - 6x_2 \\
+        \text{s.a} \quad & x_1 + x_2 \leq 5 \quad &\textbf{No Activa} \\
+        & x_2 \leq 3 \quad &\textbf{Activa} \\
+        & x_1 - x_2 \leq 1 \quad &\textbf{No Activa} \\
+        & x_1 \geq 1 \quad &\textbf{Activa} \\
+        & x_1 - 2x_2 \leq 2 \quad &\textbf{No Activa} \\
+        &x_1,x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Solución por método gráfico:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/Problema2Grafica.png}
+\end{figure}
+OBS:
+\begin{itemize}
+    \item La restriccion (5) de color verde es redundante.
+    \item Lo de activo y no activo tengo que investigarlo mas o pedirle a alguien que me lo explique.
+\end{itemize}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Vertice ($x_1,x_2$)} & Z &  \\ \hline
+        A(1, 0) & 2 & \\ \hline
+        B(3, 2) & -6 & \\ \hline
+        C(2, 3) & -14 & \\ \hline
+        D(1, 3) & -16 & * \\ \hline
+    \end{tabular}
+\end{center}
+\subsection{Algunas definiciones:}
+\begin{itemize}
+    \item \textbf{Solución factible:} todos los puntos $(x_1, x_2)$ deben satisfacer todas las restricciones.
+    \item \textbf{Región factible:} conjunto de todas las soluciones factibles.
+    \item \textbf{Vértices:} puntos de esquina o extremos de la región factible.
+    \item \textbf{Optimo de un modelo lineal:} es un vértice de la región factible que maximiza o minimiza la función objetivo.
+\end{itemize}
+
+\newpage
+\subsection*{Problema 3: Optimos Alternativos}
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 4x_1 + 3x_2 \\
+        \text{s.a} \quad & 12x_1 + 9x_2 \leq 84 \quad &\textbf{Activa} \\
+        & x_2 \leq 4 \quad &\textbf{Activa} \\
+        & x_1, x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Solución por método gráfico:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/Problema3Grafica.png}
+\end{figure}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Vertice ($x_1,x_2$)} & Z &  \\ \hline
+        A(0, 0) & 0 & \\ \hline
+        B(7, 0) & 28 & * \\ \hline
+        C(4, 4) & 28 & * \\ \hline
+        D(0, 4) & 12 & \\ \hline
+    \end{tabular}
+\end{center}
+OBS:
+\begin{itemize}
+    \item Se puede observar que el vertice B y C son optimos alternativos.
+\end{itemize}
+
+\newpage
+\subsection*{Problema 4: Variables sin restriccion de signo (S.R.S)}
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = -3x_1 + 4x_2 \\
+        \text{s.a} \quad & 5x_1 - 7x_2 \leq 35 \quad &\textbf{No Activa} \\
+        & 2x_1 + 3x_2 \geq 6 \quad &\textbf{No Activa} \\
+        & -2x_1 + 3x_2 \leq 12 \quad &\textbf{Activa} \\
+        & 9x_1 + 13x_2 \leq 117 \quad &\textbf{No Activa} \\
+        & x_1, x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Solución por método gráfico:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/Problema4Grafica.png}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Vertice ($x_1,x_2$)} & Z &  \\ \hline
+        A(3, 0) & -9 & \\ \hline
+        B(7, 0) & -21 & \\ \hline
+        C(637/64, 120/67) & -22,695 & \\ \hline
+        D(195/53, 342/53) & 14,774 & \\ \hline
+        E(0, 4) & 16 & * \\ \hline
+        F(0, 2) & 8 & \\ \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+\subsection*{Problema 5: Región factible no acotada}
+Un atleta debe tomar por lo menos 4 unidades de vitamina A, 6 unidades de vitamina B y 12 unidades de vitamina C cada día. Hay dos productos en polvo, P1 y P2, que por cada frasco, contienen las siguintes unidades de esas vitaminas:
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        & Vitamina A & Vitamina B & Vitamina C \\ \hline
+        P1 & 4 & 1 & 4 \\ \hline
+        P2 & 1 & 6 & 6 \\ \hline
+    \end{tabular}
+\end{center}
+
+Si el precio de un frasco de P1 es de \$5000 y el de un frasco de P2 es de \$8000, se quiere averiguar cómo deben mezclarse ambos productos para obtener las vitaminas deseadas con el minimo precio. Formular Modelo y resolver por método gráfico.
+
+\subsubsection*{Variables de Decisión:}
+\begin{itemize}
+    \item $x_1$: Cantidad de frascos de P1 a comprar.
+    \item $x_2$: Cantidad de frascos de P2 a comprar.
+\end{itemize}
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 5000x_1 + 8000x_2 \\
+        \text{s.a} \quad & 4x_1 + x_2 \geq 4 \quad &\textbf{No Activa} \\
+        & x_1 + 6x_2 \geq 6 \quad &\textbf{Activa} \\
+        & 4x_1 + 6x_2 \geq 12 \quad &\textbf{Activa} \\
+        & x_1, x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Solución por método gráfico:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/Problema5Grafica.png}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Vertice ($x_1,x_2$)} & Z &  \\ \hline
+        A(0, 4) & 32000 & \\ \hline
+        B(3/5, 8/5) & 15800 & \\ \hline
+        C(2, 2/3) & 15333 & * \\ \hline
+        D(6, 0) & 30000 & \\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection*{Problema 6: Formulación con más de 2 variables de decisión}
+La empresa MADERAS C.A es un fabricante de muebles. Hace tres estilos diferentes de mesas, A,B y C. Cada modelo de mesa requiere de una cierta cantidad de tiempo para el corte de las piezas, su montaje y pintura. MADERAS C.A, puede vender todas las unidades que fabrica. Es más, el modelo B se puede vender sin pintar. Utilizando los datos indicados, obtener el modelo lineal que permita determinar la máxima utilidad mensual que puede obtener la Empresa.
+
+\begin{center}
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        Modelo & Utilidad por mesa & Corte & Ensamblado & Pintura \\ \hline
+        A & 17500 & 1 & 2 & 4 \\ \hline
+        B & 20000 & 2 & 4 & 4 \\ \hline
+        B sin pintar & 10000 & 2 & 4 & 0 \\ \hline
+        C & 25000 & 3 & 7 & 5 \\ \hline
+         & Disponibilidad mensual de HH & 200 & 298 & 148 \\ \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection*{Variables de Decisión:}
+\begin{itemize}
+    \item $x_1$: Cantidad de mesas A a fabricar.
+    \item $x_2$: Cantidad de mesas B a fabricar.
+    \item $x_3$: Cantidad de mesas B sin pintar a fabricar.
+    \item $x_4$: Cantidad de mesas C a fabricar.
+\end{itemize}
+
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 17500x_1 + 20000x_2 + 10000x_3 + 25000x_4 \\
+        \text{s.a} \quad & x_1 + 2x_2 + 2x_3 + 3x_4 \leq 200 \\
+        & 2x_1 + 4x_2 + 4x_3 + 7x_4 \leq 298 \\
+        & 4x_1 + 4x_2 + 5x_4 \leq 148 \\
+        & x_1, x_2, x_3, x_4 \geq 0
+    \end{aligned}
+\end{equation*}
+
+OBS:
+\begin{itemize}
+    \item Cuando son más de 2 variables de decisión, el método gráfico no es la mejor opción, pues para calcular las intersecciones se vuelve caotico.
+\end{itemize}
+
+\subsection{Diagrama de flujo: Método Simplex}
+\begin{center}
+    \centering
+    \includegraphics[width=0.4\textwidth]{diagram/Fig2.png}
+\end{center}
+
+\subsubsection*{Un poco de Teoría}
+\begin{itemize}
+    \item \textbf{Variables de holgura $s_i$}: Al introduccir variables de holgura cada restriccion se transforma en igualdad.
+    \begin{itemize}
+        \item \textbf{n}: cantidad de variables.
+        \item \textbf{m}: cantidad de restricciones.
+    \end{itemize}
+
+    \item Un sistema con $n>m$ tiene infinitas soluciones.
+    Para estos sistemas se define:
+    \begin{itemize}
+        \item Como $n-m$: cantidad de variables libres. Para encontrar soluciones al sistema se dan valores arbitrarios a las variables libres y se resuelve para el resto de variables.
+        
+        \item Si damos el valor cero a las variables obtenemos lo que llamaremos soluciones básicas.
+        
+        \item Si ademas los valores de las variables son mayor o igual a cero tenemos una solucion basica factible (S.B.F).
+        
+        OBS:
+        \begin{itemize}
+            \item S.B.F corresponde a un vertice de la región factible.
+            \item Para un sistema $n \times m$ la cantidad de S.B.F es menor o igual a $\binom{n}{m} $.
+            \item Dos vertices o S.B.F son adyacentes cuando tienen una arista de la R.F. en común.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+\newpage
+\subsection*{Problema 7: Método Simplex}
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 4x_1 + 3x_2 \\
+        \text{s.a} \quad & 12x_1 + 14x_2 \leq 84 \quad & \textbf{Activa} \\
+        & 3x_1 + 2x_2 \leq 18 \quad & \textbf{Activa} \\
+        & x_2 \leq 4 \quad & \textbf{No Activa} \\
+        & x_1, x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Solución por método Simplex:}
+\textbf{Paso 1: Agregar variables de holgura y eliminar desigualdades.}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 4x_1 + 3x_2 \\
+        \text{s.a} \quad & 12x_1 + 14x_2 + s_1 = 84 \\
+        & 3x_1 + 2x_2 + s_2 = 18 \\
+        & x_2 + s_3 = 4\\
+        & x_1, x_2, s_1, s_2, s_3 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\textbf{Paso 2: Crear tabla Simplex inicial.}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        & & 4 & 3 & 0 & 0 & 0 &  &  \\ \hline
+        $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & RHS & $\displaystyle\frac{RHS}{coef_{ij^*}}$ \\ \hline
+        0 & $s_1$ & 12 & 14 & 1 & 0 & 0 & 84 & 84/12 = 7 \\ \hline
+        0 & $s_2$ & 3 & 2 & 0 & 1 & 0 & 18 & 18/3 = 6 \\ \hline
+        0 & $s_3$ & 0 & 1 & 0 & 0 & 1 & 4 & 4/0 = - \\ \hline
+        & $Z_j$ & 0 & 0 & 0 & 0 & 0 & \underline{0} &  \\ \hline
+        & $c_j - Z_j$ & 4 & 3 & 0 & 0 & 0 &  &  \\ \hline
+    \end{tabular}
+\end{center}
+OBS:
+\begin{itemize}
+    \item Para calcular $Z_j = c_j \times x_j $
+    \begin{center}
+        Ejemplo: $Z_{x_1} = c_1 \times x_1 + c_2 \times x_1 + c_3 \times x_1 = 0 \times 12 + 0 \times 3 + 0 \times 0 = 0$
+    \end{center}
+
+    \item Creo que deberia ser la columna $c_i$ y no $c_j$.
+    \item De hecho $c_j$ deberia estar arriba de \textbf{V.B}.
+\end{itemize}
+
+\textbf{Paso 3: Buscamos la variable que entra.}
+\begin{center}
+    $V_{in} = \text{columna Max} \{c_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = 4 = x_1$
+\end{center}
+OBS:
+\begin{itemize}
+    \item Como estamos máximizando la función objetivo, buscamos el valor más grande en la fila de $c_j - Z_j$.
+\end{itemize}
+
+\textbf{Paso 4: Buscamos la variable que sale.}
+\begin{center}
+    $V_{out} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = 6 = s_2$
+\end{center}
+OBS:
+\begin{itemize}
+    \item Como estamos máximizando la función objetivo, buscamos el valor más pequeño en la columna de $\displaystyle\frac{RHS}{coef_{ij^*}}$, pues es la holgura que es menos influyente.
+\end{itemize}
+
+\textbf{Paso 5: Calculamos el pivote.}
+\begin{center}
+    $\text{Pivote} = a_{i^*j^*} = a_{21} = 3$
+\end{center}
+
+\textbf{Paso 6: Creamos una ecuación pivote.}
+\begin{equation*}
+    \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+    \Rightarrow \frac{\begin{array}{cccccc} 3 & 2 & 0 & 1 & 0 & 18\end{array}}{3} = \begin{array}{cccccc} 1 & \frac{2}{3} & 0 & \frac{1}{3} & 0 & 6\end{array}
+\end{equation*}
+OBS:
+\begin{itemize}
+    \item \textbf{N.E.P}: Nueva Ecuación Pivote (como entra $x_1$ en la tabla se escribe esta ecuación).
+    \item \textbf{E.P.A}: Ecuación Pivote Actual (como sale $s_2$ ocupamos esa ecuación).
+    \item $P = Pivote$
+\end{itemize}
+
+\textbf{Paso 7: Actualizamos las ecuación que se quedan.}
+\begin{equation*}
+    \begin{array}{ccccccc}
+        s_1: & 12 & 14 & 1 & 0 & 0 & 84 \\
+        -(12) & 1 & 2/3 & 0 & 1/3 & 0 & 6 \\
+        \\ \hline \\
+        & 0 & 6 & 1 & -4 & 0 & 12 
+    \end{array}
+\end{equation*}
+\\
+\begin{equation*}
+    \begin{array}{ccccccc}
+        s_3: & 0 & 1 & 0 & 0 & 1 & 4 \\
+        -(0) & 1 & 2/3 & 0 & 1/3 & 0 & 6 \\
+        \\ \hline \\
+        & 0 & 1 & 0 & 0 & 1 & 4 
+    \end{array}
+\end{equation*}
+
+\textbf{Paso 8: Actualizamos la tabla simplex con las nuevas ecuaciones.}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        & & 4 & 3 & 0 & 0 & 0 &  &  \\ \hline
+        $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & RHS & $\displaystyle\frac{RHS}{coef_{ij^*}}$ \\ \hline
+        0 & $s_1$ & 0 & 6 & 1 & -4 & 0 & 12 & 12/6 = 2\\ \hline
+        4 & $x_1$ & 1 & 2/3 & 0 & 1/3 & 0 & 6 & 6/(2/3) = 9\\ \hline
+        0 & $s_3$ & 0 & 1 & 0 & 0 & 1 & 4 & 4/1 = 4\\ \hline
+        & $Z_j$ & 4 & 8/3 & 0 & 4/3 & 0 & \underline{24} &  \\ \hline
+        & $c_j - Z_j$ & 0 & 1/3 & 0 & -4/3 & 0 &  &  \\ \hline
+    \end{tabular}
+\end{center}
+
+\textbf{Paso 9: Utilizamos el criterio de optimalidad.}
+\begin{center}
+    $c_j - Z_j \leq 0 \quad \forall j$
+\end{center}
+
+Como $c_j - Z_j$ no es menor o igual a 0, entonces repetimos el ciclo desde el paso 3.
+
+\textbf{Paso 10: Buscamos la variable que entra.}
+\begin{center}
+    $V_{in} = \text{columna Max} \{c_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = 3= x_2$
+\end{center}
+
+\textbf{Paso 11: Buscamos la variable que sale.}
+\begin{center}
+    $V_{out} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = 2 = s_1$
+\end{center}
+
+\textbf{Paso 12: Calculamos el pivote.}
+\begin{center}
+    $\text{Pivote} = a_{i^*j^*} = a_{12} = 6$
+\end{center}
+
+\textbf{Paso 13: Creamos una ecuación pivote.}
+\begin{equation*}
+    \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \\
+    \Rightarrow \frac{\begin{array}{cccccc} 0 & 6 & 1 & -4 & 0 & 12 \end{array}}{6} = \begin{array}{cccccc} 0 & 1 & 1/6 & -2/3 & 0 & 2 \end{array}
+\end{equation*}
+
+\textbf{Paso 14: Actualizamos las ecuación que se quedan.}
+\begin{equation*}
+    \begin{array}{ccccccc}
+        x_1: & 1 & 2/3 & 0 & 1/3 & 0 & 6 \\
+        -(2/3) & 0 & 1 & 1/6 & -2/3 & 0 & 2 \\
+        \\ \hline \\
+        & 1 & 0 & -1/9 & 7/9 & 0 & 14/3 
+    \end{array}
+\end{equation*}
+\\
+\begin{equation*}
+    \begin{array}{ccccccc}
+        s_3: & 0 & 1 & 0 & 0 & 1 & 4 \\
+        -(1) & 0 & 1 & 1/6 & -2/3 & 0 & 2 \\
+        \\ \hline \\
+        & 0 & 0 & -1/6 & 2/3 & 1 & 2
+    \end{array}
+\end{equation*}
+
+\textbf{Paso 15: Actualizamos la tabla simplex con las nuevas ecuaciones.}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        & & 4 & 3 & 0 & 0 & 0 &  &  \\ \hline
+        $c_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & RHS & $\displaystyle\frac{RHS}{coef_{ij^*}}$ \\ \hline
+        3 & $x_2$ & 0 & 1 & 1/6 & -2/3 & 0 & 2 & \\ \hline
+        4 & $x_1$ & 1 & 0 & -1/9 & 7/9 & 0 & 14/3 & \\ \hline
+        0 & $s_3$ & 0 & 0 & -1/6 & 2/3 & 1 & 2 & \\ \hline
+        & $Z_j$ & 4 & 3 & 1/18 & 10/9 & 0 & \underline{74/3} &  \\ \hline
+        & $c_j - Z_j$ & 0 & 0 & -1/18 & -10/9 & 0 &  &  \\ \hline
+    \end{tabular}
+\end{center}
+
+\textbf{Paso 16: Utilizamos el criterio de optimalidad.}
+\begin{center}
+    $c_j - Z_j \leq 0 \quad \forall j$
+\end{center}
+
+Como $c_j - Z_j$ es menor o igual a 0, entonces hemos llegado a la solución óptima.
+\textbf{Solución:}
+\begin{align*}
+    x_1 &= 14/3 \\
+    x_2 &= 2 \\
+    s_3 &= 2 \\
+    Z &= 74/3
+\end{align*}
+
+\newpage
+\subsection*{Solución por método gráfico}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{img/Problema7Grafica.png}
+\end{figure}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Vertice ($x_1,x_2$)} & Z &  \\ \hline
+        A(0, 0) & 0 & \\ \hline
+        B(6, 0) & 24 & \\ \hline
+        C(14/3, 2) & 74/3 & * \\ \hline
+        D(7/3, 4) & 64/3 & \\ \hline
+        E(0, 4) & 12 & \\ \hline
+    \end{tabular}
+\end{center}
+
+Por lo tanto, queda demostrado que el método Simplex y el método gráfico nos entregan el valor optimo.
+\end{document}
