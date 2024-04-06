@@ -20,6 +20,7 @@
 \RequirePackage{listings}
 \RequirePackage{qrcode}
 \RequirePackage{tikz}
+\RequirePackage[none]{hyphenat}
 
 % define the codebox environments
 \lstnewenvironment{sqlcode}[1][] {
@@ -57,6 +58,7 @@
 \newcommand{\imagenlogoD}[1]{\renewcommand{\imagenlogoD}{#1}}
 \newcommand{\linklogoD}[1]{\renewcommand{\linklogoD}{#1}}
 \newcommand{\linkQRDoc}[1]{\renewcommand{\linkQRDoc}{#1}}
+\newcommand{\vDoc}[1]{\renewcommand{\vDoc}{#1}}
 % \newcommand{\universidad}[1]{\renewcommand{\universidad}{#1}}
 
 \newcommand{\insertarfigura}[3]{
@@ -106,5 +108,7 @@
                 \end{tikzpicture}
             \end{flushleft}
         \end{minipage}
+        \\[0.2 cm]
+        {\large \bf Versión: \vDoc}
     \end{center}
 }
