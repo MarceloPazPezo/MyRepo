@@ -19,7 +19,7 @@
     \indent
     Marcelo \textsc{Paz}
 }
-\vDoc{1.1.0}
+\vDoc{1.2.0}
 \portada
 \margenes % Crear márgenes
 
@@ -591,7 +591,7 @@ Por lo tanto, queda demostrado que el método Simplex y el método gráfico nos 
 \\
 \textbf{Paso 5: Agregue una variable artificial a cada restricción =.}
 \\
-\textbf{Paso 6: Establecer cada variable de holgura y excedente con coeficiente igual acero en la función objetivo.}
+\textbf{Paso 6: Establecer cada variable de holgura y excedente con coeficiente igual a cero en la función objetivo.}
 \begin{equation*}
     \begin{aligned}
         & 6x_1 + 4x_2 + s_1 = 24 \\
@@ -671,7 +671,7 @@ Para cada columna j, reste la fila $C_j$ de la fila $Z_j$.:
 \textbf{Paso 12: Determinar la variable entrante identificando la variable con el valor más positivo en la fila $C_j - Z_j$ (La columna de entrada se llama la columna pivote)}
 \begin{center}
     \begin{equation*}
-        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = 5 = x_1
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_1 : 5
     \end{equation*}
 \end{center}
 OBS:
@@ -703,7 +703,7 @@ OBS:
 \end{align*}
 \begin{center}
     \begin{equation*}
-        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = 4 = s_1
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = s_1 : 4
     \end{equation*}
 \end{center}
 
@@ -737,7 +737,7 @@ OBS:
         OBS:
         \begin{itemize}
             \item \textbf{N.E.P}: Nueva Ecuación Pivote (como entra $x_1$ en la tabla se escribe esta ecuación).
-            \item \textbf{E.P.A}: Ecuación Pivote Actual (como sale $s_2$ ocupamos esa ecuación).
+            \item \textbf{E.P.A}: Ecuación Pivote Actual (como sale $s_1$ ocupamos esa ecuación).
             \item $P = Pivote$
         \end{itemize}
     \item Reemplace cada fila i que no sea pivote con: [nueva fila i] = [fila actual i] - [($a_{ij}$) x (fila (*))], donde  $a_{ij}$ es el valor al ingresar la columna j de la fila i.
@@ -777,13 +777,15 @@ OBS:
         0 & $s_2$ & 0 & 4/3 & -1/6 & 1 & 0 & 0 & 2 \\ \hline
         0 & $s_3$ & 0 & 5/3 & 1/6 & 0 & 1 & 0 & 5 \\ \hline
         0 & $s_4$ & 0 & 1 & 0 & 0 & 0 & 1 & 2 \\ \hline
+        & $Z_j$ & 5 & 5/3 & 5/6 & 0 & 0 & 0 & \underline{20} \\ \hline
+        & $C_j - Z_j$ & 0 & 7/3 & -5/3 & 0 & 0 & 0 & \\ \hline
     \end{tabular}
 \end{center}
 \newpage
 \textbf{Paso 15: Ir a Paso 10.}
 \begin{center}
     \begin{equation*}
-        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = 7/3 = x_2
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_2 : \frac{7}{3} 
     \end{equation*}
 \end{center}
 \begin{align*}
@@ -791,7 +793,7 @@ OBS:
 \end{align*}
 \begin{center}
     \begin{equation*}
-        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = \frac{3}{2} = s_2
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = s_2 : \frac{3}{2}
     \end{equation*}
 \end{center}
 \begin{equation*}
@@ -853,7 +855,7 @@ OBS:
         0 & $s_3$ & 0 & 0 & 3/8 & -5/4 & 1 & 0 & 5/2 \\ \hline
         0 & $s_4$ & 0 & 0 & 1/8 & -3/4 & 0 & 1 & 1/2 \\ \hline
         & $Z_j$ & 5 & 4 & 3/4 & 1/2 & 0 & 0 & \underline{21} \\ \hline
-        & $C_j - Z_j$ & 0 & 0 & -3/4 & 0 & 0 & 0 & \\ \hline
+        & $C_j - Z_j$ & 0 & 0 & -3/4 & -1/2 & 0 & 0 & \\ \hline
     \end{tabular}
 \end{center}
 \textbf{Paso R11: Calcular la fila $C_j - Z_j$ para nueva tabla.}
@@ -875,4 +877,319 @@ Como $c_j - Z_j$ es menor o igual a 0, entonces hemos llegado a la solución óp
     s_4 &= \displaystyle\frac{1}{2} \qquad \textbf{Recurso abundante} \Rightarrow \textbf{Restricción No Activa}\\
     Z &= 21
 \end{align*}
+
+\newpage
+\subsection*{Problema 9: Configuración de tabla Simplex y Metodo M}
+
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Min} \quad & Z = 2x_1 - 3x_2 - 4x_3\\
+        \text{s.a} \quad & x_1 + x_2 + x_3 \leq 30 \\
+        & 2x_1 + x_2 + x_3 \geq 60 \\
+        & x_1 - x_2 + 2x_3 = 20 \\
+        & x_1, x_2, x_3 \geq 0
+    \end{aligned}
+\end{equation*}
+
+\subsubsection*{Solución por método Simplex:}
+\noindent
+\textbf{Paso 1: Si el problema es un problema de minimización, multiplica la función objetivo por -1.}
+\begin{equation*}
+    Max \quad -Z = -2x_1 + 3x_2 + 4x_3
+\end{equation*}
+\textbf{Paso 2: Si la formulación del problema contiene algunas restricciones con lados derechos negativos, multiplique cada restricción por -1.}
+\\
+\textbf{Paso 3: Agregue una variable de holgura $S_i$ a cada restricción $\leq$.}
+\begin{equation*}
+    \begin{aligned}
+        & x_1 + x_2 + x_3 + s_1 \leq 30 \\
+        & x_1, x_2, x_3, s_1 \geq 0
+    \end{aligned}
+\end{equation*}
+\textbf{Paso 4: Reste una variable de exceso $R_i$ y sume una variable artificial para cada $\geq$ restricción.}
+\begin{equation*}
+    \begin{aligned}
+        & 2x_1 + x_2 + x_3 - R_1 + A_2 \geq 60 \\
+        & x_1, x_2, x_3, s_1, R_1, A_2 \geq 0
+    \end{aligned}
+\end{equation*}
+\textbf{Paso 5: Agregue una variable artificial a cada restricción =.}
+\begin{equation*}
+    \begin{aligned}
+        & x_1 - x_2 + 2x_3 + A_3 = 20 \\
+        & x_1, x_2, x_3, s_1, A_3 \geq 0
+    \end{aligned}
+\end{equation*}
+\textbf{Paso 6: Establecer cada variable de holgura y excedente con coeficiente igual a cero en la función objetivo.}
+\begin{equation*}
+    \begin{aligned}
+        & x_1 + x_2 + x_3 + s_1 = 30 \\
+        & 2x_1 + x_2 + x_3 - R_1 + A_2 = 60 \\
+        & x_1 - x_2 + 2x_3 + A_3= 20 \\
+        & x_1, x_2, x_3, s_1, R_1, A_2, A_3 \geq 0
+    \end{aligned}
+\end{equation*}
+\textbf{Paso 7: Establecer el coeficiente de cada variable artificial en la función objetivo igual a -M, donde M es una número muy grande.}
+\begin{equation*}
+    Max \quad -Z = -2x_1 + 3x_2 + 4x_3 - MA_2 - MA_3
+\end{equation*}
+
+\newpage
+\noindent
+\textbf{Paso 8: Cada variable de holgura y  artificial se convierte en una de las variables básicas en el cálculo solución básica factible inicial.}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & -Z = -2x_1 + 3x_2 + 4x_3 - MA_2 - MA_3 \\
+        \text{s.a} \quad & x_1 + x_2 + x_3 + s_1 = 30 \\
+        & 2x_1 + x_2 + x_3 - R_1 + A_2 = 60 \\
+        & x_1 - x_2 + 2x_3 + A_3= 20 \\
+        & x_1, x_2, x_3, s_1, R_1, A_2, A_3 \geq 0
+    \end{aligned}
+\end{equation*}
+\textbf{Paso 9: Escribir la tabla simplex inicial.}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & -2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        0 & $s_1$ & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 30 \\ \hline
+        0 & $A_2$ & 2 & 1 & 3 & -1 & 0 & 1 & 0 & 60 \\ \hline
+        0 & $A_3$ & 1 & -1 & 2 & 0 & 0 & 0 & 1 & 20 \\ \hline
+    \end{tabular}
+\end{center}
+\textbf{Paso 10: Calcular la fila $Z_j$ para la nueva Tabla.}
+\\
+OBS:
+\begin{itemize}
+    \item Para cada columna j, multiplica los coeficientes en la función objetivo de las variables básicas por los números correspondientes en la columna j y sumarlos
+\end{itemize}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & -2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        \cellcolor{green!50}0 & $s_1$ & \cellcolor{green!50}1 & 1 & 1 & 0 & 1 & 0 & 0 & 30 \\ \hline
+        \cellcolor{blue!50}-M & $A_2$ & \cellcolor{blue!50}2 & 1 & 3 & -1 & 0 & 1 & 0 & 60 \\ \hline
+        \cellcolor{orange!50}-M & $A_3$ & \cellcolor{orange!50}1 & -1 & 2 & 0 & 0 & 0 & 1 & 20 \\ \hline
+        & $Z_j$ & \cellcolor{red!50}-3M & 0 & -5M & M & 0 & -M & -M & \underline{-80M} \\ \hline
+        & $C_j - Z_j$ & & & & & & & & \\ \hline
+    \end{tabular}
+\end{center}
+\begin{equation*}
+    \colorbox{green!50}{0} \times \colorbox{green!50}{1} + \colorbox{blue!50}{-M} \times \colorbox{blue!50}{2} + \colorbox{orange!50}{-M} \times \colorbox{orange!50}{(1)} = \colorbox{red!50}{-3M}
+\end{equation*}
+\textbf{Paso 11: : Calcular la fila $C_j - Z_j$ para nueva tabla.}
+\\
+Para cada columna j, reste la fila $C_j$ de la fila $Z_j$.:
+\begin{itemize}
+    \item Si ninguno de los valores en la fila $C_j - Z_j$ es positivo,  FIN. 
+    Redactar la solución óptima.
+    \item Si el valor $C_j - Z_j$ de alguna variable no básica es 0,  existen soluciones óptimas alternativas.
+    \item Si existe una variable artificial en la base con un valor positivo, el problema es inviable. 
+\end{itemize}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & \cellcolor{green!50}-2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        0 & $s_1$ & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 30 \\ \hline
+        -M & $A_2$ & 2 & 1 & 3 & -1 & 0 & 1 & 0 & 60 \\ \hline
+        -M & $A_3$ & 1 & -1 & 2 & 0 & 0 & 0 & 1 & 20 \\ \hline
+        & $Z_j$ & \cellcolor{red!50}-3M & 0 & -5M & M & 0 & -M & -M & \underline{-80M} \\ \hline
+        & $C_j - Z_j$ & \cellcolor{orange!50}$-2+3M$ & 3 & $4+5M$ & M & 0 & 0 & 0 & \\ \hline
+    \end{tabular}
+\end{center}
+\begin{equation*}
+    \colorbox{green!50}{-2} - \colorbox{red!50}{-3M} = \colorbox{orange!50}{$-2+3M$}
+\end{equation*}
+
+\newpage
+\textbf{Paso 12: Determinar la variable entrante identificando la variable con el valor más positivo en la fila $C_j - Z_j$ (La columna de entrada se llama la columna pivote)}
+\begin{center}
+    \begin{equation*}
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_3 : 4+5M
+    \end{equation*}
+\end{center}
+OBS:
+\begin{itemize}
+    \item Como estamos máximizando la función objetivo, buscamos el valor más grande en la fila de $C_j - Z_j$, por lo que como M es un numero muy grande $3 < 3M < 5M$.
+\end{itemize}
+
+\textbf{Paso 13: Determinar la variable saliente.}
+\begin{itemize}
+    \item Por cada número positivo en la columna de entrada, calcular la relación de los valores del lado derecho dividido por estos valores de columna entrantes.
+    \item Si no hay valores positivos en la entrada columna, DETENER; el problema es ilimitado.
+    \item En caso contrario, seleccione la variable con el mínimo relación.(La fila saliente se llama fila pivote).
+\end{itemize}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & -2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        0 & $s_1$ & 1 & 1 & \cellcolor{orange!50}1 & 0 & 1 & 0 & 0 & \cellcolor{yellow!50}30 \\ \hline
+        -M & $A_2$ & 2 & 1 & 3 & -1 & 0 & 1 & 0 & 60 \\ \hline
+        -M & $A_3$ & 1 & -1 & 2 & 0 & 0 & 0 & 1 & 20 \\ \hline
+        & $Z_j$ & -3M & 0 & -5M & M & 0 & -M & -M & \underline{-80M} \\ \hline
+        & $C_j - Z_j$ & $-2+3M$ & 3 & $4+5M$ & M & 0 & 0 & 0 & \\ \hline
+    \end{tabular}
+\end{center}
+\begin{align*}
+    s_1: \frac{\colorbox{yellow!50}{30}}{\colorbox{orange!50}1} = 30 \qquad A_2: \frac{60}{3} = 20 \qquad A_3: \frac{20}{2} = 10
+\end{align*}
+\begin{center}
+    \begin{equation*}
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = A_3 : 10
+    \end{equation*}
+\end{center}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|g|c|c|c|c|c|}
+        \hline
+        $C_j$ & & -2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        0 & $s_1$ & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 30 \\ \hline
+        -M & $A_2$ & 2 & 1 & 3 & -1 & 0 & 1 & 0 & 60 \\ \hline
+        \rowcolor{red!50}-M & $A_3$ & 1 & -1 & 2 & 0 & 0 & 0 & 1 & 20 \\ \hline
+        & $Z_j$ & -3M & 0 & -5M & M & 0 & -M & -M & \underline{-80M} \\ \hline
+        & $C_j - Z_j$ & $-2+3M$ & 3 & $4+5M$ & M & 0 & 0 & 0 & \\ \hline
+    \end{tabular}
+\end{center}
+\begin{center}
+    $\text{Pivote} = a_{i^*j^*} = a_{33} = 2$
+\end{center}
+
+\newpage
+\textbf{Paso 14: Generar la siguiente tabla.}
+
+\begin{itemize}
+    \item Divida la fila de pivote por el elemento de pivote (el entrada en la intersección de la fila de pivote y el pivote columna) para obtener una nueva fila. Denotamos esta nueva fila (*)
+    \begin{center}
+        \begin{equation*}
+        x_3: \quad \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \Rightarrow \frac{\begin{array}{cccccccc} 1 & -1 & 2 & 0 & 0 & 0 & 1 & 20\end{array}}{2} = \begin{array}{cccccccc} \frac{1}{2} & \frac{-1}{2} & 1 & 0 & 0 & 0 & \frac{1}{2} & 10 \end{array}
+        \end{equation*}
+    \end{center}
+        OBS:
+        \begin{itemize}
+            \item \textbf{N.E.P}: Nueva Ecuación Pivote (como entra $x_3$ en la tabla se escribe esta ecuación).
+            \item \textbf{E.P.A}: Ecuación Pivote Actual (como sale $A_3$ ocupamos esa ecuación).
+            \item $P = Pivote$
+        \end{itemize}
+    \item Reemplace cada fila i que no sea pivote con: [nueva fila i] = [fila actual i] - [($a_{ij}$) x (fila (*))], donde  $a_{ij}$ es el valor al ingresar la columna j de la fila i.
+    \begin{equation*}
+        \begin{array}{cccccccccc}
+            s_1: & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 30 \\
+            -(1) & 1/2 & -1/2 & 1 & 0 & 0 & 0 & 1/2 & 10 \\
+            \\ \hline \\
+            & 1/2 & 3/2 & 0 & 0 & 1 & 0 & -1/2 & 20
+        \end{array}
+    \end{equation*}
+    \\
+    \begin{equation*}
+        \begin{array}{ccccccccc}
+            A_2: & 2 & 1 & 3 & -1 & 0 & 1 & 0 & 60 \\
+            -(3) & 1/2 & -1/2 & 1 & 0 & 0 & 0 & 1/2 & 10 \\
+            \\ \hline \\
+            & 1/2 & 5/2 & 0 & -1 & 0 & 1 & -3/2 & 30
+        \end{array}
+    \end{equation*}
+\end{itemize}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & -2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        0 & $s_1$ & 1/2 & 3/2 & 0 & 0 & 1 & 0 & -1/2 & 20 \\ \hline
+        -M & $A_2$ & 1/2 & 5/2 & 0 & -1 & 0 & 1 & -3/2 & 30 \\ \hline
+        4 & $x_3$ & 1/2 & -1/2 & 1 & 0 & 0 & 0 & 1/2 & 10 \\ \hline
+        & $Z_j$ & $-M/2 + 2$ & $-5M/2 - 2$ & 4 & M & 0 & -M & $3M/2 + 2$ & \underline{$-30M + 40$} \\ \hline
+        & $C_j - Z_j$ & $-4 +M/2$ & $5+5M/2$ & 0 & -M & 0 & 0 & $-5M/2 -2$ & \\ \hline
+    \end{tabular}
+\end{center}
+\newpage
+\textbf{Paso 15: Ir a Paso 10.}
+\begin{center}
+    \begin{equation*}
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_2 : \frac{5M}{2} 
+    \end{equation*}
+\end{center}
+\begin{align*}
+    s_1: \frac{20}{\frac{3}{2}} = 13,34 \qquad A_2: \frac{30}{\frac{5}{2}} = 12 \qquad x_3: \frac{10}{\frac{-1}{2}} = -20
+\end{align*}
+\begin{center}
+    \begin{equation*}
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = A_2 : 12
+    \end{equation*}
+\end{center}
+\begin{equation*}
+    \begin{aligned}
+        \text{Pivote} = a_{i^*j^*} = a_{22} = \frac{5}{2}
+    \end{aligned}
+\end{equation*}
+\begin{center}
+    \begin{tabular}{|c|c|c|g|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & -2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        0 & $s_1$ & 1/2 & 3/2 & 0 & 0 & 1 & 0 & -1/2 & 20 \\ \hline
+        \rowcolor{red!50}-M & $A_2$ & 1/2 & 5/2 & 0 & -1 & 0 & 1 & -3/2 & 30 \\ \hline
+        4 & $x_3$ & 1/2 & -1/2 & 1 & 0 & 0 & 0 & 1/2 & 10 \\ \hline
+        & $Z_j$ & $-M/2 + 2$ & $-5M/2 - 2$ & 4 & M & 0 & -M & $3M/2 + 2$ & \underline{$-30M + 40$} \\ \hline
+        & $C_j - Z_j$ & $-4 +M/2$ & $5+5M/2$ & 0 & -M & 0 & 0 & $-5M/2 -2$ & \\ \hline
+    \end{tabular}
+\end{center}
+\begin{center}
+    \begin{equation*}
+        x_2: \frac{\begin{array}{cccccccc} 1/2 & 5/2 & 0 & -1 & 0 & 1 & -3/2 & 30 \end{array}}{5/2} = \begin{array}{cccccccc} \frac{1}{5} & 1 & 0 & \frac{-2}{5} & 0 & \frac{2}{5} & \frac{-3}{5} & 12 \end{array}
+    \end{equation*}
+\end{center}
+\begin{equation*}
+    \begin{array}{ccccccccc}
+        x_1: & 1/2 & 3/2 & 0 & 0 & 1 & 0 & -1/2 & 20 \\
+        -(3/2) & 1/5 & 1 & 0 & -2/5 & 0 & 2/5 & -3/5 & 12 \\
+        \\ \hline \\
+        & 1/5 & 0 & 0 & 3/5 & 1 & -3/5 & 2/5 & 2
+    \end{array}
+\end{equation*}
+\begin{equation*}
+    \begin{array}{ccccccccc}
+        x_3: & 1/2 & -1/2 & 1 & 0 & 0 & 0 & 1/2 & 10 \\
+        -(-1/2) & 1/5 & 1 & 0 & -2/5 & 0 & 2/5 & -3/5 & 12 \\
+        \\ \hline \\
+        & 3/5 & 0 & 1 & -1/5 & 0 & 1/5 & 1/5 & 16
+    \end{array}
+\end{equation*}
+\newpage
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & -2 & 3 & 4 & 0 & 0 & -M & -M & \\ \hline
+        & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $R_1$ & $s_1$ & $A_2$ & $A_3$ & RHS \\ \hline
+        0 & $s_1$ & 1/5 & 0 & 0 & 3/5 & 1 & -3/5 & 2/5 & 2 \\ \hline
+        3 & $x_2$ & 1/5 & 1 & 0 & -2/5 & 0 & 2/5 & -3/5 & 12 \\ \hline
+        4 & $x_3$ & 3/5 & 0 & 1 & -1/5 & 0 & 1/5 & 1/5 & 16 \\ \hline
+        & $Z_j$ & 3 & 3 & 4 & -2 & 0 & 2 & -1 & \underline{100} \\ \hline
+        & $C_j - Z_j$ & -5 & 0 & 0 & 2 & 0 & $-M-2$ & $-M+1$ & \\ \hline
+    \end{tabular}
+\end{center}
+\textbf{Paso R11: Calcular la fila $C_j - Z_j$ para nueva tabla.}
+\begin{itemize}
+    \item Si ninguno de los valores en la fila $C_j - Z_j$ es positivo,  FIN.
+\end{itemize}
+\begin{center}
+    $c_j - Z_j \leq 0 \quad \forall j$
+\end{center}
+
+Como $c_j - Z_j$ es menor o igual a 0, entonces hemos llegado a la solución óptima.
+\textbf{Solución:}
+\begin{align*}
+    x_1 &= 0 \\
+    x_2 &= 12 \\
+    x_3 &= 16 \\
+    s_1 &= 2 \qquad \textbf{Recurso abundante} \Rightarrow \textbf{Restricción No Activa}\\
+    A_2 &= 0 \qquad \textbf{Recurso escaso} \Rightarrow \textbf{Restricción Activa}\\
+    A_3 &= 0 \qquad \textbf{Recurso escaso} \Rightarrow \textbf{Restricción Activa}\\
+    Z &= 100
+\end{align*}
+
 \end{document}
