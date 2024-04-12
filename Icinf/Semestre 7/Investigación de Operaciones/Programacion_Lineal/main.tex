@@ -19,7 +19,7 @@
     \indent
     Marcelo \textsc{Paz}
 }
-\vDoc{1.2.0}
+\vDoc{1.3.0}
 \portada
 \margenes % Crear márgenes
 
@@ -1192,4 +1192,128 @@ Como $c_j - Z_j$ es menor o igual a 0, entonces hemos llegado a la solución óp
     Z &= 100
 \end{align*}
 
+\newpage
+\subsection*{Teoría}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{diagram/ProblemaTransporte.png}
+\end{figure}
+Donde:
+\begin{itemize}
+    \item m: Origenes con oferta $O_i$.
+    \item n: Destinos con demanda $D_j$.
+    \item $C_{ij}$: Costos unitarios de transportar desde i hasta j.
+    \item $X_{ij}$: Variables de decisión, cantidad de unidades a transportar desde i hasta j. \textcolor{red!50}{(m-n)}
+    \item \textbf{Objetivo}: Minimizar costo total de transporte. S.T restricciones. \textcolor{blue!50}{(m+n)} 
+\end{itemize}
+
+\subsubsection*{Modelo Lineal}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{diagram/ModeloLineal.png}
+\end{figure}
+\begin{equation*}
+    c_{11} \times X_{11} = \text{Costo total de 1 a 1}
+\end{equation*}
+
+\subsubsection*{Funcion Objetivo:}
+\begin{align*}
+    \text{Min} \quad Z &= c_{11} \times X_{11} + c_{12} \times X_{12} + ... + c_{mn} \times X_{mn} \\
+    \text{Min} \quad Z &= \sum_{i=1}^{m}{\sum_{j=1}^{n}{c_{ij} \times X_{ij}}}
+\end{align*}
+
+\newpage
+\subsubsection*{Restricciones Ofertas:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{diagram/RestriccionesOferta.png}
+\end{figure}
+\begin{align*}
+    x_{i1} + x_{i2} + ... + x_{in} \leq O_i \quad \forall i = \overline{1,m}
+\end{align*}
+\begin{equation*}
+    \sum_{j=1}^{n}{X_{ij}} \leq O_i \quad \forall i = \overline{1,m}
+\end{equation*}
+
+\subsubsection*{Restricciones Demandas:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{diagram/RestriccionesDemanda.png}
+\end{figure}
+\begin{align*}
+    x_{1j} + x_{2j} + ... + x_{mj} \geq D_j \quad \forall j = \overline{1,n}
+\end{align*}
+\begin{equation*}
+    \sum_{i=1}^{m}{X_{ij}} \geq D_j \quad \forall j = \overline{1,n}
+\end{equation*}
+
+\newpage
+\subsubsection*{En resumen:}
+Los P.T. quedan de la forma:
+\begin{align*}
+    \text{Min} \quad Z &= \sum_{i=1}^{m}{\sum_{j=1}^{n}{c_{ij} \times X_{ij}}} \\
+    \text{s.a} \quad & \sum_{j=1}^{n}{X_{ij}} \leq O_i \quad \forall i = \overline{1,m} \\
+    & \sum_{i=1}^{m}{X_{ij}} \geq D_j \quad \forall j = \overline{1,n} \\
+    & X_{ij} \geq 0 \quad \forall i = \overline{1,m}, \forall j = \overline{1,n}
+\end{align*}
+
+\subsection*{Problema 10: Problema de transporte}
+Escribir el M.L. para el siguiente P.T.:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{diagram/PTE1.png}
+\end{figure}
+
+\subsubsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Min} \quad & Z = 2X_{11} + 5X_{12} + 3X_{13} + 4X_{21} + 2X_{22} + X_{23}\\
+        \text{s.a} \quad & X_{11} + X_{12} + X_{13} \leq 10 \\
+        & X_{21} + X_{22} + X_{23} \leq 15 \\
+        & X_{11} + X_{21} \geq 10 \\
+        & X_{12} + X_{22} \geq 10 \\
+        & X_{13} + X_{23} \geq 10 \\
+        & X_{ij} \geq 0 \quad \forall i = \overline{1,2}, \forall j = \overline{1,4}
+    \end{aligned}
+\end{equation*}
+\begin{itemize}
+    \item Si en un P.T. $\sum{D_j} = \sum{O_i}$, diremos que el P.T. \underline{esta balanceado}.
+\end{itemize}
+
+\newpage
+\begin{itemize}
+    \item Si un P.T. \underline{esta desbalanceado} se puede balancear incorporando una restricción con coeficientes de costo nulo.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.33]{diagram/PTE1B.png}
+\end{figure}
+
+\subsubsection*{Teorema}
+En un P.T. balanceado, todas las restricciones son Activas.
+\begin{itemize}
+    \item Las soluciones basicas factibles tienen $m+n-1$ variables básicas.
+\end{itemize}
+
+\begin{equation*}
+    \textbf{S.B.F.I.} = \left\{
+        \begin{array}{l} \text{Regla Nor-Oeste} \\
+            \text{Costo Mínimo} \\
+            \text{Vogël}
+        \end{array}
+    \right.
+\end{equation*}
+
+\subsubsection*{Por regla Nor-Oeste}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.29]{diagram/PTE2.png}
+\end{figure}
+\begin{itemize}
+    \item $m = 3$
+    \item $n = 4$
+    \item $m+n-1 = 6$
+\end{itemize}
+Solución factible: se cumplen 6 restricciones.
 \end{document}
