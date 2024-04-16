@@ -1,10 +1,7 @@
 \documentclass{templateNote}
-\usepackage{tcolorbox}
-\usepackage{hyperref}
-\usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{pgfplots}
 
+\definecolor{morado}{RGB}{127,0,255}
 \newcolumntype{g}{>{\columncolor{green!50}}c}
 \newcolumntype{r}{>{\columncolor{red!50}}c}
 
@@ -15,11 +12,12 @@
 \linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%207/Investigación\%20de\%20Operaciones/Programacion_Lineal/Programacion-Lineal.pdf}
 \titulo{Programación Lineal}
 \asignatura{Investigación de Operaciones}
-\autor{
-    \indent
-    Marcelo \textsc{Paz}
+\autor{Marcelo \textsc{Paz}
 }
-\vDoc{1.4.0}
+\vDoc{1.5.0}
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{\autor}
 \portada
 \margenes % Crear márgenes
 
@@ -1541,4 +1539,204 @@ Valor de la función objetivo:
     &= 0 + 120 + 220 + 150 + 200 + 120 \\
     &= 810
 \end{align*}
+
+\newpage
+\subsection*{Problema 13: Relación entre Tabla Simplex Primal y Problema de Transporte [Criterios]}
+Sea el siguiente P.T. resuelto por Regla Nor-Oeste:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.15]{diagram/PTE4.png}
+\end{figure}
+\begin{align*}
+    Z &= 5 \cdot 10 + 10 \cdot 2 + 5 \cdot 7 + 15 \cdot 9 + 5 \cdot 20 + 10 \cdot 18\\
+    &= 50 + 20 + 35 + 135 + 100 + 180 \\
+    &= 520
+\end{align*}
+Tabla Simplex Primal:
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $C_j$ & & 10 & 2 & 20 & 11 & 12 & 7 & 9 & 20 & 4 & 14 & 16 & 18 & \\ \hline
+        & \textbf{V.B} & $x_{11}$ & $x_{12}$ & $x_{13}$ & $x_{14}$ & $x_{21}$ & $x_{22}$ & $x_{23}$ & $x_{24}$ & $x_{31}$ & $x_{32}$ & $x_{33}$ & $x_{34}$ & RHS \\ \hline
+        10 & $x_{11}$ & 1 & 0 & & & & 0 & 0 & 0 & & & & 0 & 5 \\ \hline
+        2 & $x_{12}$ & 0 & 1 & & & & 0 & 0 & 0 & & & & 0 & 10 \\ \hline
+        7 & $x_{22}$ & 0 & 0 & & & & 1 & 0 & 0 & & & & 0 & 5 \\ \hline
+        9 & $x_{23}$ & 0 & 0 & & & & 0 & 1 & 0 & & & & 0 & 15 \\ \hline
+        20 & $x_{24}$ & 0 & 0 & & & & 0 & 0 & 1 & & & & 0 & 5 \\ \hline
+        18 & $x_{34}$ & 0 & 0 & & & & 0 & 0 & 0 & & & & 1 & 10 \\ \hline
+        & $Z_j$ & 10 & 2 & & & & 7 & 9 & 20 & & & & 18 & 520 \\ \hline
+        & $C_j - Z_j$ & 0 & 0 & \textcolor{morado}{16} & \textcolor{morado}{-4} & \textcolor{morado}{-3} & 0 & 0 & 0 & \textcolor{morado}{-9} & \textcolor{morado}{9}& \textcolor{morado}{9} & 0 & \\ \hline
+    \end{tabular}
+\end{center}
+
+\subsubsection*{Criterio de Optimalidad}
+
+\begin{itemize}
+    \item \textbf{Costo reducido}
+    \begin{equation*}
+        \overline{C_{ij}} = C_{ij} - u_i - v_j
+    \end{equation*}
+
+    \begin{align*}
+        u_i + v_j &= C_{ij} \quad \forall (i,j) \quad \text{Básica} \\
+        u_1 &= 0
+    \end{align*}
+    *OBS:
+    \begin{itemize}
+        \item Para facilitar la busqueda de las demas variables, se empieza un $u_1 = 0$.
+        \item Luego se calculan los costos reducidos de las celdas que no tiene valor.
+    \end{itemize}
+\end{itemize}
+
+\newpage
+\subsubsection*{Paso a paso:}
+\begin{itemize}
+    \item \textbf{Paso 1:} Calcular los costos reducidos de las celdas que no tienen valor. 
+    \begin{itemize}
+        \item \textbf{Paso 1.1:} Para ello calculamos primero los valores de $u_i$ y $v_j$, usando $u_1 = 0$ en las celdas que tiene valor.
+        \begin{equation*}
+            v_j = C_{ij} - u_i \quad \forall (i,j) \quad \text{Básica} \Leftrightarrow u_i = C_{ij} - v_j \quad \forall (i,j) \quad \text{Básica}
+        \end{equation*}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.15]{diagram/PTE4-1.png}
+        \end{figure}
+        \begin{minipage}{0.6\textwidth}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.15]{diagram/PTE4-2.png}
+            \end{figure}
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+            \begin{equation*}
+                v_1 = \colorbox{orange}{10} - 0 = 10
+            \end{equation*}
+            \begin{equation*}
+                v_2 = 2 - 0 = 2
+            \end{equation*}
+        \end{minipage}
+        
+        \begin{minipage}{0.6\textwidth}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[scale=0.15]{diagram/PTE4-3.png}
+            \end{figure}
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+            \begin{equation*}
+                u_2 = 7 - 2 = 5
+            \end{equation*}
+        \end{minipage}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.15]{diagram/PTE4-4.png}
+        \end{figure}
+
+        \item \textbf{Paso 1.2:} Ahora calculamos los costos reducidos de las celdas que no tienen valor.
+        \begin{equation*}
+            \overline{C_{ij}} = C_{ij} - u_i - v_j
+        \end{equation*}
+        \begin{equation*}
+            \overline{C_{13}} = \colorbox{orange}{20} - 0 - 4 = \colorbox{yellow}{16}
+        \end{equation*}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.15]{diagram/PTE4-5.png}
+        \end{figure}
+    \end{itemize}
+
+    \item \textbf{Paso 2:} Verificar si todos los costos reducidos:
+    \begin{itemize}
+        \item \textbf{Si todos} los costos reducidos son $\geq 0$, entonces hemos llegado a la solución óptima.
+        
+        \item \textbf{Si existe} uno o varios costos reducidos $\leq 0$, entonces se procede a elegir la celda con el valor más negativo.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.15]{diagram/PTE4-6.png}
+        \end{figure}
+    \end{itemize}
+
+    \item \textbf{Paso 3:} Elegir la celda con el valor más negativo.
+    
+    Vemos que la celda $x_{31}$ es el valor más negativo.
+    \begin{center}
+        $V_{in} = x_{31}$
+    \end{center}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.15]{diagram/PTE4-7.png}
+    \end{figure}
+
+    \item \textbf{Paso 4:} Utilizamos el método (Stepping-Stone), para actualizar los valores de las celdas y marcar que variable sale.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.15]{diagram/PTE4-8.png}
+    \end{figure}
+
+    \begin{itemize}
+        \item \textbf{Paso 4.1:} Elegimos el valor menor de las celdas que se les resta, en este caso tenemos la variables $x_{11}$ y $x_{22}$ con el valor de $5$
+        
+        Por lo que la variable $x_{11}$ o $x_{22}$ podrian salir.
+        \begin{center}
+            $V_{out} = x_{22}$
+        \end{center}
+
+        Importante: el valor de la variable que sale, se le asigna a la variable que entra.
+
+        \item \textbf{Paso 4.2:} Luego se procede a actualizar los valores de las celdas, sumando o restando el valor de la variable que sale a las celdas con valor.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.15]{diagram/PTE4-9.png}
+        \end{figure}
+        \begin{align*}
+            Z &= 0 \cdot 10 + 15 \cdot 2 + 15 \cdot 9 + 10 \cdot 20 + 5 \cdot 4 + 5 \cdot 18\\
+            &= 0 + 30 + 135 + 200 + 20 + 90 \\
+            &= 475
+        \end{align*}
+    \end{itemize}
+    \item \textbf{Paso ?:} Repetir los pasos hasta que en el paso 2 todos los costos reducidos sean $\geq 0$.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.15]{diagram/PTE4-10.png}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.15]{diagram/PTE4-11.png}
+    \end{figure}
+    \begin{align*}
+        Z &= 15 \cdot 2 + 0 \cdot 11 + 15 \cdot 9 + 10 \cdot 20 + 5 \cdot 4 + 5 \cdot 18\\
+        &= 30 + 0 + 135 + 200 + 20 + 90 \\
+        &= 475
+    \end{align*}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.15]{diagram/PTE4-12.png}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.15]{diagram/PTE4-13.png}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.15]{diagram/PTE4-14.png}
+    \end{figure}
+
+    \item Calculamos el valor de la función objetivo.
+    \begin{align*}
+        Z &= 5 \cdot 2 + 10 \cdot 11 + 10 \cdot 7 + 15 \cdot 9 + 5 \cdot 4 + 5 \cdot 18\\
+        &= 10 + 110 + 70 + 135 + 20 + 90 \\
+        &= 435
+    \end{align*}
+\end{itemize}
+% \subsubsection*{Criterios:}
+% \begin{itemize}
+%     \item \textbf{Optimalidad}: Si $\overline{C_{ij}} \leq 0 \quad \forall i,j$, entonces se ha llegado a la solución óptima.
+%     \item \textbf{Factibilidad}: ()
+% \end{itemize}
 \end{document}

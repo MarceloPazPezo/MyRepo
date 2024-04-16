@@ -5,6 +5,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[section]{placeins}
 \RequirePackage[T1]{fontenc}
+\RequirePackage[hidelinks, pdfusetitle]{hyperref}
 \RequirePackage{mathtools}
 \RequirePackage{siunitx}
 \RequirePackage{float}
@@ -15,13 +16,15 @@
 \RequirePackage{wallpaper}
 \RequirePackage{nomencl}
 \RequirePackage{url}
-\RequirePackage[hidelinks]{hyperref}
 \RequirePackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry}
 \RequirePackage{fancyhdr}
 \RequirePackage{listings}
 \RequirePackage{qrcode}
 \RequirePackage{tikz}
 \RequirePackage[none]{hyphenat}
+\RequirePackage{tcolorbox}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
 
 % define the codebox environments
 \lstnewenvironment{sqlcode}[1][] {
@@ -85,8 +88,6 @@
 
 \newcommand{\portada}{
     \begin{center}
-        \title{\titulo}
-
         \begin{center}
             {\LARGE \bf \titulo}\\
             \rule{\linewidth}{0.2 mm} \\[0.1 cm]
