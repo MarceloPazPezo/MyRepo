@@ -5,6 +5,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[section]{placeins}
 \RequirePackage[T1]{fontenc}
+\RequirePackage{mlmodern}
 \RequirePackage[hidelinks, pdfusetitle]{hyperref}
 \RequirePackage{mathtools}
 \RequirePackage{siunitx}
@@ -25,6 +26,7 @@
 \RequirePackage{tcolorbox}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
+\RequirePackage{microtype}
 
 % define the codebox environments
 \lstnewenvironment{sqlcode}[1][] {
