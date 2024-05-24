@@ -1,0 +1,365 @@
+\documentclass{templateNote}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+
+\newcolumntype{g}{>{\columncolor{green!50}}c}
+\begin{document}
+
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Formativa 1 (Certamen 1 ICI)}
+\asignatura{Investigación de Operaciones}
+\autor{
+Marcelo Paz
+}
+\vDoc{1.0.0}
+
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{
+    \autor
+}
+\portada
+\margenes % Crear márgenes
+
+\section*{Problema 1}
+
+La empresa MADERAS C. A. es un fabricante de muebles. Hace tres estilos diferentes de
+mesas, A, B, C. Cada modelo de mesa requiere de una cierta cantidad de tiempo para el corte
+de las piezas, su montaje y pintura. MADERAS C.A., puede vender todas las unidades que
+fabrica. Es más, el modelo B se puede vender sin pintar. Utilizando los datos indicados,
+obtener el modelo lineal que permita determinar la máxima utilidad mensual que puede
+obtener la Empresa.
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \multicolumn{5}{|r|}{Requerimiento de Horas Hombre por mesa} \\ \hline
+        Modelo & Utilidad por mesa & Corte & Ensamblado & Pintura \\ \hline
+        A & \$17.500 & 1 & 2 & 4 \\
+        B & \$20.000 & 2 & 4 & 4 \\
+        B sin pintar & \$10.000 & 2 & 4 & 0 \\
+        C & \$25.000 & 3 & 7 & 5 \\ \hline
+          & Disponibilidad mensual de HH & 200 & 298 & 148 \\ \hline
+    \end{tabular}
+\end{figure}
+
+\subsection*{Variables de Decisión:}
+\begin{itemize}
+    \item $x_1$: Cantidad de mesas A a fabricar.
+    \item $x_2$: Cantidad de mesas B a fabricar.
+    \item $x_3$: Cantidad de mesas B sin pintar a fabricar.
+    \item $x_4$: Cantidad de mesas C a fabricar.
+\end{itemize}
+
+\subsection*{Función Objetivo:}
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 17500x_1 + 20000x_2 + 10000x_3 + 25000x_4 \\
+        \text{s.a} \quad & x_1 + 2x_2 + 2x_3 + 3x_4 \leq 200 \\
+        & 2x_1 + 4x_2 + 4x_3 + 7x_4 \leq 298 \\
+        & 4x_1 + 4x_2 + 5x_4 \leq 148 \\
+        & x_1, x_2, x_3, x_4 \geq 0
+    \end{aligned}
+\end{equation*}
+
+
+\subsection*{Por método Simplex}
+\begin{itemize}
+    \item \textbf{P.3:} Agregamos variables de holgura.
+    \begin{equation*}
+        \begin{aligned}
+            & x_1 + 2x_2 + 2x_3 + 3x_4 + s_1 \leq 200 \\
+            & 2x_1 + 4x_2 + 4x_3 + 7x_4 + s_2 \leq 298 \\
+            & 4x_1 + 4x_2 + 5x_4 + s_3 \leq 148 \\
+            & x_1, x_2, x_3, x_4, s_1, s_2, s_3 \geq 0
+        \end{aligned}
+    \end{equation*}
+
+    \item \textbf{P.6:} Iguala las restricciones, y reescribimos la función objetivo.
+    \begin{equation*}
+        \begin{aligned}
+            & x_1 + 2x_2 + 2x_3 + 3x_4 + s_1 = 200 \\
+            & 2x_1 + 4x_2 + 4x_3 + 7x_4 + s_2 = 298 \\
+            & 4x_1 + 4x_2 + 5x_4 + s_3 = 148 \\
+            & x_1, x_2, x_3, x_4, s_1, s_2, s_3 \geq 0
+        \end{aligned}
+    \end{equation*}
+    \begin{equation*}
+        \therefore
+    \end{equation*}
+    \begin{equation*}
+        \begin{aligned}
+            \text{Max} \quad & Z = 17500x_1 + 20000x_2 + 10000x_3 + 25000x_4 \\
+            \text{s.a} \quad & x_1 + 2x_2 + 2x_3 + 3x_4 + s_1 = 200 \\
+            & 2x_1 + 4x_2 + 4x_3 + 7x_4 + s_2 = 298 \\
+            & 4x_1 + 4x_2 + 5x_4 + s_3 = 148 \\
+            & x_1, x_2, x_3, x_4, s_1, s_2, s_3 \geq 0
+        \end{aligned}
+    \end{equation*}
+
+    \item \textbf{P.9:} Rellenamos la tabla simplex, con las ecuaciones.
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & 1 & 2 & 2 & 3 & 1 & 0 & 0 & 200 \\
+            0 & $s_2$ & 2 & 4 & 4 & 7 & 0 & 1 & 0 & 298 \\
+            0 & $s_3$ & 4 & 4 & 0 & 5 & 0 & 0 & 1 & 148 \\ \hline
+            & $Z_j$ & & & & & & & & \\ \hline
+            & $C_j - Z_j$ & & & & & & & & \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \item \textbf{P.10:} Calculamos $Z_j$.
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & 1 & 2 & 2 & 3 & 1 & 0 & 0 & 200 \\
+            0 & $s_2$ & 2 & 4 & 4 & 7 & 0 & 1 & 0 & 298 \\
+            0 & $s_3$ & 4 & 4 & 0 & 5 & 0 & 0 & 1 & 148 \\ \hline
+            & $Z_j$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\underline{0}$ \\ \hline
+            & $C_j - Z_j$ & & & & & & & & \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \newpage
+    \item \textbf{P.11:} Calculamos $C_j - Z_j$.
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & 1 & 2 & 2 & 3 & 1 & 0 & 0 & 200 \\
+            0 & $s_2$ & 2 & 4 & 4 & 7 & 0 & 1 & 0 & 298 \\
+            0 & $s_3$ & 4 & 4 & 0 & 5 & 0 & 0 & 1 & 148 \\ \hline
+            & $Z_j$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\underline{0}$ \\ \hline
+            & $C_j - Z_j$ & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \item \textbf{P.12:} Seleccionamos la variable de entrada.
+    \begin{equation*}
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_4 : 25000
+    \end{equation*}
+
+    \item \textbf{P.13:} Calculamos el cociente mínimo y seleccionamos la variable de salida, para elegir el pivote.
+    \begin{align*}
+        s_1: \frac{200}{3} = 66.67 \qquad s_2: \frac{298}{7} = 42.57 \qquad s_3: \frac{148}{5} = 29.6 \\
+    \end{align*}
+    \begin{equation*}
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = s_3 : 29.6
+    \end{equation*}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|g|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & 1 & 2 & 2 & 3 & 1 & 0 & 0 & 200 \\
+            0 & $s_2$ & 2 & 4 & 4 & 7 & 0 & 1 & 0 & 298 \\
+            \rowcolor{red!50}0 & $s_3$ & 4 & 4 & 0 & 5 & 0 & 0 & 1 & 148 \\ \hline
+            & $Z_j$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 & $\underline{0}$ \\ \hline
+            & $C_j - Z_j$ & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        $\text{Pivote} = a_{i^*j^*} = a_{34} = 5$
+    \end{center}
+
+    \item \textbf{P.14:} Calculamos la nueva tabla simplex.
+    \begin{align*}
+        x_4: \quad \textbf{N.E.P} = \frac{\textbf{E.P.A}}{P} \Rightarrow \frac{\begin{array}{cccccccc} 4 & 4 & 0 & 5 & 0 & 0 & 1 & 148\end{array}}{5} \\
+        = \begin{array}{cccccccc} \frac{4}{5} & \frac{4}{5} & 0 & 1 & 0 & 0 & \frac{1}{5} & \frac{148}{5}\end{array}
+    \end{align*}
+
+    \begin{equation*}
+        \begin{array}{ccccccccc}
+            s_1: & 1 & 2 & 2 & 3 & 1 & 0 & 0 & 200 \\
+            -(3) & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5 \\
+            \\ \hline \\
+            & -7/5 & -2/5 & 2 & 0 & 1 & 0 & -3/5 & 556/5
+        \end{array}
+    \end{equation*}
+    
+    \begin{equation*}
+        \begin{array}{ccccccccc}
+            s_2: & 2 & 4 & 4 & 7 & 0 & 1 & 0 & 298 \\
+            -(7) & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5 \\
+            \\ \hline \\
+            & -18/5 & -8/5 & 4 & 0 & 0 & 1 & -7/5 & 454 /5
+        \end{array}
+    \end{equation*}
+
+    \item \textbf{P.10.R y P.11.R:}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & -7/5 & -2/5 & 2 & 0 & 1 & 0 & -3/5 & 556/5 \\
+            0 & $s_2$ & -18/5 & -8/5 & 4 & 0 & 0 & 1 & -7/5 & 454/5 \\
+            25000 & $x_4$ & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5 \\ \hline
+            & $Z_j$ & 20000 & 20000 & 0 & 25000 & 0 & 0 & 5000 & $\underline{740000}$ \\ \hline
+            & $C_j - Z_j$ & -2500 & 0 & 10000 & 0 & 0 & 0 & -5000 & \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \item \textbf{P.12.R:}
+    \begin{equation*}
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_3 : 10000
+    \end{equation*}
+
+    \item \textbf{P.13.R:}
+    \begin{align*}
+        s_1: \frac{556/5}{2} = 55.6 \qquad s_2: \frac{454/5}{4} = 22.7 \qquad x_4: \frac{148/5}{0} = - \\
+    \end{align*}
+    \begin{equation*}
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = s_2 : 22.7
+    \end{equation*}
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|g|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & -7/5 & -2/5 & 2 & 0 & 1 & 0 & -3/5 & 556/5 \\
+            \rowcolor{red!50}0 & $s_2$ & -18/5 & -8/5 & 4 & 0 & 0 & 1 & -7/5 & 454/5 \\
+            25000 & $x_4$ & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5 \\ \hline
+            & $Z_j$ & 20000 & 20000 & 0 & 25000 & 0 & 0 & 5000 & $\underline{740000}$ \\ \hline
+            & $C_j - Z_j$ & -2500 & 0 & 10000 & 0 & 0 & 0 & -5000 & \\ \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        $\text{Pivote} = a_{i^*j^*} = a_{23} = 4$
+    \end{center}
+
+    \item \textbf{P.14.R:}
+    \begin{align*}
+        x_3: \quad \textbf{N.E.P} &= \frac{\textbf{E.P.A}}{P} \Rightarrow \frac{\begin{array}{cccccccc} -18/5 & -8/5 & 4 & 0 & 0 & 1 & -7/5 & 454/5\end{array}}{4} \\ &= \begin{array}{cccccccc} \frac{-18}{20} & \frac{-8}{20} & 1 & 0 & 0 & \frac{1}{4} & \frac{-7}{20} & \frac{454}{20}\end{array}
+    \end{align*}
+
+    \begin{equation*}
+        \begin{array}{ccccccccc}
+            s_1: & -7/5 & -2/5 & 2 & 0 & 1 & 0 & -3/5 & 556/5 \\
+            -(2) & -18/20 & -8/20 & 1 & 0 & 0 & 1/4 & -7/20 & 454/20 \\
+            \\ \hline \\
+            & 2/5 & 2/5 & 0 & 0 & 1 & -1/2 & 1/10 & 329/5
+        \end{array}
+    \end{equation*}
+    
+    \begin{equation*}
+        \begin{array}{ccccccccc}
+            x_4: & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5 \\
+            -(0) & -18/20 & -8/20 & 1 & 0 & 0 & 1/4 & -7/20 & 454/20 \\
+            \\ \hline \\
+            & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5
+        \end{array}
+    \end{equation*}
+
+    \item \textbf{P.10.R.R y P.11.R.R:}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & 2/5 & 2/5 & 0 & 0 & 1 & -1/2 & 1/10 & 329/5 \\
+            10000 & $x_3$ & -9/10 & -2/5 & 1 & 0 & 0 & 1/4 & -7/20 & 454/20 \\
+            25000 & $x_4$ & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5 \\ \hline
+            & $Z_j$ & 11000 & 16000 & 10000 & 25000 & 0 & 2500 & 1500 & $\underline{967000}$ \\ \hline
+            & $C_j - Z_j$ & 6500 & 4000 & 0 & 0 & 0 & -2500 & -1500 & \\ \hline
+        \end{tabular}
+    \end{center}
+    
+    \item \textbf{P.12.R.R:}
+    \begin{equation*}
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_1 : 6500
+    \end{equation*}
+
+    \item \textbf{P.13.R.R:}
+    \begin{align*}
+        s_1: \frac{329/5}{2/5} = 169.5 \qquad x_3: \frac{454/20}{-9/10} = -25.2 \qquad x_4: \frac{148/5}{4/5} = 37 \\
+    \end{align*}
+    \begin{equation*}
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = x_4 : 37
+    \end{equation*}
+
+    \begin{center}
+        \begin{tabular}{|c|c|g|c|c|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & 2/5 & 2/5 & 0 & 0 & 1 & -1/2 & 1/10 & 329/5 \\
+            10000 & $x_3$ & -9/10 & -2/5 & 1 & 0 & 0 & 1/4 & -7/20 & 454/20 \\
+            \rowcolor{red!50}25000 & $x_4$ & 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5 \\ \hline
+            & $Z_j$ & 11000 & 16000 & 10000 & 25000 & 0 & 2500 & 1500 & $\underline{967000}$ \\ \hline
+            & $C_j - Z_j$ & 6500 & 4000 & 0 & 0 & 0 & -2500 & -1500 & \\ \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        $\text{Pivote} = a_{i^*j^*} = a_{13} = 4/5$
+    \end{center}
+
+    \item \textbf{P.14.R.R:}
+    \begin{align*}
+        x_1: \quad \textbf{N.E.P} &= \frac{\textbf{E.P.A}}{P} \Rightarrow \frac{\begin{array}{cccccccc} 4/5 & 4/5 & 0 & 1 & 0 & 0 & 1/5 & 148/5\end{array}}{4/5} \\
+        &= \begin{array}{cccccccc} 1 & 1 & 0 & \frac{5}{4} & 0 & 0 & \frac{1}{4} & \frac{148}{4}\end{array}
+    \end{align*}
+
+    \begin{equation*}
+        \begin{array}{ccccccccc}
+            s_1: & 2/5 & 2/5 & 0 & 0 & 1 & -1/2 & 1/10 & 329/5 \\
+            -(2/5) & 1 & 1 & 0 & 5/4 & 0 & 0 & 1/4 & 148/4 \\
+            \\ \hline \\
+            & 0 & 0 & 0 & -1/2 & 1 & -1/2 & 0 & 51
+        \end{array}
+    \end{equation*}
+    
+    \begin{equation*}
+        \begin{array}{ccccccccc}
+            x_3: & -9/10 & -2/5 & 1 & 0 & 0 & 1/4 & -7/20 & 454/20 \\
+            -(-9/10) & 1 & 1 & 0 & 5/4 & 0 & 0 & 1/4 & 148/4 \\
+            \\ \hline \\
+            & 0 & 1/2 & 1 & 9/8 & 0 & 1/4 & -1/8 & 56
+        \end{array}
+    \end{equation*}
+
+    \item \textbf{P.10.R.R.R y P.11.R.R.R:}
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            $C_j$ & & 17500 & 20000 & 10000 & 25000 & 0 & 0 & 0 & \\ \hline
+            & \textbf{V.B} & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            0 & $s_1$ & 0 & 0 & 0 & -1/2 & 1 & -1/2 & 0 & 51 \\
+            10000 & $x_3$ & 0 & 1/2 & 1 & 9/8 & 0 & 1/4 & -1/8 & 56 \\
+            17500 & $x_1$ & 1 & 1 & 0 & 5/4 & 0 & 0 & 1/4 & 148/4 \\ \hline
+            & $Z_j$ & 17500 & 22500 & 10000 & 33125 & 0 & 2500 & 3125 & $\underline{1207500}$ \\ \hline
+            & $C_j - Z_j$ & 0 & -2500 & 0 & -8125 & 0 & -2500 & -3125 & \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \item \textbf{P.11.R.R.R:}
+    \begin{itemize}
+        \item Si ninguno de los valores en la fila $C_j - Z_j$ es positivo, FIN.
+        \begin{align*}
+            C_j - Z_j \leq 0 \forall j
+        \end{align*}
+    \end{itemize}
+    Como se cumple la condición hemos llegado a la solución óptima.
+    
+    \textbf{Solución:}
+    \begin{align*}
+        x_1 &= 148/4 = 37 \qquad \textbf{Recurso abundante} \Rightarrow \textbf{Restricción No Activa}\\
+        x_2 &= 0 \\
+        x_3 &= 56 \qquad \textbf{Recurso abundante} \Rightarrow \textbf{Restricción No Activa}\\
+        x_4 &= 0 \\
+        Z &= 1207500
+    \end{align*}
+\end{itemize}
+
+\end{document}
