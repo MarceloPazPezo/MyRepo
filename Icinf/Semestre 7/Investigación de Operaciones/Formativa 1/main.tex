@@ -4,6 +4,11 @@
 
 \pgfplotsset{compat=1.18}
 
+\definecolor{Verde}{RGB}{170,239,31}
+\definecolor{Morado}{RGB}{127,0,255}
+\definecolor{Celeste}{RGB}{0,191,255}
+\definecolor{Salmon}{RGB}{255,0,157}
+
 \newcolumntype{g}{>{\columncolor{green!50}}c}
 \begin{document}
 
@@ -15,7 +20,7 @@
 \autor{
 Marcelo Paz
 }
-\vDoc{1.0.1}
+\vDoc{1.1.0}
 
 % Metadatos del PDF
 \title{[\asignatura]-\titulo}
@@ -30,8 +35,8 @@ Marcelo Paz
 La empresa MADERAS C. A. es un fabricante de muebles. Hace tres estilos diferentes de
 mesas, A, B, C. Cada modelo de mesa requiere de una cierta cantidad de tiempo para el corte
 de las piezas, su montaje y pintura. MADERAS C.A., puede vender todas las unidades que
-fabrica. Es más, el modelo B se puede vender sin pintar. Utilizando los datos indicados,
-obtener el modelo lineal que permita determinar la máxima utilidad mensual que puede
+fabrica. Es m\'as, el modelo B se puede vender sin pintar. Utilizando los datos indicados,
+obtener el modelo lineal que permita determinar la m\'axima utilidad mensual que puede
 obtener la Empresa.
 \begin{figure}[H]
     \centering
@@ -354,12 +359,186 @@ obtener la Empresa.
     
     \textbf{Solución:}
     \begin{align*}
-        x_1 &= 148/4 = 37 \qquad \textbf{Recurso abundante} \Rightarrow \textbf{Restricción No Activa}\\
-        x_2 &= 0 \\
-        x_3 &= 56 \qquad \textbf{Recurso abundante} \Rightarrow \textbf{Restricción No Activa}\\
-        x_4 &= 0 \\
+        x_1 &= 148/4 = 37 \qquad &\textbf{Recurso abundante} \\
+        x_2 &= 0 \qquad &\textbf{Recurso escaso} \\
+        x_3 &= 56 \qquad &\textbf{Recurso abundante} \\
+        x_4 &= 0 \qquad &\textbf{Recurso escaso} \\
+        s_1 &= 51 \qquad &\textbf{Recurso abundante} \\
+        s_2 &= 0 \qquad &\textbf{Recurso escaso} \\
+        s_3 &= 0 \qquad &\textbf{Recurso escaso} \\
         Z &= 1207500
     \end{align*}
+
+    \begin{equation*}
+        \begin{aligned}
+            \text{Max} \quad & Z = 17500x_1 + 20000x_2 + 10000x_3 + 25000x_4 \\
+            \text{s.a} \quad & x_1 + 2x_2 + 2x_3 + 3x_4 + \leq 200 \qquad &\textbf{Restricci\'on NO Activa} \\
+            & 2x_1 + 4x_2 + 4x_3 + 7x_4 + \leq 298 \qquad &\textbf{Restricci\'on Activa} \\
+            & 4x_1 + 4x_2 + 5x_4 + \leq 148 \qquad &\textbf{Restricci\'on Activa} \\
+            & x_1, x_2, x_3, x_4 \geq 0
+        \end{aligned}
+    \end{equation*}
+OBS: No estoy seguro si en la soluci\'on es importante poner las holguras, pues si las pongo todas las restricciones son activas.
 \end{itemize}
 
+\newpage
+\section*{Problema 2}
+
+Encontrar la solución óptima para el siguiente modelo lineal. Utilice el Método Gráfico.
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 5x_1 + 2x_2 \\
+        \text{s.a} \quad & 3x_1 - 2x_2 \geq -3 \qquad &\textbf{Restricci\'on NO Activa} \\
+        & x_1 + x_2 \leq 9 \qquad &\textbf{Restricci\'on Activa} \\
+        & 2x_1 - x_2 \leq 6 \qquad &\textbf{Restricci\'on Activa} \\
+        & x_1 - x_2 \leq 2 \qquad &\textbf{Restricci\'on NO Activa} \\
+        & 3x_1 + x_2 \geq 6 \qquad &\textbf{Restricci\'on NO Activa} \\
+        & x_1, x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{img/Ejercicio2.png}
+\end{figure}
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Vertice ($x_1,x_2$)} & Z &  \\ \hline
+        A(2, 0) & 10 & \\ \hline
+        B(4, 2) & 24 & \\ \hline
+        C(5, 4) & 33 & * \\ \hline
+        D(3, 6) & 27 & \\ \hline
+        E(1, 3) & 11 & \\ \hline
+    \end{tabular}
+\end{center}
+
+\textbf{Soluci\'on \'Optima:}
+\begin{align*}
+    x_1 &= 5 \qquad \textbf{Recurso abundante}\\ 
+    x_2 &= 4 \qquad \textbf{Recurso abundante}\\
+    Z &= 33
+\end{align*}
+
+\newpage
+\section*{Problema 3}
+
+Considere el siguiente modelo lineal.
+\begin{equation*}
+    \begin{aligned}
+        \text{Max} \quad & Z = 4x_1 + 3x_2 \\
+        \text{s.a} \quad & 12x_1 + 14x_2 \leq 84 \quad \text{(Recurso 1)} \\
+        & 3x_1 + 2x_2 \leq 18 \quad \text{(Recurso 2)} \\
+        & x_2 \leq 4 \quad \text{(Recurso 3)} \\
+        & x_1, x_2 \geq 0
+    \end{aligned}
+\end{equation*}
+
+A continuaci\'on, se presenta una iteraci\'on intermedia del m\'etodo simplex para el problema anterior.
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        & & 4 & 3 & 0 & 0 & 0 & 0 \\ \hline
+        $C_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+        0 & $s_1$ & 0 & 6 & 1 & -4 & 0 & 12 \\
+        4 & $x_1$ & 1 & 2/3 & 0 & 1/3 & 0 & 6 \\
+        0 & $s_3$ & 0 & 1 & 0 & 0 & 1 & 4 \\ \hline
+        & $Z_j$ & 4 & 8/3 & 0 & 4/3 & 0 & $\underline{24}$ \\ \hline
+        & $C_j - Z_j$ & 0 & 1/3 & 0 & -4/3 & 0 & \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{enumerate}
+    \renewcommand{\labelenumi}{\alph{enumi})}
+    \item ¿Es esta la iteraci\'on \'optima? Explique.
+    
+    \textbf{No es la iteraci\'on \'optima}, ya que el la fila $C_j - Z_j$ hay valores positivo, lo que indica que no se ha llegado a la soluci\'on \'optima.
+    
+    \item Si no es \'optima obtenga las siguientes iteraciones \textbf{a partir de esta} hasta alcanzar la soluci\'on \'optima.
+    \begin{equation*}
+        \colorbox{green!50}{$V_{in}$} = \text{columna Max} \{C_j-Z_j\} = X_{j^*} \Rightarrow V_{in} = x_2 : \frac{1}{3}
+    \end{equation*}
+
+    \begin{align*}
+        s_1: \frac{12}{6} = 2 \qquad x_1: \frac{6}{2/3} = 9 \qquad s_3: \frac{4}{1} = 4 \\
+    \end{align*}
+    \begin{equation*}
+        \colorbox{red!50}{$V_{out}$} = \text{Min} \left\{ \frac{RHS}{coef_{ij^*}} \right\} = i^* \Rightarrow V_{out} = s_1 : 2
+    \end{equation*}
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|g|c|c|c|c|}
+            \hline
+            & & 4 & 3 & 0 & 0 & 0 & 0 \\ \hline
+            $C_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            \rowcolor{red!50}0 & $s_1$ & 0 & 6 & 1 & -4 & 0 & 12 \\
+            4 & $x_1$ & 1 & 2/3 & 0 & 1/3 & 0 & 6 \\
+            0 & $s_3$ & 0 & 1 & 0 & 0 & 1 & 4 \\ \hline
+            & $Z_j$ & 4 & 8/3 & 0 & 4/3 & 0 & $\underline{24}$ \\ \hline
+            & $C_j - Z_j$ & 0 & 1/3 & 0 & -4/3 & 0 & \\ \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        $\text{Pivote} = a_{i^*j^*} = a_{12} = 6$
+    \end{center}
+
+    \newpage
+    \begin{align*}
+        x_2: \quad \textbf{N.E.P} &= \frac{\textbf{E.P.A}}{P} \Rightarrow \frac{\begin{array}{cccccc} 0 & 6 & 1 & -4 & 0 & 12 \end{array}}{6} \\
+        &= \begin{array}{cccccc} 0 & 1 & \frac{1}{6} & -\frac{2}{3} & 0 & 2 \end{array}
+    \end{align*}
+
+    \begin{equation*}
+        \begin{array}{ccccccc}
+            x_1: & 1 & 2/3 & 0 & 1/3 & 0 & 6 \\
+            -(2/3) & 0 & 1 & 1/6 & -2/3 & 0 & 2\\
+            \\ \hline \\
+            & 1 & 0 & -1/9 & 7/9 & 0 & 14/3
+        \end{array}
+    \end{equation*}
+    
+    \begin{equation*}
+        \begin{array}{ccccccc}
+            s_3: & 0 & 1 & 0 & 0 & 1 & 4 \\
+            -(1) & 0 & 1 & 1/6 & -2/3 & 0 & 2\\
+            \\ \hline \\
+            & 0 & 0 & -1/6 & 2/3 & 1 & 2
+        \end{array}
+    \end{equation*}
+    
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            & & 4 & 3 & 0 & 0 & 0 & 0 \\ \hline
+            $C_j$ & \textbf{V.B} & $x_1$ & $x_2$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ \hline
+            3 & $x_2$ & 0 & 1 & 1/6 & -2/3 & 0 & \cellcolor{Celeste!50}2 \\
+            4 & $x_1$ & 1 & 0 & -1/9 & 7/9 & 0 & \cellcolor{Morado!50}14/3 \\
+            0 & $s_3$ & 0 & 0 & -1/6 & 2/3 & 1 & \cellcolor{green!50}2 \\ \hline
+            & $Z_j$ & 4 & 3 & 1/18 & 10/9 & 0 & \cellcolor{Salmon!50}$\underline{24.67}$ \\ \hline
+            & $C_j - Z_j$ & 0 & 0 & -1/18 & -10/9 & 0 & \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \item En la tabla \'optima describa la soluci\'on, clasifique los recursos y indique los precios sombra de cada recurso.
+    
+    \textbf{Solución:}
+    \begin{align*}
+        x_1 &= \colorbox{Morado!50}{14/3} \qquad &\textbf{Recurso abundante} \\
+        x_2 &= \colorbox{Celeste!50}{2} \qquad &\textbf{Recurso abundante} \\
+        s_1 &= 0 \qquad &\textbf{Recurso escaso} \\
+        s_2 &= 0 \qquad &\textbf{Recurso escaso} \\
+        s_3 &= \colorbox{green!50}{2} \qquad &\textbf{Recurso abundante} \\
+        Z &= \colorbox{Salmon!50}{24.67}
+    \end{align*}
+    \begin{equation*}
+        \begin{aligned}
+            \text{Max} \quad & Z = 4x_1 + 3x_2 \\
+            \text{s.a} \quad & 12x_1 + 14x_2 \leq 84 \quad &\textbf{Restricci\'on Activa} \\
+            & 3x_1 + 2x_2 \leq 18 \quad &\textbf{Restricci\'on Activa} \\
+            & x_2 \leq 4 \quad &\textbf{Restricci\'on NO Activa} \\
+            & x_1, x_2 \geq 0
+        \end{aligned}
+    \end{equation*}
+
+    \textbf{INVESTIGAR: que es un precio sombra.}
+\end{enumerate}
 \end{document}
