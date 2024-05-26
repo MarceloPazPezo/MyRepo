@@ -20,7 +20,7 @@
 \autor{
 Marcelo Paz
 }
-\vDoc{1.1.0}
+\vDoc{1.2.0}
 
 % Metadatos del PDF
 \title{[\asignatura]-\titulo}
@@ -359,13 +359,13 @@ obtener la Empresa.
     
     \textbf{Solución:}
     \begin{align*}
-        x_1 &= 148/4 = 37 \qquad &\textbf{Recurso abundante} \\
-        x_2 &= 0 \qquad &\textbf{Recurso escaso} \\
-        x_3 &= 56 \qquad &\textbf{Recurso abundante} \\
-        x_4 &= 0 \qquad &\textbf{Recurso escaso} \\
-        s_1 &= 51 \qquad &\textbf{Recurso abundante} \\
-        s_2 &= 0 \qquad &\textbf{Recurso escaso} \\
-        s_3 &= 0 \qquad &\textbf{Recurso escaso} \\
+        x_1 &= 148/4 = 37 \\
+        x_2 &= 0 \\
+        x_3 &= 56 \\
+        x_4 &= 0 \\
+        s_1 &= 51 \qquad &\textbf{Recurso abundante} \Rightarrow \textbf{Restricci\'on NO ACTIVA} \\
+        s_2 &= 0 \qquad &\textbf{Recurso escaso} \Rightarrow \textbf{Restricci\'on ACTIVA} \\
+        s_3 &= 0 \qquad &\textbf{Recurso escaso} \Rightarrow \textbf{Restricci\'on ACTIVA} \\
         Z &= 1207500
     \end{align*}
 
@@ -388,11 +388,11 @@ Encontrar la solución óptima para el siguiente modelo lineal. Utilice el Méto
 \begin{equation*}
     \begin{aligned}
         \text{Max} \quad & Z = 5x_1 + 2x_2 \\
-        \text{s.a} \quad & 3x_1 - 2x_2 \geq -3 \qquad &\textbf{Restricci\'on NO Activa} \\
-        & x_1 + x_2 \leq 9 \qquad &\textbf{Restricci\'on Activa} \\
-        & 2x_1 - x_2 \leq 6 \qquad &\textbf{Restricci\'on Activa} \\
-        & x_1 - x_2 \leq 2 \qquad &\textbf{Restricci\'on NO Activa} \\
-        & 3x_1 + x_2 \geq 6 \qquad &\textbf{Restricci\'on NO Activa} \\
+        \text{s.a} \quad & 3x_1 - 2x_2 \geq -3 \qquad &\textbf{Restricci\'on NO ACTIVA} \\
+        & x_1 + x_2 \leq 9 \qquad &\textbf{Restricci\'on ACTIVA} \\
+        & 2x_1 - x_2 \leq 6 \qquad &\textbf{Restricci\'on ACTIVA} \\
+        & x_1 - x_2 \leq 2 \qquad &\textbf{Restricci\'on NO ACTIVA} \\
+        & 3x_1 + x_2 \geq 6 \qquad &\textbf{Restricci\'on NO ACTIVA} \\
         & x_1, x_2 \geq 0
     \end{aligned}
 \end{equation*}
@@ -414,8 +414,8 @@ Encontrar la solución óptima para el siguiente modelo lineal. Utilice el Méto
 
 \textbf{Soluci\'on \'Optima:}
 \begin{align*}
-    x_1 &= 5 \qquad \textbf{Recurso abundante}\\ 
-    x_2 &= 4 \qquad \textbf{Recurso abundante}\\
+    x_1 &= 5 \\ 
+    x_2 &= 4 \\
     Z &= 33
 \end{align*}
 
@@ -522,23 +522,124 @@ A continuaci\'on, se presenta una iteraci\'on intermedia del m\'etodo simplex pa
     
     \textbf{Solución:}
     \begin{align*}
-        x_1 &= \colorbox{Morado!50}{14/3} \qquad &\textbf{Recurso abundante} \\
-        x_2 &= \colorbox{Celeste!50}{2} \qquad &\textbf{Recurso abundante} \\
-        s_1 &= 0 \qquad &\textbf{Recurso escaso} \\
-        s_2 &= 0 \qquad &\textbf{Recurso escaso} \\
-        s_3 &= \colorbox{green!50}{2} \qquad &\textbf{Recurso abundante} \\
-        Z &= \colorbox{Salmon!50}{24.67}
+        x_1 &= \colorbox{Morado!50}{14/3} \\
+        x_2 &= \colorbox{Celeste!50}{2} \\
+        s_1 &= 0 \qquad &\textbf{Recurso escaso} \Rightarrow \textbf{Restricci\'on ACTIVA} \\
+        s_2 &= 0 \qquad &\textbf{Recurso escaso} \Rightarrow \textbf{Restricci\'on ACTIVA} \\
+        s_3 &= \colorbox{green!50}{2} \qquad &\textbf{Recurso abundante} \Rightarrow \textbf{Restricci\'on NO ACTIVA} \\
+        Z &= \colorbox{Salmon!50}{24,67}
     \end{align*}
     \begin{equation*}
         \begin{aligned}
             \text{Max} \quad & Z = 4x_1 + 3x_2 \\
-            \text{s.a} \quad & 12x_1 + 14x_2 \leq 84 \quad &\textbf{Restricci\'on Activa} \\
-            & 3x_1 + 2x_2 \leq 18 \quad &\textbf{Restricci\'on Activa} \\
-            & x_2 \leq 4 \quad &\textbf{Restricci\'on NO Activa} \\
+            \text{s.a} \quad & 12x_1 + 14x_2 \leq 84 \quad &\textbf{Restricci\'on ACTIVA} \\
+            & 3x_1 + 2x_2 \leq 18 \quad &\textbf{Restricci\'on ACTIVA} \\
+            & x_2 \leq 4 \quad &\textbf{Restricci\'on NO ACTIVA} \\
             & x_1, x_2 \geq 0
         \end{aligned}
     \end{equation*}
 
     \textbf{INVESTIGAR: que es un precio sombra.}
 \end{enumerate}
+
+\newpage
+\section*{Problema 4}
+Una compa\~n\'ia de las instalaciones A, B y C suministran a los distribuidores D, E, F y G.
+Las capacidades mensuales son 20, 30 y 45 unidades, respectivamente; los requerimientos mensuales de los distribuidores son 10, 15, 40 y 30 unidades, para los distribuidores D, E, F y G; los costos unitarios de env\'io son los siguientes:
+\begin{center}
+    \begin{tabular}{|c|cccc|}
+        \hline
+        & D & E & F & G \\ \hline
+        A & 5 & 10 & 5 & 0 \\
+        B & 5 & 9 & 5 & 10 \\
+        C & 10 & 10 & 15 & 5 \\ \hline
+    \end{tabular}
+\end{center}
+
+\begin{enumerate}
+    \renewcommand{\labelenumi}{\alph{enumi})}
+    \item Determinar una soluci\'on sub \'optima utilizando Regla Noroeste.
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{diagram/Problema4-a.png}
+    \end{center}
+
+    \item ¿Cu\'anto se transporta por cada ruta?
+    
+    \begin{minipage}{0.6\textwidth}
+        \begin{flushleft}
+            \includegraphics[width=\textwidth]{diagram/Problema4-b.png}
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.3\textwidth}
+        \begin{itemize}
+            \item De A a D: 10
+            \item De A a E: 10
+            \item De B a E: 5
+            \item De B a F: 25
+            \item De C a F: 15
+            \item De C a G: 30
+        \end{itemize}
+    \end{minipage}
+    \item ¿Cu\'al es el costo total de transporte que da esta soluci\'on?
+    \begin{align*}
+        Z &= 10 \cdot 5 + 10 \cdot 10 + 5 \cdot 9 + 25 \cdot 5 + 15 \cdot 15 + 30 \cdot 5 \\
+        &= 50 + 100 + 45 + 125 + 225 + 150 \\
+        &= 695
+    \end{align*}
+    
+    \newpage
+    \item ¿Es \'optima la soluci\'on Noroeste? Explique.
+    
+    No es \'optima, pues utilizando el criterio de \'optimalidad, se dice:
+    
+    \begin{itemize}
+        \item Si todos los costos reducidos son $\geq 0$, entonces hemos llegado a la soluci\'on \'optima.
+    \end{itemize}
+
+    Al calcular los costos reducidos, se obtiene lo siguiente:
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{diagram/Problema4-d.png}
+    \end{center}
+
+    Podemos observar que las casillas $x_{13}, x_{31}, x_{32}$ tienen valores negativos, por lo que no hemos llegado a la soluci\'on \'optima.
+
+    \item Si no es \'optima realice una iteraci\'on adicional e indique cuanto mejora la nueva soluci\'on.
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{diagram/Problema4-e-1.png}
+    \end{center}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{diagram/Problema4-e-2.png}
+    \end{center}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{diagram/Problema4-e-3.png}
+    \end{center}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{diagram/Problema4-e-4.png}
+    \end{center}
+
+    Como todos los costos reducidos son $\geq 0$, entonces hemos llegado a la soluci\'on \'optima.
+    \begin{align*}
+        Z &= 10 \cdot 5 + 10 \cdot 5 + 0 \cdot 0 + 30 \cdot 5 + 15 \cdot 10 + 30 \cdot 5 \\
+        &= 50 + 50 + 0 + 150 + 150 + 150 \\
+        &= 550
+    \end{align*}
+\end{enumerate}
+
+\newpage
+\section*{Problema 5}
+Una empresa desea asignar 5 operaciones ($O_i$) a 5 m\'aquinas ($M_j$). Los costos de las posibles asignaciones aparecen en la siguiente tabla.
+\begin{center}
+    \begin{tabular}{|c|ccccc|}
+        \hline
+        & $M_1$ & $M_2$ & $M_3$ & $M_4$ & $M_5$ \\ \hline
+        $O_1$ & 15 & 16 & 15 & 14 & 13 \\
+        $O_2$ & 36 & 35 & 34 & 30 & 29 \\
+        $O_3$ & 26 & 25 & 29 & 22 & 28 \\
+        $O_4$ & 20 & 16 & 25 & 23 & 15 \\
+        $O_5$ & 26 & 28 & 29 & 24 & 25 \\ \hline
+    \end{tabular}
+\end{center}
+
+Con estos datos y aplicando el m\'etodo h\'ungaro, determinar la mejor asignaci\'on posible y el costo resultante.
 \end{document}
