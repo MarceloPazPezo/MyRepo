@@ -5,6 +5,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[section]{placeins}
 \RequirePackage[T1]{fontenc}
+\RequirePackage{mlmodern}
 \RequirePackage{mathtools}
 \RequirePackage{siunitx}
 \RequirePackage{float}
@@ -24,7 +25,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[hidelinks,  pdfusetitle]{hyperref}
-
+\RequirePackage{microtype}
 %---------------- Comandos personalizados ----------------------
 \newcommand{\titulo}[1]{\renewcommand{\titulo}{#1}}
 \newcommand{\autor}[1]{\renewcommand{\autor}{#1}}

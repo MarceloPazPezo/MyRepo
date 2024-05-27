@@ -1,20 +1,16 @@
 \documentclass{templateNote}
-
+\usepackage{soul}
 \begin{document}
 
-% \imagenlogoD{img/LogoNGM.png}
-% \linklogoD{https://github.com/NicoxlkboUni}
-% \universidad{Universidad del Bío-Bío}
 \imagenlogoU{img/LogoElNube.png}
 \linklogoU{https://github.com/MarceloPazPezo}
-\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/blob/main/Icinf/Semestre\%207/Administraci\%C3\%B3n\%20y\%20Programaci\%C3\%B3n\%20de\%20Base\%20de\%20Datos/Guia\%20de\%20ejercicios\%20(ExControl\%201)/ExControl-1.pdf}
 \titulo{Guía de ejercicios (ExControl 1)}
 \asignatura{Administración y Programación de Base de Datos}
 \autor{
-    \indent
-    Marcelo \textsc{Paz}
+Marcelo Paz
 }
-\vDoc{1.0.0}
+\vDoc{1.1.0}
 
 % Metadatos del PDF
 \title{[\asignatura]-\titulo}
@@ -194,9 +190,58 @@
     \end{enumerate}
 
     \item \textbf{(0.8 pts) Suponer que las llaves son Hash en secuencias de 4 bits. Los bloques pueden contener 2 registros. Si se comienza con una tabla hash con dos bloques vacios (correspondientes a 0 y 1). Mostrar la organización depues de insertar con llaves: 1111,0001,0000,1110 y 0100. Utilizando Hash extensible.}
+    
+    \textcolor{blue}{Tabla Hash inicial:}
+    \begin{center}
+        \includegraphics[width=0.45\textwidth]{diagram/E7.png}
+    \end{center}
+    \textcolor{blue}{Inserci\'on llave 1111:}
+    \begin{center}
+        \includegraphics[width=0.45\textwidth]{diagram/E7-1.png}
+    \end{center}
+    \textcolor{blue}{Inserci\'on llave 0001:}
+    \begin{center}
+        \includegraphics[width=0.45\textwidth]{diagram/E7-2.png}
+    \end{center}
+
+    \newpage
+    \textcolor{blue}{Inserci\'on llave 0000:}
+    \begin{center}
+        \includegraphics[width=0.45\textwidth]{diagram/E7-3.png}
+    \end{center}
+    \textcolor{blue}{Inserci\'on llave 1110:}
+    \begin{center}
+        \includegraphics[width=0.45\textwidth]{diagram/E7-4.png}
+    \end{center}
+    \textcolor{blue}{Inserci\'on llave 0100:}
+    \begin{center}
+        \includegraphics[width=0.45\textwidth]{diagram/E7-5.png}
+    \end{center}
+    
+    \newpage
     \item \textbf{(0.6 pts) Considere el siguiente árbol B (Figura A), inicialmente con el conjunto de claves C cuyo grado mínimo es 3. Eliminar del árbol el número 60.}
+    
+    \hl{INVESTIGAR: Que es un grado mínimo en un árbol B.}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{diagram/Figura A.png}
+    \end{center}
+    \textcolor{blue}{Al eliminar el 60, se debe hacer un reacomodo de los nodos, por lo que sube el 45, para que el 66 no quede solo en el nodo.}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{diagram/Figura A-1.png}
+    \end{center}
+
     \item \textbf{(0.6 pts) Considere el siguiente árbol B (Figura B), inicialmente con el conjunto de claves C cuyo grado mínimo es 4. Insertar en el árbol presentado el número 66.}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{diagram/Figura B.png}
+    \end{center}
+    \textcolor{blue}{Al añadir 66, se debe hacer un reacomodo de los nodos, por lo que los nodos 48,51,56 y 60 se dividen en 2 subiendo el 56.}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{diagram/Figura B-1.png}
+    \end{center}
+
     \item \textbf{BONUS (0.2 pts): ¿Qué indica la cláusula FOR EACH ROW?}
+    
+    \textcolor{blue}{Que el trigger se disparará cada vez que se manipula una fila de la tabla.}
 \end{enumerate}
 
 
