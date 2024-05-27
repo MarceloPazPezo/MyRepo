@@ -20,7 +20,7 @@
 \autor{
 Marcelo Paz
 }
-\vDoc{1.2.0}
+\vDoc{1.3.0}
 
 % Metadatos del PDF
 \title{[\asignatura]-\titulo}
@@ -378,7 +378,6 @@ obtener la Empresa.
             & x_1, x_2, x_3, x_4 \geq 0
         \end{aligned}
     \end{equation*}
-OBS: No estoy seguro si en la soluci\'on es importante poner las holguras, pues si las pongo todas las restricciones son activas.
 \end{itemize}
 
 \newpage
@@ -513,7 +512,7 @@ A continuaci\'on, se presenta una iteraci\'on intermedia del m\'etodo simplex pa
             3 & $x_2$ & 0 & 1 & 1/6 & -2/3 & 0 & \cellcolor{Celeste!50}2 \\
             4 & $x_1$ & 1 & 0 & -1/9 & 7/9 & 0 & \cellcolor{Morado!50}14/3 \\
             0 & $s_3$ & 0 & 0 & -1/6 & 2/3 & 1 & \cellcolor{green!50}2 \\ \hline
-            & $Z_j$ & 4 & 3 & 1/18 & 10/9 & 0 & \cellcolor{Salmon!50}$\underline{24.67}$ \\ \hline
+            & $Z_j$ & 4 & 3 & \cellcolor{yellow}1/18 & \cellcolor{yellow}10/9 & \cellcolor{yellow}0 & \cellcolor{Salmon!50}$\underline{24.67}$ \\ \hline
             & $C_j - Z_j$ & 0 & 0 & -1/18 & -10/9 & 0 & \\ \hline
         \end{tabular}
     \end{center}
@@ -539,7 +538,12 @@ A continuaci\'on, se presenta una iteraci\'on intermedia del m\'etodo simplex pa
         \end{aligned}
     \end{equation*}
 
-    \textbf{INVESTIGAR: que es un precio sombra.}
+    \textbf{Precios Sombra:}
+    \begin{align*}
+        \begin{array}{ccc}
+            s_1 \Rightarrow \colorbox{yellow}{1/18} & s_2 \Rightarrow \colorbox{yellow}{10/9} & s_3 \Rightarrow \colorbox{yellow}{0}
+        \end{array}
+    \end{align*}
 \end{enumerate}
 
 \newpage
@@ -567,7 +571,7 @@ Las capacidades mensuales son 20, 30 y 45 unidades, respectivamente; los requeri
     
     \begin{minipage}{0.6\textwidth}
         \begin{flushleft}
-            \includegraphics[width=\textwidth]{diagram/Problema4-b.png}
+            \includegraphics[width=0.9\textwidth]{diagram/Problema4-b.png}
         \end{flushleft}
     \end{minipage}
     \hfill
@@ -581,6 +585,8 @@ Las capacidades mensuales son 20, 30 y 45 unidades, respectivamente; los requeri
             \item De C a G: 30
         \end{itemize}
     \end{minipage}
+
+    $X_{11}=10$, $X_{12}=10$, $X_{22}=5$, $X_{23}=25$, $X_{33}=15$, $X_{34}=30$
     \item ¿Cu\'al es el costo total de transporte que da esta soluci\'on?
     \begin{align*}
         Z &= 10 \cdot 5 + 10 \cdot 10 + 5 \cdot 9 + 25 \cdot 5 + 15 \cdot 15 + 30 \cdot 5 \\
@@ -633,13 +639,45 @@ Una empresa desea asignar 5 operaciones ($O_i$) a 5 m\'aquinas ($M_j$). Los cost
     \begin{tabular}{|c|ccccc|}
         \hline
         & $M_1$ & $M_2$ & $M_3$ & $M_4$ & $M_5$ \\ \hline
-        $O_1$ & 15 & 16 & 15 & 14 & 13 \\
-        $O_2$ & 36 & 35 & 34 & 30 & 29 \\
-        $O_3$ & 26 & 25 & 29 & 22 & 28 \\
-        $O_4$ & 20 & 16 & 25 & 23 & 15 \\
-        $O_5$ & 26 & 28 & 29 & 24 & 25 \\ \hline
+        $O_1$ & 15 & 16 & \cellcolor{orange}15 & 14 & 13 \\
+        $O_2$ & 36 & 35 & 34 & 30 & \cellcolor{orange}29 \\
+        $O_3$ & 26 & 25 & 29 & \cellcolor{orange}22 & 28 \\
+        $O_4$ & 20 & \cellcolor{orange}16 & 25 & 23 & 15 \\
+        $O_5$ & \cellcolor{orange}26 & 28 & 29 & 24 & 25 \\ \hline
     \end{tabular}
 \end{center}
 
 Con estos datos y aplicando el m\'etodo h\'ungaro, determinar la mejor asignaci\'on posible y el costo resultante.
+
+\begin{minipage}{0.5\textwidth}
+    \begin{itemize}
+        \item \textbf{Paso 1:} Restar el menor valor de cada fila a todos los elementos de la fila.
+        \begin{center}
+            \includegraphics[width=0.7\textwidth]{diagram/Problema5-1.png}
+        \end{center}
+
+        \item \textbf{Paso 2:} Restar el menor valor de cada columna a todos los elementos de la columna.
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{diagram/Problema5-2.png}
+        \end{center}    
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \begin{itemize}
+        \item \textbf{Paso 3:} Elegir los ceros de la matriz, eligiendo desde el m\'as restrictivo (con menos ceros) hasta dejar un solo cero en cada fila y columna.
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{diagram/Problema5-3.png}
+    \end{center}
+    \textbf{Soluci\'on \'optima:}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{diagram/Problema5-4.png}
+    \end{center}
+\end{minipage}
+\begin{align*}
+    Z &= 15 + 29 + 22 + 16 + 26 \\
+    &= 108
+\end{align*}
+
 \end{document}
