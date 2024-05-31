@@ -10,7 +10,7 @@
 \autor{
 Marcelo Paz
 }
-\vDoc{1.1.0}
+\vDoc{1.2.0}
 
 % Metadatos del PDF
 \title{[\asignatura]-\titulo}
@@ -295,7 +295,7 @@ Marcelo Paz
     \newpage
     \item \textbf{Pregunta 3:} Considere el siguiente árbol B (figura), inicialmente con el conjunto de claves C cuyo grado mínimo es 3 $(t=3)$.
     \begin{enumerate}
-        \item \textbf{1.} $C = \{20,30,5,18,2,12,15,22,10,1,7,11,31,40,50,35,37,21,23,45,56,57,60\}$.
+        \item $C = \{20,30,5,18,2,12,15,22,10,1,7,11,31,40,50,35,37,21,23,45,56,57,60\}$.
         \begin{enumerate}
             \renewcommand{\labelenumi}{\alph{enumi})}
             \item Insertar las claves, en el orden en que aparecen las claves en $C$, en el árbol B. Muestre. 
@@ -473,12 +473,37 @@ Marcelo Paz
         \end{enumerate}
 
         \newpage
-        \item \textbf{2.} $C = \{2,3,5,7,11,13,17,19,23,29,31,37,41,43,47\}$.
+        \item $C = \{2,3,5,7,11,13,17,19,23,29,31,37,41,43,47\}$.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{diagram/P3-2.png}
+        \end{figure}
         \begin{enumerate}
             \renewcommand{\labelenumi}{\alph{enumi})}
             \item Elimine la clave 23 del árbol B.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=\textwidth]{diagram/P3-2-a.png}
+            \end{figure}
+
             \item Luego elimine la clave 29 del árbol B.
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=\textwidth]{diagram/P3-2-b.png}
+            \end{figure}
+
+            \newpage
             \item Muestre y explique que pasos realizó para eliminar ambos valores.
+            
+            \textcolor{red}{Cuando se elimina la clave 23, al ser importante para el árbol, se juntan los datos $13,17,19$ y $29$, luego se divide esta lista en 2 y sube como valor principal el $19$.
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=\textwidth]{diagram/P3-2-c.png}
+                \end{figure}
+                Para eliminar la clave 29, es mas sencillo pues no es un valor importante para el árbol, por lo que se elimina directamente.
+                \newline
+                \textbf{OBS: No se realmente como explicarlo de una forma formal.}
+            }
         \end{enumerate}
     \end{enumerate}
 \end{itemize}   
