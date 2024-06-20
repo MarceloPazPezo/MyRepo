@@ -1,6 +1,6 @@
 \documentclass{templateNote}
 \usepackage{soul}
-
+\usepackage{overpic}
 \begin{document}
 
 \imagenlogoU{img/LogoElNube.png}
@@ -15,7 +15,7 @@ Marcelo Paz\\
 Nicol\'as G\'omez\\
 Javier Santander
 }
-\vDoc{1.0.0}
+\vDoc{1.0.1}
 
 % Metadatos del PDF
 \title{[\asignatura]-\titulo}
@@ -65,9 +65,6 @@ Implementación de las tecnologías digitales en las empresas para cambiar la fo
     \item Impacto en el ámbito cultural de las personas.
 \end{itemize}
 
-\section{Industria 4.0}
-\noindent Es la cuarta revolución industrial, se caracteriza por la digitalización de la industria. Se basa en la interconexión de sistemas ciber-físicos, la inteligencia artificial, la robótica, el big data, la computación en la nube, la realidad aumentada, la impresión 3D, la ciberseguridad, la internet de las cosas, la simulación y la integración de sistemas.
-
 \section{Reingeniería de procesos}
 \noindent Rediseño radical de procesos para lograr mejoras significativas en medidas críticas y contemporáneas de rendimiento, como costos, calidad, servicio y rapidez.
 \begin{itemize}
@@ -96,6 +93,53 @@ Implementación de las tecnologías digitales en las empresas para cambiar la fo
     \end{itemize}
 \end{itemize}
 
+\section{Industria 4.0}
+\noindent Es la cuarta revolución industrial, se caracteriza por la digitalización de la industria. Se basa en la interconexión de sistemas ciber-físicos, la inteligencia artificial, la robótica, el big data, la computación en la nube, la realidad aumentada, la impresión 3D, la ciberseguridad, la internet de las cosas, la simulación y la integración de sistemas.
+\begin{itemize}
+    \item \textbf{Características:}
+    \begin{itemize}
+        \item Productor tiene conciencia del cambio en su forma de trabajar y el cliente mejora el producto final.
+        \item Aumento en la seguridad de los trabajadores.
+        \item Mejora toma decisiones (Bases digitales).
+        \item Aumento de competitividad.
+    \end{itemize}
+
+    \newpage
+    \item \textbf{Riesgos:}
+    \begin{itemize}
+        \item Dependencia tecnológica (Brecha digital).
+        \item Posibilidad de ataques cibernéticos.
+        \item Aumento despidos y contrataciones selectivas.
+        \item Resistencia al cambio.
+    \end{itemize}
+\end{itemize}
+\section{Internet de las cosas (IOT)}
+\noindent El IOT es una herramienta que permite la interconexión de objetos cotidianos a la red, permitiendo la comunicación entre ellos y la recolección de datos. Esta herramienta se aplica a la vida cotidiana y a la industria.
+
+\begin{itemize}
+    \item \textbf{Características:}
+    \begin{itemize}
+        \item Conectividad con la red.
+        \item Sensibilidad en parámetros analizables.
+        \item Interacción entre elementos a través de interfaces para el usuario.
+        \item Nivel de seguridad.
+        \item Automatización de tareas y optimización de procesos industriales.
+    \end{itemize}
+    \item \textbf{Ventajas:}
+    \begin{itemize}
+        \item Mejora la eficiencia.
+        \item Mejora la calidad de vida.
+        \item Mayor facilidad en el seguimiento de procesos para las empresas.
+        \item Optimización de tiempos.
+    \end{itemize}
+    \item \textbf{Desventajas:}
+    \begin{itemize}
+        \item Vulnerabilidad en la seguridad.
+        \item Costos de implementación.
+        \item Dependencia de la tecnología (Brecha digital).
+        \item Resistencia cultural por parte del usuario.
+    \end{itemize}
+\end{itemize}
 \newpage
 \section{Paradoja de la productividad}
 \noindent
@@ -200,11 +244,21 @@ Se dice:
 
 \subsubsection*{Actividades}
 \begin{center}
-    \includegraphics[width=0.8\textwidth]{diagram/Cascada.png}
+    \begin{overpic}[width=0.8\textwidth]{diagram/Cascada.png}
+        \put(1,85){\hyperlink{DF}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(11,75.2){\hyperlink{EF}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(20.7,65.4){\hyperlink{AS}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(30.5,55.6){\hyperlink{DL}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(40.3,45.8){\hyperlink{DFi}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(50.1,36){\hyperlink{C}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(59.9,26.2){\hyperlink{I}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(69.7,16.4){\hyperlink{RPI}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+        \put(79.5,6.6){\hyperlink{M}{\phantomsection\hspace{5.8em}\raisebox{0pt}[0.4cm][0.6cm]{}}}
+    \end{overpic}
 \end{center}
 
 \begin{enumerate}
-    \item \textbf{Definición del problema:} Se define el problema a resolver.
+    \item \hypertarget{DF}{\textbf{Definición del problema:}} Se define el problema a resolver.
     \begin{itemize}
         \item Estudio de la situación actual.
         
@@ -237,7 +291,7 @@ Se dice:
         \end{itemize}
     \end{itemize}
 
-    \item \textbf{Estudio de factibilidad:} Se estudia si es factible realizar el proyecto. Si uno de los siguientes 3 estudios no se cumple ya no es factible:
+    \item \hypertarget{EF}{\textbf{Estudio de factibilidad:}} Se estudia si es factible realizar el proyecto. Si uno de los siguientes 3 estudios no se cumple ya no es factible:
     \begin{itemize}
         \item Estudio de factibilidad operativo.
         \begin{itemize}
@@ -253,8 +307,8 @@ Se dice:
         \end{itemize}
         \item Estudio de factibilidad económico: Establecimiento de costos y beneficios. $(Costos < Beneficios)$.
     \end{itemize}
-    \item \textbf{Análisis del sistema:} Una vez se confirma la factibilidad del proyecto se proceden a analizar las entradas, procesos y salidas que conformaran el sistema para su funcionamiento.
-    \item \textbf{Diseño lógico:} Se diseña el sistema en base a los requerimientos del sistema. Este diseño puede ser de 4 tipos:
+    \item \hypertarget{AS}{\textbf{Análisis del sistema:}} Una vez se confirma la factibilidad del proyecto se proceden a analizar las entradas, procesos y salidas que conformaran el sistema para su funcionamiento.
+    \item \hypertarget{DL}{\textbf{Diseño lógico:}} Se diseña el sistema en base a los requerimientos del sistema. Este diseño puede ser de 4 tipos:
         \begin{enumerate}
             \item Diagrama de flujo de datos (DFD): Sirven para modelar procesos y muestra como se mueve la información.
             \item Diseño de procedimientos administrativos: Elementos necesarios para llevar a cabo una función administrativa resumido en un documento.
@@ -318,18 +372,18 @@ Se dice:
             \end{figure}
         \end{enumerate}
         
-        \item \textbf{Diseño físico:} Se diseña el sistema en base a la información que se tiene como objetivo manejar.
+        \item \hypertarget{DFi}{\textbf{Diseño físico:}} Se diseña el sistema en base a la información que se tiene como objetivo manejar.
         \begin{itemize}
             \item Diseño físico E/S.
             \item Diseño de base de datos (MER/Modelo de datos).
             \item Diseño jerarquía de menus.
         \end{itemize}
-    \item \label{item:ConsCas} \textbf{Construcción:} Punto en el cual se procede en la selección del lenguaje sobre el cual trabajaremos, el que utilizaremos para crear un programa y someterlo a pruebas de funcionamiento.
+    \item \label{item:ConsCas} \hypertarget{C}{\textbf{Construcción:}} Punto en el cual se procede en la selección del lenguaje sobre el cual trabajaremos, el que utilizaremos para crear un programa y someterlo a pruebas de funcionamiento.
     
     El objetivo de probar el programa es lograr un programa fiable y que cumpla con los requerimientos del sistema (que no se caiga) y asi poder entregar un sistema completamente funcional.
     
     \newpage
-    \item \label{item:ImplCas} \textbf{Implementación:} 
+    \item \label{item:ImplCas} \hypertarget{I}{\textbf{Implementación:}} 
     \begin{itemize}
         \item Poblado de base de datos: Ingreso de datos necesarios para el funcionamiento del sistema, siendo estos datos requerimientos de información.
         \item Entrenamiento/capacitación de usuarios: Enseñar al usuario a usar los datos del sistema.
@@ -364,9 +418,9 @@ Se dice:
         \end{itemize}
     \end{itemize}
 
-    \item \textbf{Revisión post-implementación:} Revision del funcionamiento correcto del sistema instalado.
+    \item \hypertarget{RPI}{\textbf{Revisión post-implementación:}} Revision del funcionamiento correcto del sistema instalado.
     
-    \item \textbf{Manutención:} Proceso de corrección de errores y mejoras del sistema. Existen 4 tipos de mantenimiento:
+    \item \hypertarget{M}{\textbf{Mantención:}} Proceso de corrección de errores y mejoras del sistema. Existen 4 tipos de mantenimiento:
     \begin{itemize}
         \item Preventiva: Se realiza antes de que ocurra un error.
         \item Correctiva: Se realiza después de que ocurra un error.
@@ -440,9 +494,9 @@ Para la estrategia:
 \end{itemize}
 
 \newpage
-\subsection{Alternativa de desarrollo del S.I.}
+\subsection{???}
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{diagram/Alternativas1.png}
+    \includegraphics[width=0.5\textwidth]{diagram/Alternativas1.png}
 \end{center}
 \begin{itemize}
     \item \textbf{Expectativas de desempe\~no:} Si su desempe\~no puede mejorar, su perspectiva del S.I. ser\'a mejor expectativa de desempe\~no alto.
@@ -452,6 +506,8 @@ Para la estrategia:
         \item Ante un menor esfuerzo, la perspectiva del S.I. ser\'a mejor, expectativa de esfuerzo alto.
     \end{itemize} 
 \end{itemize}
+\subsection{Alternativa de desarrollo del S.I.}
+
 \noindent Basándose en la identificación de fuentes internas o externas existen otras alternativas para el desarrollo de sistemas de información
 \begin{center}
     \includegraphics[width=\textwidth]{diagram/Alternativas2.png}
@@ -672,4 +728,11 @@ Proceso de desarrollo de S.I.:
         \item Factibilidad Operativa: Se verifica que el sistema se pueda implementar sin afectar negativamente a los procesos y operaciones ya existentes.
     \end{itemize}
 \end{enumerate}
+% \subsection{Test 2 2024}
+% (En las palabras que recuerdo) Explique porque es importante efectuar:
+% \begin{itemize}
+%     \item La definici\'on del problema.
+%     \item Capacitaci\'on.
+%     \item 
+% \end{itemize}
 \end{document}
