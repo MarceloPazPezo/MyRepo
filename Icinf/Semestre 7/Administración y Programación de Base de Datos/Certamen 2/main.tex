@@ -25,7 +25,7 @@
 \autor{
 Marcelo Paz
 }
-\vDoc{1.1.0}
+\vDoc{1.2.0}
 \tipoDoc{Apunte}
 
 % Metadatos del PDF
@@ -38,6 +38,183 @@ Marcelo Paz
 
 \section{Ejercicios}
 \subsection{Clase 17 de junio, 2024}
+\textbf{Enunciado 1:}\newline
+Entregar el apellido de los empleados que trabajan en el proyecto 'Acuario' nacidos despu\'es del 1957.
+\begin{itemize}
+    \item SQL.
+    \begin{verbatim}
+SELECT E.apellido
+FROM Empleado E,
+     Trabaja T,
+     Proyecto P
+WHERE T.nump = P.nump
+AND T.nsse = E.nss
+AND P.nombrep = 'Acuario'
+AND E.fecha_nac > '31-12-1957';
+    \end{verbatim}
+
+    \item Algebra Relacional.
+    \begin{align*}
+        \scalebox{1.5}{$\pi$}_{\text{apellido}} (
+            \scalebox{1.5}{$\sigma$}_{
+                \scalebox{0.8}{
+                    $\begin{array}{l}
+                        \text{nump} = \text{nump} \; \wedge \\
+                        \text{nsse} = \text{nss} \; \wedge \\
+                        \text{nombrep} = \text{'Acuario'} \; \wedge \\
+                        \text{fecha\_nac} > \text{'31-12-1957'}
+                    \end{array}$
+                }
+            } (
+                \text{Empleado}_{\scalebox{1.3}{$\Join$}} (
+                    \text{Trabaja}_{\scalebox{1.3}{$\Join$}} \text{Proyecto}
+                )
+            )
+        )
+    \end{align*}
+
+    \newpage
+    \item \'Arbol Can\'onico.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/E5-Canonico.png}
+    \end{figure}
+
+    \item Optimizaci\'on.
+    \begin{enumerate}
+        \item Separar las selecciones.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{img/E5-Paso-1.png}
+        \end{figure}
+
+        \newpage
+        \item Permutar tablas si es necesario.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.35\textwidth]{img/E5-Paso-2.png}
+        \end{figure}
+
+        \item Bajar las seleciones que son $\times$ para $\Join$.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{img/E5-Paso-3.png}
+        \end{figure}
+
+        \item Cambio $\times$ por $\Join$.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{img/E5-Paso-4.png}
+        \end{figure}
+
+        \item Bajar el resto de seleciones a tablas.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\textwidth]{img/E5-Paso-5.png}
+        \end{figure}
+
+        \newpage
+        \item Proyectar los atributos necesarios.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\textwidth]{img/E5-Paso-6.png}
+        \end{figure}
+    \end{enumerate}
+\end{itemize}
+
+\textbf{Enunciado 2:}\newline
+Pegar desde un ppt (preguntarle a la profesora cual es exactamente).
+\begin{itemize}
+    \item SQL.
+    \begin{verbatim}
+SELECT Nmicro NM,
+       Nempresa NE,
+       Nomempresa E,
+       fechacreacion fc,
+       direccion dir,
+       destino dest,
+       fecha_viaje fv
+FROM Viaje V,
+     Empresa EP,
+     Micro M
+WHERE M.NM = V.NM
+AND M.NE = EP.NE
+AND EP.fc >= '01-01-2000'
+AND V.fv >= '01-01-2007'
+AND V.fv < '01-02-2007'
+ADN M.marca = 'M.Benz';
+    \end{verbatim}
+
+    \item Algebra Relacional.
+    \begin{align*}
+        \scalebox{1.5}{$\pi$}_{\text{NM, NE, E, fc, dir, dest, fv}} (
+            \scalebox{1.5}{$\sigma$}_{
+                \scalebox{0.8}{
+                    $\begin{array}{l}
+                        \text{NM} = \text{NM} \; \wedge \\
+                        \text{NE} = \text{NE} \; \wedge \\
+                        \text{fc} \geq \text{'01-01-2000'} \; \wedge \\
+                        \text{fv} \geq \text{'01-01-2007'} \; \wedge \\
+                        \text{fv} < \text{'01-02-2007'} \; \wedge  \\
+                        \text{marca} = \text{'M.Benz'}
+                    \end{array}$
+                }
+            } (
+                \text{V}_{\scalebox{1.3}{$\Join$}} (
+                    \text{EP}_{\scalebox{1.3}{$\Join$}} \text{M}
+                )
+            )
+        )
+    \end{align*}
+
+    \item \'Arbol Can\'onico.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/E6-Canonico.png}
+    \end{figure}
+
+    \item Optimizaci\'on.
+    \begin{enumerate}
+        \item Separar las selecciones.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.3\textwidth]{img/E6-Paso-1.png}
+        \end{figure}
+
+        \newpage
+        \item Permutar tablas si es necesario.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.35\textwidth]{img/E6-Paso-2.png}
+        \end{figure}
+
+        \item Bajar las seleciones que son $\times$ para $\Join$.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.35\textwidth]{img/E6-Paso-3.png}
+        \end{figure}
+
+        \item Cambio $\times$ por $\Join$.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{img/E6-Paso-4.png}
+        \end{figure}
+
+        \item Bajar el resto de seleciones a tablas.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{img/E6-Paso-5.png}
+        \end{figure}
+
+        \newpage
+        \item Proyectar los atributos necesarios.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\textwidth]{img/E6-Paso-6.png}
+        \end{figure}
+    \end{enumerate}
+\end{itemize}
+\newpage
 \subsection{Clase 19 de junio, 2024}
 Sean las tablas:
 \begin{itemize}
@@ -126,7 +303,7 @@ AND S.rdto > 60;
             \item Proyectar los atributos necesarios.
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.7\textwidth]{img/E1-Paso-6.png}
+                \includegraphics[width=0.65\textwidth]{img/E1-Paso-6.png}
             \end{figure}
         \end{enumerate}
     \end{itemize}
@@ -254,13 +431,13 @@ AND S.año = 2020;
             \item Bajar el resto de seleciones a tablas.
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.6\textwidth]{img/E3-Paso-5.png}
+                \includegraphics[width=0.55\textwidth]{img/E3-Paso-5.png}
             \end{figure}
 
             \item Proyectar los atributos necesarios.
             \begin{figure}[H]
                 \centering
-                \includegraphics[width=0.6\textwidth]{img/E3-Paso-6.png}
+                \includegraphics[width=0.55\textwidth]{img/E3-Paso-6.png}
             \end{figure}
         \end{enumerate}
     \end{itemize}
