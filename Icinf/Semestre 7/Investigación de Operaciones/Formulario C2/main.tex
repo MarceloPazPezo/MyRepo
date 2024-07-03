@@ -1,0 +1,240 @@
+\documentclass{templateNote}
+
+\definecolor{Verde}{RGB}{170,239,31}
+\definecolor{Morado}{RGB}{127,0,255}
+\definecolor{Celeste}{RGB}{0,191,255}
+\definecolor{Salmon}{RGB}{255,0,157}
+\definecolor{RosaSuave}{RGB}{255,182,193}
+\definecolor{Melocoton}{RGB}{255,218,185}
+\definecolor{Gris}{RGB}{192,192,192}
+\definecolor{Turquesa}{RGB}{64,224,208}
+\definecolor{Menta}{RGB}{152,251,152}
+\definecolor{AmarilloVainilla}{RGB}{255,255,153}
+
+\newcommand{\newparagraph}{\par\vspace{\baselineskip}\noindent}
+\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+
+\begin{document}
+
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Formulario Certamen 2}
+\asignatura{Investigación de Operaciones}
+\autor{
+Marcelo Paz
+}
+\vDoc{1.0.0}
+\tipoDoc{Apunte}
+
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{
+    \autor
+}
+\portada
+\margenes % Crear márgenes
+
+\section{Lineas de espera}
+\begin{tcolorbox}[
+    colframe=black!100, % Color del borde
+    colback=white!100,       % Color del fondo
+    coltitle=white!100, % Color del título
+    title=\textbf{M/M/1}, % Título de la caja
+]
+    \begin{minipage}{0.1\textwidth}
+        \begin{equation*}
+            \rho = \frac{\lambda}{\mu}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.15\textwidth}
+        \begin{equation*}
+            L_s = \frac{\lambda}{\mu-\lambda}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.2\textwidth}
+        \begin{equation*}
+            L_q = \frac{\lambda^2}{\mu(\mu-\lambda)}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.25\textwidth}
+        \begin{equation*}
+            W_s = \frac{L_s}{\lambda} = \frac{1}{\mu-\lambda}
+        \end{equation*}
+    \end{minipage}
+    \newparagraph
+    \begin{minipage}{0.3\textwidth}
+        \begin{equation*}
+            W_q = \frac{L_q}{\lambda} = \frac{\lambda}{\mu(\mu-\lambda)}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.2\textwidth}
+        \begin{equation*}
+            P_0 = 1 - \frac{\lambda}{\mu}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.2\textwidth}
+        \begin{equation*}
+            P_n = \rho^n \cdot P_0
+        \end{equation*}
+    \end{minipage}
+    \newparagraph
+    \begin{minipage}{0.4\textwidth}
+        \begin{equation*}
+            P(W_q > t) = \rho \cdot e^{\displaystyle -\mu \cdot (1-e) \cdot t}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \begin{equation*}
+            P(W_s > t) = e^{\displaystyle -\mu \cdot (1-e) \cdot t}
+        \end{equation*}
+    \end{minipage}
+\end{tcolorbox}
+\newparagraph
+\begin{tcolorbox}[
+    colframe=black!100, % Color del borde
+    colback=white!100,       % Color del fondo
+    coltitle=white!100, % Color del título
+    title=\textbf{M/M/S}, % Título de la caja
+]
+\begin{minipage}{0.15\textwidth}
+    \begin{equation*}
+        \rho = \frac{\lambda}{s \cdot \mu}
+    \end{equation*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.25\textwidth}
+    \begin{equation*}
+        L_s = L_q + \frac{\lambda}{\mu} = \lambda \cdot W_s
+    \end{equation*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\textwidth}
+    \begin{equation*}
+        W_s = W_q + \frac{1}{\mu} = \frac{L_s}{\lambda}
+    \end{equation*}
+\end{minipage}
+\newparagraph
+\begin{minipage}{0.7\textwidth}
+    \begin{equation*}
+        L_q = \frac{\left(\displaystyle\frac{\lambda}{\mu}\right)^2 \cdot \lambda \cdot \mu}{(s-1)! \cdot (s \cdot \mu - \lambda)^2} \cdot P_0 = \frac{1}{s!} \cdot \left(\frac{\lambda}{\mu}\right)^s \cdot \frac{\rho}{(1-\rho)^2} \cdot P_0
+    \end{equation*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+    \begin{equation*}
+        W_q = \frac{L_q}{\lambda}
+    \end{equation*}
+\end{minipage}
+\newparagraph
+\begin{minipage}{0.5\textwidth}
+    \begin{equation*}
+        P_0 = \frac{1}{\displaystyle\sum_{n=0}^{s-1}{\frac{\left(\frac{\lambda}{\mu}\right)^n}{n!} + \frac{\left(\frac{\lambda}{\mu}\right)^s}{s!} \cdot \left(\frac{s \cdot \mu}{s \cdot \mu - \lambda}\right)}}
+    \end{equation*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{equation*}
+        P_n = \begin{cases}
+            \displaystyle\frac{\left(\frac{\lambda}{\mu}\right)^n}{n!} \cdot P_0 & \qquad \text{si } n \leq s \\
+            \\
+            \displaystyle\frac{\left(\frac{\lambda}{\mu}\right)^n}{s! \cdot s^{n-s}} \cdot P_0 & \qquad \text{si } n \geq s
+        \end{cases}
+    \end{equation*}
+\end{minipage}
+\end{tcolorbox}
+
+\newpage
+\begin{tcolorbox}[
+    colframe=black!100, % Color del borde
+    colback=white!100,       % Color del fondo
+    coltitle=white!100, % Color del título
+    title=\textbf{M/M/1/K}, % Título de la caja
+]
+    \begin{minipage}{0.2\textwidth}
+        \begin{equation*}
+            \lambda_{ef} = \lambda \cdot (1 - P_k)
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.1\textwidth}
+        \begin{equation*}
+            \rho = \frac{\lambda}{\mu}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.6\textwidth}
+        \begin{equation*}
+            L_s = \begin{cases}
+                \displaystyle\frac{\rho}{(1 - \rho)} - \frac{(k + 1)\cdot \rho^{k+1}}{1 - \rho^{k+1}} & \qquad \text{si } \rho \neq 1 \\
+                \\
+                \displaystyle\frac{k}{2} & \qquad \text{si } \rho = 1 \\
+            \end{cases}
+        \end{equation*}
+    \end{minipage}
+    \newparagraph
+    \begin{minipage}{0.7\textwidth}
+        \begin{equation*}
+            L_q = L_s - (1 - P_0) = \begin{cases}
+                \displaystyle L_s - \frac{(1 - \rho^k) \cdot \rho}{1 - \rho^{k + 1}} & \qquad \text{si } \rho \neq 1 \\
+                \\
+                \displaystyle \frac{k \cdot (k - 1)}{2 \cdot (k + 1)} & \qquad \text{si } \rho = 1 \\
+            \end{cases}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.2\textwidth}
+        \begin{equation*}
+            W_s = \frac{L_s}{\lambda_{ef}}
+        \end{equation*}
+    \end{minipage}
+    \newparagraph
+    \begin{minipage}{0.3\textwidth}
+        \begin{equation*}
+            W_q = W_s - \frac{1}{\mu} = \frac{L_q}{\lambda_{ef}}
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.6\textwidth}
+        \begin{equation*}
+            P_0 = \begin{cases}
+                \displaystyle \frac{1 - \rho}{1 - \rho^{k + 1}} & \qquad \text{si } \lambda \neq \mu \equiv \rho = \frac{\lambda}{\mu} \neq 1 \\
+                \\
+                \displaystyle \frac{1}{1 + k} & \qquad \text{si } \lambda = \mu \equiv \rho = \frac{\lambda}{\mu} = 1
+            \end{cases}
+        \end{equation*}
+    \end{minipage}
+    \newparagraph
+    \begin{minipage}{0.3\textwidth}
+        \begin{equation*}
+            Long_q = \lambda_{ef} \cdot W_q
+        \end{equation*}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.6\textwidth}
+        \begin{equation*}
+            P_n = \begin{cases}
+                \displaystyle \rho^n \cdot \frac{(1 - \rho)}{1 - \rho^{k + 1}} & \qquad \text{si } \lambda \neq \mu \equiv \rho = \frac{\lambda}{\mu} \neq 1 \\
+                \\
+                \displaystyle \frac{1}{1 + k} & \qquad \text{si } \lambda = \mu \equiv \rho = \frac{\lambda}{\mu} = 1
+            \end{cases}
+        \end{equation*}
+    \end{minipage}
+\end{tcolorbox}
+\begin{tcolorbox}[
+    colframe=black!100, % Color del borde
+    colback=white!100,       % Color del fondo
+    coltitle=white!100, % Color del título
+    title=\textbf{Costos en los sistemas de colas}, % Título de la caja
+]
+    \begin{equation*}
+        C_t = S \cdot C_s + L \cdot C_w
+    \end{equation*}
+\end{tcolorbox}
+\end{document}
