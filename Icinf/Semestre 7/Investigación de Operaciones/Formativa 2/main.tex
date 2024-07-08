@@ -1,0 +1,245 @@
+\documentclass{templateNote}
+
+\definecolor{Verde}{RGB}{170,239,31}
+\definecolor{Morado}{RGB}{127,0,255}
+\definecolor{Celeste}{RGB}{0,191,255}
+\definecolor{Salmon}{RGB}{255,0,157}
+\definecolor{RosaSuave}{RGB}{255,182,193}
+\definecolor{Melocoton}{RGB}{255,218,185}
+\definecolor{Gris}{RGB}{192,192,192}
+\definecolor{Turquesa}{RGB}{64,224,208}
+\definecolor{Menta}{RGB}{152,251,152}
+\definecolor{AmarilloVainilla}{RGB}{255,255,153}
+
+\newcommand{\newparagraph}{\par\vspace{\baselineskip}\noindent}
+\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+
+\begin{document}
+
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Formativa 2}
+\asignatura{Investigación de Operaciones}
+\autor{
+Marcelo Paz
+}
+\vDoc{1.0.0}
+\tipoDoc{Evaluación}
+
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{
+    \autor
+}
+\portada
+\margenes % Crear márgenes
+
+\section{Problema 1}
+A un cajero automático llegan 10 clientes por hora y cada usuario permanece en promedio 4 minutos.
+\begin{enumerate}
+    \renewcommand{\labelenumi}{\alph{enumi})}
+    \item ¿Qué sistema es y cuáles son sus parámetros?
+    \newparagraph
+    \textcolor{blue}{
+        Tenemos un sistema M/M/1, donde los parámetros son:
+        \begin{align*}
+            \lambda &= 10 \text{ clientes por hora} \\
+            \mu &= \frac{1}{4} \text{ clientes por minuto} = \frac{1}{4} \cdot 60 = 15 \text{ clientes por hora}
+        \end{align*}
+    }
+
+    \item ¿Cuál es la tasa de utilización del cajero?
+    \textcolor{blue}{
+        \begin{align*}
+            \rho &= \frac{\lambda}{\mu} = \frac{10}{15} = \frac{2}{3} = 0.6667
+        \end{align*}
+    }
+
+    \item Porcentaje del tiempo que está ocupado.
+    \textcolor{blue}{
+        \begin{align*}
+            P(P > 0) &= 1 - P_0 = \rho = 0.6667 \\
+            &= 66.67\% 
+        \end{align*}
+    }
+
+    \item ¿Cuántos clientes se encuentran esperando para usar el cajero en un momento dado?
+    \textcolor{blue}{
+        \begin{align*}
+            L_q &= \frac{\lambda^2}{\mu(\mu - \lambda)} = \frac{10^2}{15(15 - 10)} = \frac{100}{75} = \frac{4}{3} = 1.3333
+        \end{align*}
+    }
+    \item ¿Cuánto tiempo utiliza un usuario en toda la operación, desde el instante inicial?
+    \textcolor{blue}{
+        \begin{align*}
+            W_s &= \frac{1}{\mu - \lambda} = \frac{1}{15 - 10} = \frac{1}{5} = 0.2 \text{ horas} = 12 \text{ minutos}
+        \end{align*}
+    }
+\end{enumerate}
+
+\newpage
+\section{Problema 2}
+Una ventanilla de ventas de pasajes dispone de dos personas que atienden a clientes que llega a una tasa de 80 clientes por hora. Cada vendedor es capaz de atender a 50 clientes por hora. Se pide:
+\begin{enumerate}
+    \renewcommand{\labelenumi}{\alph{enumi})}
+    \item Identifique el sistema y sus parámetros.
+    \newparagraph
+    \textcolor{blue}{
+        Tenemos un sistema M/M/S, donde los parámetros son:
+        \begin{align*}
+            s &= 2 \text{ vendedores} \\
+            \lambda &= 80 \text{ clientes por hora} \\
+            \mu &= 50 \text{ clientes por hora}
+        \end{align*}
+    }
+
+    \item ¿Es estable el sistema? \newline
+    \textcolor{blue}{
+        Para que el sistema sea estable, se debe cumplir la condicion de regimen ($\rho < 1$):
+        \begin{align*}
+            \rho &= \frac{\lambda}{S\mu} = \frac{80}{2 \cdot 50} = \frac{8}{10} = 0.8 < 1 \\
+        \end{align*}
+        \begin{align*}
+            \therefore \text{ el sistema es estable.}
+        \end{align*}      
+    }
+
+    \item ¿Cuál es la probabilidad de que el sistema este vacio?
+    \textcolor{blue}{
+        \begin{align*}
+            P_0 &= \frac{1}{\displaystyle\sum_{n=0}^{2-1} \frac{\left(\frac{\lambda}{\mu}\right)^n}{n!} + \frac{\left(\frac{\lambda}{\mu}\right)^2}{2!} \cdot \left(\frac{s \cdot \mu}{ s \cdot \mu - \lambda}\right)} \\
+            &= \frac{1}{1 + \frac{8}{5} + 1,28 \cdot \frac{100}{20}} \\
+            &= \frac{1}{1 + 1.6 + 6.4} \\
+            &= \frac{1}{9} \\
+            &= 0.1111 \\
+            &= 11.11\%
+        \end{align*}
+    }
+    
+    \newpage
+    \item El número esperado de clientes.
+    \textcolor{blue}{
+        \begin{align*}
+            L_s &= L_q + \frac{\lambda}{\mu} \\
+            &= L_q + \frac{8}{5}
+        \end{align*}
+        \begin{align*}
+            L_q &= \frac{\displaystyle\left(\frac{\lambda}{\mu}\right)^2 \cdot \lambda \cdot \mu}{(s - 1)! \cdot (s \cdot \mu - \lambda)^2} \cdot P_0 \\
+            &= \frac{\displaystyle\left(\frac{8}{5}\right)^2 \cdot 80 \cdot 50}{1! \cdot 20^2} \cdot P_0 \\
+            &= \frac{2,56 \cdot 4000}{400} \cdot P_0 \\
+            &= 25,6 \cdot 0,1111 \\
+            &= 2,8442
+        \end{align*}
+        \begin{align*}
+            L_s &= 2,8442 + \frac{8}{5} \\
+            &= 2,8442 + 1,6 \\
+            &= 4,4442
+        \end{align*}
+        \begin{align*}
+            \therefore \text{ el número esperado de clientes es de 4,4442.}
+        \end{align*}
+    }
+    \item La probabilidad que haya más de 4 clientes en el sistema. \newline
+    \textcolor{blue}{
+        \begin{align*}
+            P(n > 4) &= 1 - P(n \leq 4) \\
+            &= 1 - (P_0 + P_1 + P_2 + P_3 + P_4)
+        \end{align*}
+        \begin{align*}
+            P_0 &= \frac{1}{9} = 0,1111 \\
+            P_1 &= \frac{8}{5} \cdot \frac{1}{9} = \frac{8}{45} = 0,1778 \\
+            P_2 &= \frac{\left(\frac{8}{5}\right)^2}{2!} \cdot \frac{1}{9} = \frac{1,28}{9} = 0,1422 \\
+            P_3 &= \frac{\left(\frac{8}{5}\right)^3}{2! \cdot 2^1} \cdot \frac{1}{9} = \frac{4,096}{36} = 0,1138 \\
+            P_4 &= \frac{\left(\frac{8}{5}\right)^4}{2! \cdot 2^2} \cdot \frac{1}{9} = \frac{6,5536}{72} = 0,0910
+        \end{align*}
+        \begin{align*}
+            P(n > 4) &= 1 - (0,1111 + 0,1778 + 0,1422 + 0,1138 + 0,0910) \\
+            &= 1 - 0,6359 \\
+            &= 0,3641 \\
+            &= 36,41\%
+        \end{align*}
+    }
+\end{enumerate}
+
+\section{Problema 3}
+Encontrar las medidas de desempeño para un sistema de cola M/M/1/5 con tasa de llegada 10 y tasa de servicio igual a 12.
+\textcolor{blue}{
+    \begin{align*}
+        \lambda &= 10 \\
+        \mu &= 12 \\
+        s &= 1 \\
+        k &= 5 \\
+        \rho &= \frac{\lambda}{\mu} = \frac{10}{12} = \frac{5}{6} = 0.8333
+    \end{align*}
+    \begin{align*}
+        P_0 &= \frac{1 - \rho}{1 - \rho^{6}} = \frac{0,1667}{1 - 0,3348} = \frac{0,1667}{0,6652} = 0,2506
+    \end{align*}
+    \begin{align*}
+        P_5 &= \rho^n \cdot P_0 = 0,8333^5 \cdot 0,2506 = 0,1007
+    \end{align*}
+    \begin{align*}
+        \lambda_{ef} &= \lambda \cdot (1 - P_5) = 10 \cdot (1 - 0,1007) = 10 \cdot 0,8993 = 8,9930
+    \end{align*}
+    \begin{align*}
+        L_s &= \frac{\rho}{1 - \rho} - \frac{(6) \cdot \rho^6}{1 - \rho^6} \\
+        &= 4,9988 - \frac{2,0089}{0,6652} \\
+        &= 4,9988 - 3,0200 \\
+        &= 1,9788
+    \end{align*}
+    \begin{align*}
+        L_q &= L_s - \frac{(1 - \rho^5) \cdot \rho}{1 - \rho^6} \\
+        &= 1,9788 - \frac{(0,5982) \cdot 0,8333}{0,6652} \\
+        &= 1,9788 - 0,7494 \\
+        &= 1,2294
+    \end{align*}
+    \begin{align*}
+        W_s &= \frac{L_s}{\lambda_{ef}} = \frac{1,9788}{8,9930} = 0,2200
+    \end{align*}
+    \begin{align*}
+        W_q &= \frac{L_q}{\lambda_{ef}} = \frac{1,2294}{8,9930} = 0,1366
+    \end{align*}
+}
+\newpage
+\section{Problema 4}
+Un banco trata de determinar cuántos cajeros debe emplear. El costo total de emplear un cajero es 90 dólares diarios y un cajero puede atender a un promedio de 60 clientes por día. Al banco llega un promedio de 50 clientes por día y los tiempos de servicio y los tiempos entre llegadas son exponenciales. Si el costo de demora por cliente y día [en el sistema] es de 20 dólares, ¿cuántos cajeros debe contratar el banco para minimizar los costos de operación?
+\textcolor{blue}{
+    \begin{align*}
+        \lambda &= 50 \qquad \mu = 60 \qquad C_s = 90 \qquad C_w = 20
+    \end{align*}
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c|c|c|l}
+            $s$ & $\mu$ & $\lambda$ & $\rho$ & $C_s$ & $P_0$ & $L$ & $C_w$ & $C_t = S \cdot C_s + L \cdot C_W$\\ \hline
+            & & & & & & & \\
+            1 & 60 & 50 & $\displaystyle\frac{50}{60} = 0,8333 < 1$ & 90 & - & 5 & 20 & $1 \cdot 90 + 5 \cdot 20 = 190$* \\
+            & & & & & & & \\
+            2 & 60 & 50 & $\displaystyle\frac{50}{2 \cdot 60} = 0,4167 < 1$ & 90 & 0,4118 & 1,0084& 20 & $2 \cdot 90 + 1,0084 \cdot 20 = 200,1680$ \\
+            ... & ... & ... & ... & ... & ... & ... & ... & ... \\
+        \end{tabular}
+    \end{center}
+    \newparagraph
+    Para $s = 1$:
+    \begin{align*}
+        L &= \frac{\lambda}{\mu - \lambda} = \frac{50}{60 - 50} = 5
+    \end{align*}
+    Para $s = 2$:
+    \begin{align*}
+        P_0 &= \frac{1}{\displaystyle\sum_{n=0}^{1} \frac{\left(\frac{5}{6}\right)^n}{n!} + \frac{\left(\frac{5}{6}\right)^2}{2!} \cdot \left(\frac{2 \cdot 60}{2 \cdot 60 - 50}\right)} \\
+        &= \frac{1}{1 + \frac{5}{6} + 0,3472 \cdot 1,7143} \\
+        &= \frac{1}{1 + \frac{5}{6} + 0,5952} \\
+        &= \frac{1}{2,4285} \\
+        &= 0,4118
+    \end{align*}
+    \begin{align*}
+        L_q &= \frac{\left(\frac{5}{6}\right)^2 \cdot 50 \cdot 60}{70^2} \cdot P_0 \\
+        &= \frac{0,6944 \cdot 3000}{4900} \cdot 0,4118 \\
+        &= 0,1751
+    \end{align*}
+    \begin{align*}
+        L &= L_q + \frac{50}{60} = 0,1751 + 0,8333 = 1,0084
+    \end{align*}
+    \begin{align*}
+        \therefore \text{ el banco debe contratar 1 cajero.}
+    \end{align*}
+}
+\end{document}
