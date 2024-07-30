@@ -1,0 +1,179 @@
+\documentclass{templateNote}
+
+\definecolor{Verde}{RGB}{170,239,31}
+\definecolor{Morado}{RGB}{127,0,255}
+\definecolor{Celeste}{RGB}{0,191,255}
+\definecolor{Salmon}{RGB}{255,0,157}
+\definecolor{RosaSuave}{RGB}{255,182,193}
+\definecolor{Melocoton}{RGB}{255,218,185}
+\definecolor{Gris}{RGB}{192,192,192}
+\definecolor{Turquesa}{RGB}{64,224,208}
+\definecolor{Menta}{RGB}{152,251,152}
+\definecolor{AmarilloVainilla}{RGB}{255,255,153}
+
+\newcommand{\newparagraph}{\par\vspace{\baselineskip}\noindent}
+\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+
+\begin{document}
+
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Apunte Rapido y re trucho}
+\asignatura{GPF}
+\autor{
+Marcelo Paz
+}
+\vDoc{1.0.0}
+\tipoDoc{Apunte}
+
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{
+    \autor
+}
+\portada
+\margenes % Crear márgenes
+
+\section{Ciclo de conversión de efectivo}
+\begin{center}
+    \includegraphics[width=\textwidth]{img/Screenshot 2024-07-22 225053.png}
+\end{center}
+\begin{equation*}
+    CCC = EPI + PCP - PPP
+\end{equation*}
+Donde:
+\begin{itemize}
+    \item CCC: Ciclo de conversión de efectivo
+    \item EPI: Edad promedio de inventario
+    \item PCP: Periodo de cobranza promedio
+    \item PPP: Periodo de pago promedio
+\end{itemize}
+
+\newpage
+\section{Rotación de efectivo}
+\begin{equation*}
+    RE = \frac{360}{CCC}
+\end{equation*}
+Donde:
+\begin{itemize}
+    \item RE: Rotación de efectivo
+    \item 360: Días del año
+    \item CCC: Ciclo de conversión de efectivo
+\end{itemize}
+
+\section{Efectivo mínimo para operaciones}
+\begin{equation*}
+    EMO = \frac{DTA}{RE}
+\end{equation*}
+Donde:
+\begin{itemize}
+    \item EMO: Efectivo mínimo para operaciones
+    \item DTA: Desembolsos totales anuales
+    \item RE: Rotación de efectivo
+\end{itemize}
+
+*SI aunetna el EMO se traduce como una mayor exigencia minima de operacion.
+\section{Estrategias de administración de efectivo}
+\begin{enumerate}
+    \item \textbf{Retraso de las cuentas por pagar ((+)PPP):} Aumentar el periodo de pago a proveedores, sin afectar la relación con ellos.
+    \item \textbf{Administración eficiente de inventario-Producción((-)EPI):} Reducir el tiempo de producción y almacenamiento de inventario.
+    \item \textbf{Aceleración de la cobranza de cuentas ((-)PCP):} Reducir el tiempo de cobranza de cuentas por cobrar.
+\end{enumerate}
+
+\newpage
+\section{Análisis de la información de crédito}
+\begin{equation*}
+    Z = B_1 \cdot X_1 + B_2 \cdot X_2 + B_3 \cdot X_3 + B_4 \cdot X_4 + B_5 \cdot X_5 + B_6 \cdot X_6
+\end{equation*}
+Donde:
+\begin{itemize}
+    \item Z: Índice de predicción
+    \item $B_1, B_2, B_3, B_4, B_5, B_6$: Coeficientes
+    \item $X_1$: Tamaño de la familia
+    \item $X_2$: Ingresos total anual
+    \item $X_3$: Historia crediticia
+    \item $X_4$: Antecedentes comerciales
+    \item $X_5$: Situación de deurdas
+    \item $X_6$: Vivienda propia
+\end{itemize}
+
+\subsection{Puntos de corte}
+\begin{enumerate}
+    \item \textbf{Z < 1.81:} Riesgo alto
+    \item \textbf{1.81 < Z < 2.99:} Área gris
+    \item \textbf{Z > 2.99:} Riesgo bajo
+\end{enumerate}
+
+\section{ROE}
+\begin{equation*}
+    ROE = \frac{Utilidad neta}{Capital contable}
+\end{equation*}
+\begin{itemize}
+    \item Corresponde al porcentaje de utilidad o pérdida obtenido por cada peso que los dueños han invertido en la empresa, incluyendo las utilidades retenidas.
+\end{itemize}
+
+\section{ROA}
+\begin{equation*}
+    ROA = \frac{Utilidad neta}{Activo total}
+\end{equation*}
+\begin{itemize}
+    \item Corresponde al porcentaje de utilidad o pérdida, obtenido por cada peso invertido en activos.
+    \item Mientras más alto sea el ROA, más eficiente es la empresa al usar el capital para generar utilidades.
+    \item Si el ROA es menor o igual que cero, significa que los inversionistas están perdiendo dinero.
+\end{itemize}
+
+\hl{* Si la tasa ROA es mayor que la tasa ROE el accionista está ganando una menor rentabilidad relativa en su inversión, lo que puede deberse a una insuficiente uso del endeudamentio.}
+
+\section{Metodos para estimar la demanda}
+\subsection{Cuantitativos}
+\begin{itemize}
+    \item Correlaciones y regresiones
+    \item Alisamiento exponencial
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/Screenshot 2024-07-22 231413.png}
+    \end{figure}
+
+    \item Series cronológicas
+    \item Media móvil
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{img/Screenshot 2024-07-22 231855.png}
+    \end{figure}
+    \item Ajuste de curvas
+    \item Distribución de frecuencias
+\end{itemize}
+
+\subsection{Cualitativos}
+\begin{itemize}
+    \item Método Delphi
+    \item Diseño de escenarios
+    \item Tormenta de ideas
+    \item Estudio de ciclo de vida
+    \item Estudio de mercado
+    \item Entrevista
+    \item Encuesta
+\end{itemize}
+
+\subsection{Formula demanda total del mercado}
+\begin{equation*}
+    Q = n \cdot p \cdot q
+\end{equation*}
+Donde:
+\begin{itemize}
+    \item Q: Demanda total del mercado
+    \item n: Cantidad de compradores en el mercado
+    \item p: Precio de una unidad promedio
+    \item q: Cantidad compradas por el usuario promedio al año
+\end{itemize}
+
+\subsection{Participación de mercado}
+\begin{center}
+    \includegraphics[width=\textwidth]{img/Screenshot 2024-07-22 232214.png}
+\end{center}
+\section{Decisiones Financieras de corto plazo}
+\begin{center}
+    \includegraphics[width=\textwidth]{img/Screenshot 2024-07-22 231227.png}
+\end{center}
+\end{document}
