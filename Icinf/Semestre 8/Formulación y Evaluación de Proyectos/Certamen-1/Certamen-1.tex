@@ -1,0 +1,350 @@
+\documentclass{templateNote}
+\usepackage{tcolorbox}
+
+\definecolor{Violeta}{RGB}{124,0,254}
+\definecolor{Verde2}{RGB}{130,254,0} % Complementario
+\definecolor{Naranja2}{RGB}{254,124,0} % Triadico
+\definecolor{Verde3}{RGB}{0,254,124} % Triadico
+
+\definecolor{Amarillo}{RGB}{249,228,0}
+\definecolor{Azul2}{RGB}{0,21,249} % Complementario
+\definecolor{Celeste2}{RGB}{0,249,228} % Triadico
+\definecolor{Rosa}{RGB}{228,0,249} % Triadico
+
+\definecolor{Naranja}{RGB}{255,175,0}
+\definecolor{Azul3}{RGB}{0,80,255} % Complementario
+\definecolor{Cian}{RGB}{0,255,175} % Triadico
+\definecolor{Violeta2}{RGB}{175,0,255} % Triadico
+
+\definecolor{Rojo}{RGB}{245,0,79}
+\definecolor{Verde4}{RGB}{0,245,166} % Complementario
+\definecolor{Verde}{RGB}{79,245,0} % Triadico
+\definecolor{Azul}{RGB}{0,79,245} % Triadico
+
+\definecolor{Celeste}{RGB}{0,191,255}
+\definecolor{Salmon}{RGB}{255,0,157}
+
+\newcommand{\newparagraph}{\par\vspace{\baselineskip}\noindent}
+\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+\newcommand{\comillas}[1]{``#1''}
+\tcbuselibrary{skins}
+\usetikzlibrary{shadings}
+\tcbset{
+  base/.style={
+    empty,
+    frame engine=path,
+    colframe=white,
+    sharp corners,
+    %title={Comentario \thetcbcounter},
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    boxed title style={size=minimal, top=4pt, left=4pt},
+    coltitle=black,
+    fonttitle=\large\it,
+  }
+}
+\newtcolorbox{CuadroPersonalizado}[4]{%
+  base,
+  title={#2}, % Título personalizado #2 = nombre contador ; #3 = Título
+  drop fuzzy shadow, % Sombra del cuadro de texto
+  coltitle=#1,
+  borderline west={3pt}{-3pt}{#3}, % Borde Izquierdo #4 = color del borde
+  attach boxed title to top left={xshift=-3mm, yshift*=-\tcboxedtitleheight/2},
+  boxed title style={right=3pt, bottom=3pt, overlay={
+    \draw[draw=#4, fill=#4, line join=round]
+      (frame.south west) -- (frame.north west) -- (frame.north east) --
+      (frame.south east) -- ++(-2pt, 0) -- ++(-2pt, -4pt) --
+      ++(-2pt, 4pt) -- cycle; % #5 = color del fondo
+  }}, % Cuadro de titulo
+  overlay unbroken={
+    \scoped \shade[left color=#4!30!black, right color=#4]
+    ([yshift=-0.2pt]title.south west) -- ([xshift=-3pt, yshift=-0.2pt]title.south-|frame.west) -- ++(0, -4pt) -- cycle;
+  }, % Sombra de titulo #5 = color del titulo
+}
+\begin{document}
+
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Certamen 1}
+\asignatura{Formulación y Evaluación de Proyectos}
+\autor{
+Marcelo Paz
+}
+\vDoc{1.0.0}
+\tipoDoc{Apunte}
+
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{
+    \autor
+}
+\portada
+\margenes % Crear márgenes
+
+\section{¿Qué es un proyecto?}
+\textbf{Definición:} \hlcolor{Amarillo!50}{Es una concepción formal y fundamentada de una idea que pretende materializarse.} Es una suerte de \textit{''borrador de la realidad futura''} en la que se incorporan las previsiones acerca de todos los elementos del entorno, sobre los cuales influirá y actuará la idea que pretendemos materializar.
+\newline
+Se habla de:\newparagraph
+
+\begin{minipage}[t]{0.45\textwidth}
+  \begin{itemize}
+    \item Proyecto de Ley.
+    \item Proyecto de País.
+    \item Proyecto Deportivo.
+    \item Proyecto inmobiliario.
+  \end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+  \begin{itemize}
+    \item Proyecto de ampliación.
+    \item Proyecto de empresa.
+    \item Proyecto de modernización.
+  \end{itemize}
+\end{minipage}
+
+\section{Tipos de proyecto}
+\begin{itemize}
+  \item \textbf{Proyecto de Negocio o Proyecto de empresa (Business Plan).}
+  \item \textbf{Proyecto de Modernización.}
+  \item \textbf{Proyecto de Amplificación.}
+\end{itemize}
+
+\section{Etapas de un proyecto}
+\begin{itemize}
+  \item \textbf{Preparación y Evaluación de Proyectos.}
+  \begin{itemize}
+    \item Idea.
+    \item Perfil.
+    \item Prefactibilidad.
+    \item Factibilidad.
+  \end{itemize}
+
+  \item \textbf{Administración y Control de Proyectos.}
+  \begin{itemize}
+    \item Diseño.
+    \item Ejecución.
+    \item Operación.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\section{Estudios del Proyecto}
+\begin{itemize}
+  \item \hyperlink{EM}{\textbf{Estudio de Mercado}.}
+  \item \hyperlink{ET}{\textbf{Estudio Técnico}.}
+  \item \hyperlink{EO}{\textbf{Estudio Organizacional}.}
+  \item \hyperlink{EL}{\textbf{Estudio Legal}.}
+  \item \hyperlink{EEF}{\textbf{Estudio Económico Financiero}.}
+\end{itemize}
+
+\subsection{Estudio de mercado}\hypertarget{EM}{}
+\textbf{DEF.} \hlcolor{Amarillo!50}{Es la recopilación, procesamiento y análisis de información respecto del diseño, producción, comercialización y consumo de bienes y servicios.}
+\begin{itemize}
+  \item \textbf{Mostrara:}
+  \begin{itemize}
+    \item Quiénes son los destinatarios del proyecto.
+    \item Las necesidades que el proyecto abordará y que justifican su implementación, describiendo el diseño de los productos y servicios generados y cómo satisfacen las necesidades detectadas.
+  \end{itemize}
+  \item  \textbf{Cuantificará:}
+  \begin{itemize}
+    \item Los beneficios que el proyecto generará a los destinatarios del proyecto.
+  \end{itemize}
+  \item \textbf{Describe:}
+  \begin{itemize}
+    \item Las condiciones del entorno en que el proyecto se implementa, condiciones económicas generales, la competencia, los proveedores de insumos, y distribuidores.
+  \end{itemize}
+\end{itemize}
+\begin{CuadroPersonalizado}{black}{Comentario del profesor}{Verde2!90!black}{Verde2!90!black}
+  \begin{itemize}
+    \item El cliente es un beneficiario de un bien o servicio.
+    \item El estudio del mercado le da el contexto y la información para el nacimiento de un proyecto.
+    \item El mercado \textbf{NO} es algo abstracto.
+    \item Es importante estudiar una amplia gama de variables, como la competencia, la demanda, la oferta, los precios, los canales de distribución, entre otros.
+    \item Un ejemplo de ventaja competitiva es con \textbf{LIDER} que tiene productos con un bajo precio y del \textbf{JUMBO} que tiene productos de calidad/variedad.
+  \end{itemize}
+\end{CuadroPersonalizado}
+
+\begin{CuadroPersonalizado}{black}{Extra: 'Referencias a uno de los libros'}{Naranja!90!black}{Naranja!90!black}
+  \begin{itemize}
+    \item Análisis del Entorno del Mercado.
+    \item Análisis del Cliente
+    \begin{itemize}
+      \item Análisis del Cliente y sus necesidades.
+      \item Determinación del mercado objetivo.
+      \item Definición de Estrategia de Posicionamiento.
+      \item Determinación de la ventaja competitiva.
+    \end{itemize}
+    \item Análisis del Producto.
+    \begin{itemize}
+      \item Estudio de atributos de los productos.
+    \end{itemize}
+    \item Análisis del Precio.
+    \item Estimación de la Demanda.
+    \begin{itemize}
+      \item Medición de mercados potenciales. Principales segmentos. Grado de penetración.
+      \item Pronóstivo de Demanda Industrial.
+      \item Estimación de la participación de mercado de la empresa.
+      \item Análisis de las ventas de la empresa.
+    \end{itemize}
+  \end{itemize}
+\end{CuadroPersonalizado}
+
+\begin{CuadroPersonalizado}{black}{Ejercicio}{Celeste!90!black}{Celeste!90!black}
+  \textbf{Caso:} Antes se realizaba el control de inventario utilizando lapiz y papel.
+  \newline
+  \textbf{Análisis:}
+  \begin{itemize}
+    \item El hacer el control manual requeria muchas HH.
+    \item Esto genera un costo muy alto e innecesario pues hace perder ganancias (sobre todo en el caso de las pymes).
+  \end{itemize}
+  \textbf{Solución:} Se implementa un sistema de control de inventario digital/automatico, el cual reduce ese costo innecesario.
+\end{CuadroPersonalizado}
+
+\newpage
+\subsubsection{Análisis del producto}
+\textbf{DEF.} \hlcolor{Amarillo!50}{Es todo aquello que por su adquisición, uso o consumo puede satisfacer un deseo o una necesidad.} Un producto puede ser un objeto material, una persona, una idea, un lugar, una experiencia. \newline
+Todo producto es un conjunto de atributos o características que tienen una utilidad o función base, y varias utilidades secundarias de distinto tipo que complementan la utilidad básica (estética, imagen, prestigio, conveniencia).
+\begin{CuadroPersonalizado}{black}{Comentario del profesor}{Verde2!90!black}{Verde2!90!black}
+  \begin{itemize}
+    \item Cuando el caso de uso esta mal formulado, el producto falla o no cumple con las expectativas.
+  \end{itemize}
+\end{CuadroPersonalizado}
+\textbf{Niveles:}
+\begin{enumerate}
+  \item \textbf{Nivel Básico:} Es la función principal del producto.
+  \item \textbf{Nivel Esperado:} Son las características que el cliente espera del producto.
+  \item \textbf{Nivel Aumentado:} Son las características que el cliente no espera pero que le aportan valor. 'Garantía'.
+  \begin{itemize}
+    \item Garantias.
+    \item Transporte
+    \item Instalacion
+  \end{itemize}
+\end{enumerate}
+\begin{CuadroPersonalizado}{black}{Ejemplo}{Celeste!90!black}{Celeste!90!black}
+  \textbf{Caso:} Una de las tendencias demográficas más marcadas hoy en día es el crecimiento de la población de la llamada \textit{\comillas{tercera edad}}. 
+
+  \textbf{Se pide:} Utilizando el modelo de producto multiatributo, diseñar un producto/ servicio de centro de cuidado y atención al adulto mayor que se adecue a necesidades del segmento del mercado descrito.
+  \newline
+  \textbf{Solución:}
+  \begin{itemize}
+    \item \textbf{Producto Basico:} Lugar para residencia de adultos mayores.
+    \item \textbf{Producto Real:}
+    \begin{itemize}
+      \item Características:
+      \begin{itemize}
+        \item Residencia permanente full-time; o part time.
+        \item Habitaciones individuales; baño individual; T.V.; Wi-Fi; etc.
+        \item Espacios abiertos; jardines; instalación deportiva; etc.
+        \item Enfermería; kinesiologia; atenciones especiales; etc.
+        \item Clases de gimnasia; juegos de mesas; etc.
+      \end{itemize}
+      \item Diseño:
+      \begin{itemize}
+        \item Limpieza; orden; Confort; Luminozidad; Seguridad.
+      \end{itemize}
+      \item Calidad:
+      \begin{itemize}
+        \item 90\% Encuesta de satisfacción.
+        \item 5\% Retiro de clientes por año.
+        \item $ < $ 3 incidencias por mes.
+      \end{itemize}
+      \item Nombre: \textit{'Residencia Santa Clara'}.
+      \item Empaque:
+      \begin{itemize}
+        \item Contrato.
+        \item Folleto informativo.
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{CuadroPersonalizado}
+\newpage
+\subsection{Estudio Técnico}\hypertarget{ET}{}
+\textbf{DEF.}
+\begin{itemize}
+  \item \textbf{Mostrará:}
+  \begin{itemize}
+    \item Que el proyecto considera la alternativa tecnolpogica óptima de acuerdo a las posibilidades disponibles.
+  \end{itemize}
+  \item \textbf{Deberá:}
+  \begin{itemize}
+    \item Desplegar un completo \textit{'lay out'} los procesos productivos, operacionales y administrativos que se van a implementar.
+  \end{itemize}
+  \item \textbf{Proveerá:}
+  \begin{itemize}
+    \item La información necesaria para cuantificar el monto de las inversiones y los costos de operación (ejecución) del proyecto.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection{Estudio Organizacional}\hypertarget{EO}{}
+\textbf{DEF.}
+\begin{itemize}
+  \item \textbf{Se comprende:}
+  \begin{itemize}
+    \item La conformación del equipo de personas que desempeñarán las operaciones del proyecto y en definitiva, quienes tendrán la responsabilidad de materializarlo.
+  \end{itemize}
+  \item Los requirimientos de personal llevan a estimar los costos laborales, un importante ítem de los costos de operación.
+  \item \textbf{Permite:}
+  \begin{itemize}
+    \item Conocer las posibiliades de contar con el personal idóneo para el éxito del proyecto. Dentro de este campo deben considerarse también lo relacionado con los procesos de gestión y la disponibilidad de los sistemas administrativos necesarios para operarlos.
+  \end{itemize}
+  \item Mención especial debe hacerse al equipo directivo que encabezará la realización del proyecto. Esto es particularmente crítico en los proyectos de nuevos negocios o de formación de nuevas empresas.
+\end{itemize}
+
+\newpage
+\subsection{Estudio Legal}\hypertarget{EL}{}
+\textbf{DEF.}
+\begin{itemize}
+  \item Este aspecto es crucial en determinados emprendimientos, y consiste en la delimitación de las normas jurídicas que afectarán el desarrollo de las operaciones.
+  \item Los aspectos legales más comunes son:
+  \begin{itemize}
+    \item Normas de constitución y funcionamiento de sociedades y corporaciones.
+    \item Legislación de comercio.
+    \item Normas de protección al consumidor.
+    \item Legislación tributaria, arancelaria y de derechos municipales.
+    \item Normas sanitarias, de seguridad, ambientales, de urbanismo.
+    \item Normas laborales.
+    \item Normas de propiedad industrial y marcas comerciales.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection{Estudio Económico Financiero}\hypertarget{EEF}{}
+\textbf{DEF.}
+\begin{itemize}
+  \item En este an\'alisis predominan las consideraciones econ\'omicas de costos y beneficios del proyecto en t\'erminos monetarios.
+  \item Debe resumirse sistemáticamente toda la información financiera asociada al proyecto la cual es derivada de los estudios mencionados anteriormente.
+  \item \textbf{Se identifican:}
+  \begin{itemize}
+    \item Se identifican las inversiones, los ingresos (beneficios) y los costos operacionales y los valores residuales de las inversiones.
+  \end{itemize}
+  \item \textbf{Se determina:}
+  \begin{itemize}
+    \item La forma de financiamiento de las inversiones.
+    \item Los flujos de caja que generará la realización del proyecto.
+  \end{itemize}
+  \item \textbf{Se calculan:}
+  \begin{itemize}
+    \item Diversos indicadores de evaluación de inversiones como el período de recuperación, el valor actual neto y la tasa interna de retorno.
+  \end{itemize}
+  \item \textbf{Se analiza:}
+  \begin{itemize}
+    \item El sensibilidad de los indicadores (principalmente el Valor Actual Neto) a la variación de determinados parámetros.
+    \item El nivel de riesgo de la inversión a través de la volatilidad de los flujos de caja.
+  \end{itemize}
+\end{itemize}
+% \begin{center}
+%     \begin{overpic}[width=0.3\textwidth]{img/LogoElNube.png}
+%         \put(5,50){\colorbox{Verde}{Verde}}
+%         \put(5,40){\colorbox{Morado}{Morado}}
+%         \put(5,30){\colorbox{Celeste}{Celeste}}
+%         \put(5,20){\colorbox{Salmon}{Salmon}}
+%         \put(5,10){\colorbox{RosaSuave}{RosaSuave}}
+%         \put(60,50){\colorbox{Turquesa}{Turquesa}}
+%         \put(60,40){\colorbox{Menta}{Menta}}
+%         \put(60,30){\colorbox{Melocoton}{Melocoton}}
+%         \put(60,20){\colorbox{AmarilloVainilla}{AmarilloVainilla}}
+%         \put(60,10){\colorbox{Gris}{Gris}}
+%     \end{overpic}
+% \end{center}
+\end{document}
