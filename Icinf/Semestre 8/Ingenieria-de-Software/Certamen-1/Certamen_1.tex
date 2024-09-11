@@ -1,0 +1,232 @@
+\documentclass{templateApunte}
+\usepackage{tcolorbox}
+
+\definecolor{Violeta}{RGB}{124,0,254}
+\definecolor{Verde2}{RGB}{130,254,0} % Complementario
+\definecolor{Naranja2}{RGB}{254,124,0} % Triadico
+\definecolor{Verde3}{RGB}{0,254,124} % Triadico
+
+\definecolor{Amarillo}{RGB}{249,228,0}
+\definecolor{Azul2}{RGB}{0,21,249} % Complementario
+\definecolor{Celeste2}{RGB}{0,249,228} % Triadico
+\definecolor{Rosa}{RGB}{228,0,249} % Triadico
+
+\definecolor{Naranja}{RGB}{255,175,0}
+\definecolor{Azul3}{RGB}{0,80,255} % Complementario
+\definecolor{Cian}{RGB}{0,255,175} % Triadico
+\definecolor{Violeta2}{RGB}{175,0,255} % Triadico
+
+\definecolor{Rojo}{RGB}{245,0,79}
+\definecolor{Verde4}{RGB}{0,245,166} % Complementario
+\definecolor{Verde}{RGB}{79,245,0} % Triadico
+\definecolor{Azul}{RGB}{0,79,245} % Triadico
+
+\definecolor{Celeste}{RGB}{0,191,255}
+\definecolor{Salmon}{RGB}{255,0,157}
+
+\newcommand{\newparagraph}{\par\vspace{\baselineskip}\noindent}
+\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+
+\tcbuselibrary{skins}
+\usetikzlibrary{shadings}
+\newcounter{counter_comentario}
+\newcounter{counter_observacion}
+\tcbset{
+  base/.style={
+    empty,
+    frame engine=path,
+    colframe=white,
+    sharp corners,
+    %title={Comentario \thetcbcounter},
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    boxed title style={size=minimal, top=4pt, left=4pt},
+    coltitle=black,
+    fonttitle=\large\it,
+  }
+}
+\newtcolorbox{cP}[5]{%
+  base,
+  title={#3 \csname the#2\endcsname}, % Título personalizado #2 = nombre contador ; #3 = Título
+  drop fuzzy shadow, % Sombra del cuadro de texto
+  coltitle=#1,
+  borderline west={3pt}{-3pt}{#4}, % Borde Izquierdo #4 = color del borde
+  attach boxed title to top left={xshift=-3mm, yshift*=-\tcboxedtitleheight/2},
+  boxed title style={right=3pt, bottom=3pt, overlay={
+    \draw[draw=#5, fill=#5, line join=round]
+      (frame.south west) -- (frame.north west) -- (frame.north east) --
+      (frame.south east) -- ++(-2pt, 0) -- ++(-2pt, -4pt) --
+      ++(-2pt, 4pt) -- cycle; % #5 = color del fondo
+  }}, % Cuadro de titulo
+  overlay unbroken={
+    \scoped \shade[left color=#5!30!black, right color=#5]
+    ([yshift=-0.2pt]title.south west) -- ([xshift=-3pt, yshift=-0.2pt]title.south-|frame.west) -- ++(0, -4pt) -- cycle;
+  }, % Sombra de titulo #5 = color del titulo
+  before upper={\stepcounter{#2}}
+}
+\newtcolorbox{cPB}[2]{%
+  base,
+  coltitle=#1,
+  % drop fuzzy shadow, % Sombra del cuadro de texto
+  borderline west={3pt}{-3pt}{#2}, % Borde Izquierdo #4 = color del borde
+}
+\begin{document}
+% Seteo de contadores a 1
+\setcounter{counter_comentario}{1}
+\setcounter{counter_observacion}{1}
+
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Certamen 1}
+\asignatura{Ingeniería de Software}
+\autor{
+Marcelo Paz
+}
+\vDoc{1.0.0}
+\tipoDoc{Apunte}
+
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{
+    \autor
+}
+\portada
+\margenes % Crear márgenes
+
+\section{Recopilación de información}
+\begin{enumerate}
+  \item \hyperlink{entrevista}{Entrevistas.} 
+  \item \hyperlink{grupos_focales}{Grupos focales.}
+  \item \hyperlink{talleres_facilitados}{Talleres facilitados.}
+  \item \hyperlink{tecnicas_grupales_de_creatividad}{Técnicas grupales de creatividad.}
+  \item \hyperlink{tecnicas_grupales_de_toma_de_decisiones}{Técnicas grupales de toma de decisiones.}
+  \item \hyperlink{cuestionarios_y_encuestas}{Cuestionarios y encuestas.}
+  \item \hyperlink{observacion}{Observación.}
+  \item \hyperlink{prototipos}{Prototipos.}
+  \item \hyperlink{estudios_comparativos}{Estudios comparativos.}
+  \item \hyperlink{diagramas_de_contexto}{Diagramas de contexto.}
+  \item \hyperlink{analisis_de_documentos}{Análisis de documentos.}
+\end{enumerate}
+
+\subsection{Entrevista}\hypertarget{entrevista}{}
+Es una \hlcolor{Amarillo}{manera formal o informal de obtener información} de los interesados, a través de un \hlcolor{Amarillo}{diálogo directo} con ellos. Se lleva a cabo habitualmente \hlcolor{Amarillo}{realizando preguntas (preparadas o espontáneas) registrando las respuestas.}
+Se recomienda entrevistar a participantes con experiencia en el proyecto, a patrocinadores y otros ejecutivos, así como a expertos en la materia.
+\begin{itemize}
+  \item \textbf{Ventajas:}
+  \begin{itemize}
+    \item Permite obtener información detallada/confidencial.
+    \item Preguntas espontáneas permiten obtener información adicional no prevista.
+  \end{itemize}
+  \item \textbf{Desventajas:}
+  \begin{itemize}
+    \item Necesario alguien habilidoso y buen orador.
+    \item Puede ser subjetivo y sesgado.
+    \item Difícil de analizar.
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\subsection{Grupos focales}\hypertarget{grupos_focales}{}
+Reúnen a interesados y expertos en la materia, previamente seleccionados, a fin de conocer sus expectativas y actitudes con respecto a un producto, servicio o resultado propuesto. Un moderador capacitado guía al grupo a través de una discusión interactiva diseñada para ser más coloquial que una entrevista individual.
+\begin{itemize}
+  \item \textbf{Ventajas:}
+  \begin{itemize}
+    \item Permite obtener una mayor cantidad de información en un tiempo más corto.
+  \end{itemize}
+  \item \textbf{Desventajas:}
+  \begin{itemize}
+    \item Igual que la entrevista, se necesita a alguien habilidoso y buen orador, puede ser subjetivo y sesgado.
+    \item Además de que al ser un grupo, dificulta la obtención completa de información.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Talleres facilitados}\hypertarget{talleres_facilitados}{}
+Son \hlcolor{Amarillo}{sesiones focalizadas} que reúnen a los interesados clave para \hlcolor{Amarillo}{definir requisitos del producto.}
+
+\subsection{Técnicas grupales de creatividad}\hypertarget{tecnicas_grupales_de_creatividad}{}
+Son \hlcolor{Amarillo}{actividades en grupo que permiten identificar los requisitos del proyecto y del producto.}
+\begin{itemize}
+  \item \textbf{Tormenta de ideas:}
+  \item \textbf{Técnicas de grupo nominal:}
+  \item \textbf{Mapa conceptual/mental:}
+  \item \textbf{Diagrama de afinidad:}
+  \item \textbf{Análisis de decisiones con múltiples criterios:}
+\end{itemize}
+
+\subsection{Técnicas grupales de toma de decisiones}\hypertarget{tecnicas_grupales_de_toma_de_decisiones}{}
+Es un proceso de evaluación que maneja múltiples alternativas, con un resultado esperado en forma de acciones futuras. Estas técnicas se pueden utilizar para generar, clasificar y asignar prioridades a los requisitos del producto.
+\begin{itemize}
+  \item \textbf{Unanimidad:}
+  \item \textbf{Mayoría:}
+  \item \textbf{Pluralidad:}
+  \item \textbf{Dictador:}
+\end{itemize}
+
+\newpage
+\subsection{Cuestionarios y encuestas}\hypertarget{cuestionarios_y_encuestas}{}
+Conjunto de preguntas escritas, diseñadas para recoger información rápidamente de un gran número de encuestados.
+\begin{itemize}
+  \item \textbf{Ventajas:}
+  \begin{itemize}
+    \item Puede ser anónimo.
+    \item Fácil de analizar.
+    \item Puede ser enviado a un gran número de personas.
+  \end{itemize}
+  \item \textbf{Desventajas:}
+  \begin{itemize}
+    \item Necesario alguien habilidoso en la redacción de preguntas.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Observación}\hypertarget{observacion}{}
+Proporcionan una manera directa de ver a las personas en su ambiente, y el modo en que realizan sus trabajos o tareas y ejecutan los procesos.
+\begin{itemize}
+  \item \textbf{Ventajas:}
+  \begin{itemize}
+    \item Útil para entender procesos detallados.
+  \end{itemize}
+  \item \textbf{Desventajas:}
+  \begin{itemize}
+    \item Necesario alguien habilidoso en la observación.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Prototipos}\hypertarget{prototipos}{}
+Método para obtener una realimentación rápida en relación con los requisitos, mientras proporciona un modelo operativo del producto esperado antes de construirlo.
+\begin{itemize}
+  \item \textbf{Ventajas:}
+  \begin{itemize}
+    \item Rápida realimentación de requisitos.
+    \item Permite a los interesados ver y sentir el producto.
+  \end{itemize}
+  \item \textbf{Desventajas:}
+  \begin{itemize}
+    \item Costoso.
+    \item Es necesario tener al cliente/interesado presente.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Estudios comparativos}\hypertarget{estudios_comparativos}{}
+Implica cotejar las prácticas reales o planificadas, tales como procesos y operaciones, con las de aquellas organizaciones comparables a fin de identificar las mejores prácticas, generar ideas de mejora y proporcionar una base para medir el desempeño.
+
+\subsection{Diagramas de contexto}\hypertarget{diagramas_de_contexto}{}
+Ejemplo de un modelo de alcance. El diagrama representa visualmente las entradas de negocio, actores que proporcionana entradas y las salidas del sistema de negocio y los actores que reciben las salidas.
+
+\subsection{Análisis de documentos}\hypertarget{analisis_de_documentos}{}
+Se utiliza para obtener requisitos mediante el examen de la documentación existente y la idenficación de la información relevante para los requisitos.
+Algunos ejemplos de documentos son:
+\begin{itemize}
+  \item Planes de negocio.
+  \item Literatura de mercadeo.
+  \item Acuerdos.
+  \item Solicitudes de propuesta.
+  \item Flujo de procesos actuales.
+  \item Modelo lógico de datos.
+  \item Repositorio de reglas de negocio.
+  \item Documentación de software de la aplicación.
+  \item Registros de problemas/indicentes.
+  \item Políticas.
+  \item Procedimientos.
+  \item Documentación normativa (leyes, códigos u ordenanzas, etc.).
+\end{itemize}
+\end{document}
