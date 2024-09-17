@@ -25,7 +25,7 @@
 \autor{
 Marcelo Paz
 }
-\vDoc{1.0.0}
+\vDoc{1.1.0}
 \tipoDoc{Apunte}
 
 % Metadatos del PDF
@@ -343,6 +343,21 @@ Asi, los porcentajes de mercado capturados por cada competidor son:
     \pi_2 &= 0,36 = 36\%
 \end{eqnarray*}
 
+\newpage
+\subsection{Tiempo promedio de recurrencia}
+\begin{itemize}
+    \item $\mu_{ij}$: Número de etapas promedio en pasar de estado $i$ a estado $j$. 
+    \begin{equation*}
+        \mu_{ij} = 1 + \sum_{k, \; k \neq j}^{}{P_{ik} \cdot \mu_{kj}}
+    \end{equation*}
+    \item $\mu_{ii}$: Número de etapas promedio en retornar al estado $i$.
+    \begin{equation*}
+        \mu_{ii} = \frac{1}{\pi_i}
+    \end{equation*}
+\end{itemize}
+
+\subsection{Problema 5}
+Calcular $\mu_{11}, \mu_{12}, \mu_{21}, \mu_{22}$.
 \newpage
 \section{Listado cadenas de markov}
 \begin{enumerate}
