@@ -1,5 +1,6 @@
 \documentclass{templateNote}
 \usepackage{tcolorbox}
+\usepackage{tabularx}
 
 \definecolor{Violeta}{RGB}{124,0,254}
 \definecolor{Verde2}{RGB}{130,254,0} % Complementario
@@ -154,6 +155,7 @@ Se habla de:\newparagraph
     \item Las condiciones del entorno en que el proyecto se implementa, condiciones económicas generales, la competencia, los proveedores de insumos, y distribuidores.
   \end{itemize}
 \end{itemize}
+
 \begin{CuadroPersonalizado}{black}{Comentario del profesor}{Verde2!90!black}{Verde2!90!black}
   \begin{itemize}
     \item El cliente es un beneficiario de un bien o servicio.
@@ -204,6 +206,7 @@ Se habla de:\newparagraph
 \subsubsection{Análisis del producto}
 \textbf{DEF.} \hlcolor{Amarillo!50}{Es todo aquello que por su adquisición, uso o consumo puede satisfacer un deseo o una necesidad.} Un producto puede ser un objeto material, una persona, una idea, un lugar, una experiencia. \newline
 Todo producto es un conjunto de atributos o características que tienen una utilidad o función base, y varias utilidades secundarias de distinto tipo que complementan la utilidad básica (estética, imagen, prestigio, conveniencia).
+
 \begin{CuadroPersonalizado}{black}{Comentario del profesor}{Verde2!90!black}{Verde2!90!black}
   \begin{itemize}
     \item Cuando el caso de uso esta mal formulado, el producto falla o no cumple con las expectativas.
@@ -257,6 +260,206 @@ Todo producto es un conjunto de atributos o características que tienen una util
     \end{itemize}
   \end{itemize}
 \end{CuadroPersonalizado}
+\subsubsection{Estimación de la demanda}
+\textbf{DEF.} Es el volumen total que compraría un grupo definido de consumidores en una zona geográfica definida, en un lapso definido, bajo determinadas condiciones de entorno y sujeto a cierto nivel de esfuerzo promocional de la industria.
+\begin{equation*}
+  q_t^d \qquad t = 1,2,...,n
+\end{equation*}
+Para analizar la demanda tiene que estar bien definida la \textbf{unidad de transación} del bien o servicio, teniendo la precaución de que éste coincida con la generación de los ingresos, por unidad de tiempo.
+\begin{center}
+  \begin{tabular}{lc}
+    \hline
+    Pan & kgs / mes \\
+    Servicios organización eventos & eventos / año \\
+    Telefonía & abonos / mes \\
+    Museo & visitas / años \\
+    \hline
+  \end{tabular}
+\end{center}
+\begin{CuadroPersonalizado}{black}{Comentario del profesor}{Verde2!90!black}{Verde2!90!black}
+  \begin{itemize}
+    \item A nosotros nos va a interesar la medida anual para la realizacion del proyecto (Evaluación).
+    \item En la gran mayoria de productos es necesario aplicar filtros para los calculos.
+  \end{itemize}
+\end{CuadroPersonalizado}
+
+\textbf{Métodos rápidos de estimación de demanda}
+\newparagraph
+\begin{itemize}
+  \item \textbf{Método de múltiplos del promedio.}
+  \begin{equation*}
+    q_t^d = N \times \overline{q_t}
+  \end{equation*}
+  Donde:
+  \begin{itemize}
+    \item $q_t^d$: Cantidad física demandada por el mercado en un año $t$.
+    \item $N$: Cantidad de compradores (c) en el mercado.
+    \item $\overline{q_t}$: Cantidad promedio (tasa de uso) del comprador promedio en un periodo $t$.
+  \end{itemize}
+  \begin{CuadroPersonalizado}{black}{Ejemplo}{Celeste!90!black}{Celeste!90!black}
+    Estimar la demanda por carne de vacuno en la ciudad de Chillán.
+    \begin{itemize}
+      \item $N$ = cantidad de compradores potenciales = 227.634 c.
+      \item $\overline{q_t}$ = compras promedio de carne por habitante en un año = 17 kg/c $\cdot$ año
+      \item $P$ = precio medio de carne (kg) = 7.248 $\$/kg$
+    \end{itemize}
+    Demanda anual física estimada:
+    \begin{equation*}
+      q_t^d = N \times \overline{q_t} = 227.634 \times 17 = 3.869.278 \text{ kg/año}
+    \end{equation*}
+    Demanda anual en dinero estimada:
+    \begin{equation*}
+      q_t^v = q_t^d \times P = 3.869.278 \times 7.248 = 28.009.453.160 \text{ \$/año}
+    \end{equation*}
+  \end{CuadroPersonalizado}
+  
+  Podemos fácilmente transformar la demanda física a términos monetarios multiplicando la demanda física por el precio del producto ($P$).
+  \begin{equation*}
+    q_t^v = q_d^t \times P = N \times \overline{q_t} \times P
+  \end{equation*}
+
+  \newpage
+  \item \textbf{Método de tasas en cadena}
+  \newparagraph
+  Se utiliza normalmente para calcular la cantidad de compradores potenciales de un producto / servicio a partir de un universo conocido, aplicando sucesivos coeficientes reductores.
+  \begin{equation*}
+    N = U \times f_1 \times f_2 \times ...
+  \end{equation*}
+  Donde:
+  \begin{itemize}
+    \item $N$: Cantidad de compradores potenciales.
+    \item $U$: Universo conocido al que pertenecen los compradores
+    \item $f_1, f_2, ...$: Coeficientes que representan porcentajes del subconjunto sucesivo de población que posee determinnadas características de interés.
+  \end{itemize}
+  \begin{CuadroPersonalizado}{black}{Ejemplo}{Celeste!90!black}{Celeste!90!black}
+    Se desea estimar el número potencial de compradores de un servicio sanitario para adultos mayores que padecen diabetes.
+    \begin{itemize}
+      \item Población área metropolitana Santiago (U) = 7.982.808 c
+      \item Porcentaje de mayores de 60 años ($f_1$) = 9,85\%
+      \item Incidente de la diabetes en mayores de 60 años ($f_2$) = 12\%
+    \end{itemize}
+    La cantidad potencial de compradores será:
+    \begin{equation*}
+       N = U \times f_1 \times f_2 = 7.982.808 \times 0,0985 \times 0,12 = 94.357 \text{ c}
+    \end{equation*}
+  \end{CuadroPersonalizado}
+
+  \item \textbf{Estimación de las ventas del proyecto (empresa)}
+  \newparagraph
+  La demanda por el producto o demanda industrial debe complementarse con una estimación de las ventas del proyecto. Éstas serán el resultado de la participación de mercado que alcance. Una manera rápida de visualizar la participación de mercado es descomponerla en dos coeficientes:
+  \begin{itemize}
+    \item Una tasa de acceso ($g_1$), dado por el porcentaje del mercado al que se logrará comunicar efectivamente la oferta del proyecto, de acuerdo al plan de marketing.
+    \item Una tasa de aceptación ($g_2$), que comprenderá el porcentaje de los compradores accedidos que realizarán compras.
+  \end{itemize}
+  Si suponemos que los compradores que aceptan la oferta tienen la misma tasa de uso que todos, entonces podmos estimar las ventas del proyecto como:
+  \begin{equation*}
+    q_{t,i}^d = q_t^d \times q_{1,i} \times q_{2,i}
+  \end{equation*}
+  Si multiplicamos por el precio unitario del producto ($P$) obtendremos la estimación de las ventas del proyecto (empresa) en dinero.
+  \begin{equation*}
+    q_{t,i}^v = q_{t,i}^d \times P
+  \end{equation*}
+  \begin{CuadroPersonalizado}{black}{Ejemplo}{Celeste!90!black}{Celeste!90!black}
+    En el caso de las ventas de carne en la ciudad de Chillán. Suponiendo una tasa de acceso del 40\% y una tasa de aceptación del 8\%, las ventas físicas del proyecto sería:
+    \begin{equation*}
+      q_{t,i}^d = 3.869.778 \text{kg/año} \times 0,4 \times 0,08 = 123.833 \text{kg/año}
+    \end{equation*}
+    Lo anterior significará ventas anuales en dinero por:
+    \begin{equation*}
+      q_{t,i}^v = 123.833 \text{kg/año} \times 5.248 \text{\$/kg} = 649.875.584 \text{\$/año}
+    \end{equation*}
+  \end{CuadroPersonalizado}
+\end{itemize}
+
+\subsection{Pronóstico de la demanda futura}
+Una vez obtenida la demanda actual, corresponde, a objeto de proyectar nuestro plan hacia el futuro, estimar los valores de la demanda para los próximos periodos.
+\newline
+El prónostico de la demanda consiste en estimar valores para la demanda de los períodos sucesivos, anticipando el comportamiento de los consumidores, sujeto a condiciones de entorno y esfuerzo comercial dados.
+\newline
+\textbf{Según el tipo de recolección podemos identificar los siguientes métodos de pronóstico:}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{MÉTODO DE RECOLECCIÓN} & \textbf{MÉTODO DE PRONÓSTICO} \\
+    \hline
+    &\\
+    Primario. Interrogativo & - Encuesta de intención de compra \\
+    & - Panel de vendedores \\
+    & - Panel de expertos \\
+    &\\
+    \hline
+    &\\
+    Primario. Observación & - Mercado de Prueba \\
+    &\\
+    \hline
+    &\\
+    Secundario & - Análisis de regresión \\
+    & - Análisis de series de tiempo \\
+    & - Indicadores guía \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\newpage
+\section{Clase 29-08}
+% \begin{CuadroPersonalizado}{black}{Modelos}{Verde2!90!black}{Verde2!90!black}
+%   \begin{align*}
+%     y_i &= a \cdot e^{b\cdot x_i + \varepsilon_i} \\
+%     ln(y_i) &= ln(a) + b \cdot x_i + \varepsilon_i \\
+%     \mathbb{E}[ln(y_i)|x_i] &= \widehat{ln(y_i)} = \widehat{ln(a)} + \widehat{b} \cdot x_i \\ 
+%     % y_i &= a + b x_i + \varepsilon_i
+%   \end{align*}
+% \end{CuadroPersonalizado}
+\begin{CuadroPersonalizado}{black}{Ejercicio en clase}{Verde2!90!black}{Verde2!90!black}
+  La demanda anual de camionetas 4x4 en la región del Bío-Bío ha tenido el siguiente comportamiento en los últimos 7 años.
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Periodo} & \textbf{Ventas camionetas} \\
+      \hline
+      1 & 713 \\
+      2 & 715 \\
+      3 & 777 \\
+      4 & 863 \\
+      5 & 997 \\
+      6 & 1210 \\
+      7 & 1591 \\
+      \hline
+    \end{tabular}
+  \end{table}
+
+  Con esta información, se pide:
+  \begin{enumerate}
+    \item Utilizando el análisis de regresión, determine el modelo (lineal o exponencial) que mejor representa la revolución de la demanda anual de camionetas en la región del Bío-Bío. [Evalúe el ajuste de los datos a cada modelo].
+    \begin{itemize}
+      \item $\widehat{a} = 431.71$
+      \begin{align*}
+        \widehat{a} &= \overline{y} - \widehat{b} \cdot \overline{x} \\
+        &= 980.857142 - 137.285714 \cdot 4 \\
+        &= 431.71
+      \end{align*}
+      \item $\widehat{b} = 137.28$
+      \begin{align*}
+        \widehat{b} &= \frac{\widehat{\rho_{xy}} \cdot \widehat{\sigma_x} \cdot \widehat{\sigma_y}}{\widehat{\sigma_x^2}} \\
+        &=  \frac{\widehat{\rho_{xy}} \cdot \widehat{\sigma_y}}{\widehat{\sigma_x}} \\
+        &= \frac{r \cdot Sy}{Sx} \\
+        &= \frac{0.920426 \cdot 322.210298}{2.160246} \\
+        &= 137.28
+      \end{align*}
+      % \item $\sum x_i = 28$
+      % \item $\overline{x} = 4$
+      % \item $\sigma_x = $
+      % \item  
+    \end{itemize}
+    Donde:
+    \begin{itemize}
+      \item $\overline{x}$ = Media de años.
+    \end{itemize}
+  \end{enumerate}
+\end{CuadroPersonalizado}
+
 \newpage
 \subsection{Estudio Técnico}\hypertarget{ET}{}
 \textbf{DEF.}
@@ -333,18 +536,45 @@ Todo producto es un conjunto de atributos o características que tienen una util
     \item El nivel de riesgo de la inversión a través de la volatilidad de los flujos de caja.
   \end{itemize}
 \end{itemize}
-% \begin{center}
-%     \begin{overpic}[width=0.3\textwidth]{img/LogoElNube.png}
-%         \put(5,50){\colorbox{Verde}{Verde}}
-%         \put(5,40){\colorbox{Morado}{Morado}}
-%         \put(5,30){\colorbox{Celeste}{Celeste}}
-%         \put(5,20){\colorbox{Salmon}{Salmon}}
-%         \put(5,10){\colorbox{RosaSuave}{RosaSuave}}
-%         \put(60,50){\colorbox{Turquesa}{Turquesa}}
-%         \put(60,40){\colorbox{Menta}{Menta}}
-%         \put(60,30){\colorbox{Melocoton}{Melocoton}}
-%         \put(60,20){\colorbox{AmarilloVainilla}{AmarilloVainilla}}
-%         \put(60,10){\colorbox{Gris}{Gris}}
-%     \end{overpic}
-% \end{center}
+
+\newpage
+
+\section{Ejercicio}
+\noindent
+La operación de sellado y escalado requieren de 1 operario para cada máquina. Teniendo en cuenta lo anterior, SE PIDE lo siguiente:
+\begin{enumerate}
+  \item Elabore un cuadro de requerimientos de recursos para cada una de las etapas de producción señaladas.
+\begin{center}
+  \begin{tabularx}{\textwidth}{|X|X|X|}
+    \hline
+    Columna 1 & Columna 2 & Columna 3 \\
+    \hline
+    Contenido 1 & 
+    \begin{itemize}
+      \item Elemento 1
+      \item Elemento 2
+      \item Elemento 3
+    \end{itemize} & 
+    Contenido 3 \\
+    \hline
+  \end{tabularx}
+  % \begin{tabularx}{\textwidth}{XXXXXX}
+  %   \textbf{Operación} & \textbf{Insumos} & \textbf{Suministros} & \textbf{Equipo} & \textbf{Personal} & \textbf{Espacio} \\
+  %   \hline
+  %   Limpieza & Machas natural & \begin{itemize}
+  %     \item Agua potable.
+  %     \item EPHP.
+  %     \item Electricidad.
+  %     \item Mantención herramientas.
+  %     \item Elementos de Limpieza.
+  %   \end{itemize} & 1 & 1 & 1 m^2 \\
+  %   % \end{array} & \begin{array}{c}
+  %   %   Estación de trabajo \\
+  %   %   Set. herramientas \\
+  %   %   Aire acondicionado \\
+  %   %   Bandeja y recipientes
+  %   % \end{array} & 1 & 1 m^2 \\
+  % \end{tabularx}
+\end{center}
+\end{enumerate}
 \end{document}
