@@ -1,0 +1,234 @@
+\documentclass{templateApunte}
+\usepackage{tcolorbox}
+
+\definecolor{Violeta}{RGB}{124,0,254}
+\definecolor{Verde2}{RGB}{130,254,0} % Complementario
+\definecolor{Naranja2}{RGB}{254,124,0} % Triadico
+\definecolor{Verde3}{RGB}{0,254,124} % Triadico
+
+\definecolor{Amarillo}{RGB}{249,228,0}
+\definecolor{Azul2}{RGB}{0,21,249} % Complementario
+\definecolor{Celeste2}{RGB}{0,249,228} % Triadico
+\definecolor{Rosa}{RGB}{228,0,249} % Triadico
+
+\definecolor{Naranja}{RGB}{255,175,0}
+\definecolor{Azul3}{RGB}{0,80,255} % Complementario
+\definecolor{Cian}{RGB}{0,255,175} % Triadico
+\definecolor{Violeta2}{RGB}{175,0,255} % Triadico
+
+\definecolor{Rojo}{RGB}{245,0,79}
+\definecolor{Verde4}{RGB}{0,245,166} % Complementario
+\definecolor{Verde}{RGB}{79,245,0} % Triadico
+\definecolor{Azul}{RGB}{0,79,245} % Triadico
+
+\definecolor{Celeste}{RGB}{0,191,255}
+\definecolor{Salmon}{RGB}{255,0,157}
+
+\newcommand{\newparagraph}{\par\vspace{\baselineskip}\noindent}
+\newcommand{\hlcolor}[2]{{\sethlcolor{#1}\hl{#2}}}
+
+\tcbuselibrary{skins}
+\usetikzlibrary{shadings}
+\newcounter{counter_comentario}
+\newcounter{counter_observacion}
+\tcbset{
+  base/.style={
+    empty,
+    frame engine=path,
+    colframe=white,
+    sharp corners,
+    %title={Comentario \thetcbcounter},
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    boxed title style={size=minimal, top=4pt, left=4pt},
+    coltitle=black,
+    fonttitle=\large\it,
+  }
+}
+\newtcolorbox{cP}[5]{%
+  base,
+  title={#3 \csname the#2\endcsname}, % Título personalizado #2 = nombre contador ; #3 = Título
+  drop fuzzy shadow, % Sombra del cuadro de texto
+  coltitle=#1,
+  borderline west={3pt}{-3pt}{#4}, % Borde Izquierdo #4 = color del borde
+  attach boxed title to top left={xshift=-3mm, yshift*=-\tcboxedtitleheight/2},
+  boxed title style={right=3pt, bottom=3pt, overlay={
+    \draw[draw=#5, fill=#5, line join=round]
+      (frame.south west) -- (frame.north west) -- (frame.north east) --
+      (frame.south east) -- ++(-2pt, 0) -- ++(-2pt, -4pt) --
+      ++(-2pt, 4pt) -- cycle; % #5 = color del fondo
+  }}, % Cuadro de titulo
+  overlay unbroken={
+    \scoped \shade[left color=#5!30!black, right color=#5]
+    ([yshift=-0.2pt]title.south west) -- ([xshift=-3pt, yshift=-0.2pt]title.south-|frame.west) -- ++(0, -4pt) -- cycle;
+  }, % Sombra de titulo #5 = color del titulo
+  before upper={\stepcounter{#2}}
+}
+\newtcolorbox{cPB}[2]{%
+  base,
+  coltitle=#1,
+  % drop fuzzy shadow, % Sombra del cuadro de texto
+  borderline west={3pt}{-3pt}{#2}, % Borde Izquierdo #4 = color del borde
+}
+\begin{document}
+% Seteo de contadores a 1
+\setcounter{counter_comentario}{1}
+\setcounter{counter_observacion}{1}
+
+\imagenlogoU{img/LogoElNube.png}
+\linklogoU{https://github.com/MarceloPazPezo}
+\linkQRDoc{https://github.com/MarceloPazPezo/MyRepo/tree/main/Icinf}
+\titulo{Certamen 1}
+\asignatura{Legislación}
+\autor{
+Marcelo Paz
+}
+\vDoc{1.0.0}
+\tipoDoc{Apunte del apunte}
+
+% Metadatos del PDF
+\title{[\asignatura]-\titulo}
+\author{
+    \autor
+}
+\portada
+\margenes % Crear márgenes
+
+\begin{center}
+  \begin{cPB}{black}{Rojo}
+    \large
+    \textbf{Artículo 1, Código Civil:}
+    \newline
+    La ley es una declaración de la voluntad soberana que, manifestada en la forma prescrita por la Constitución, manda, prohíbe o permite.
+  \end{cPB}
+\end{center}
+
+\section{Hombre, naturaleza y sociedad}
+\hlcolor{Amarillo!80}{La naturaleza y la sociedad constituyen el ambiente inevitable del hombre.}\footnote{Se utiliza hombre para referirse a la humanidad en general.}
+Esto quiere decir que el hombre tiene un medio natural y otro medio social.
+
+\subsection{Naturaleza}
+En la naturaleza, el hombre nace, crece, se desarrolla y muere, en un clima de cierto orden y disposición de las cosas y fenómenos que componen el universo, y en cuyo origen no ha cabido intervención alguna del hombre.
+
+\subsection{Sociedad}
+Por otra parte, se entiende por \textit{sociedad} a una agrupación de individuos que establecen vínculos y relaciones reciprocas e interacciones estables.
+\newline
+Respecto de los orígenes de la sociedad, \textbf{existen 2 corrientes:}
+\begin{itemize}
+  \item Planteada por \textbf{Aristóteles}. 
+  \begin{itemize} 
+    \item Quien sostenía que por defecto el hombre es un animal político.
+    \item Decía: \textit{El hombre aislado es un bruto o un Dios.}
+    \item \hlcolor{Amarillo!80}{Sostenía que la sociedad es una institución\footnote{Estructura o mecanismo de orden social que regula el comportamiento de los individuos dentro de una comunidad.} natural}, por el hombre individualmente considerado no puede ser autosuficiente, sino que necesita del resto para poder satisfacer sus exigencias físicas, espirituales y desarrollarse como persona.
+    \item La familia era la primera comunidad, luego se genera las aldeas, las que luego constituirían la polis o ciudad.
+  \end{itemize}
+
+  \newpage
+  \item Planteada por \textbf{Rousseau}.
+  \begin{itemize}
+    \item \hlcolor{Amarillo!80}{Sostenía} que la sociedad no deriva de una necesidad natural del hombre, sino \hlcolor{Amarillo!80}{que ven a la sociedad como una institución convencional.}
+    \item La sociedad la forman los hombres a partir de cierto instante, producto de un pacto o contrato social que pone término a un estado previo.
+  \end{itemize}
+\end{itemize}
+Sea que consideremos a la Sociedad como una institución natural o convencional, sin mucha dificultad, podemos advertir en primer lugar que la naturaleza está regida por leyes, las que llamaremos \textit{Leyes de la Naturaleza}; en tanto la sociedad, como medio de interacción entre distintos individuos, no excluye sino que, por el contrario, supone la presencia de conflicto entre los hombres, lo que hizo necesaria la creación de normas de conducta.
+
+\section{Las normas de conducta}
+Nuestra interacción en la vida social está regida por una serie de normas de conducta.
+En un ejemplo dado por el profesor se hace referencia a:
+\begin{itemize}
+  \item \textbf{Norma de trato social}, donde se saluda al vecino.
+  \item \textbf{Reglas técnicas}, donde al subirse al auto, nos ponemos el cinturón.
+  \item \textbf{Contrato de prestación de servicios}, donde al entrar al estacionamiento se saca un ticket.
+  \item \textbf{Deber moral}, donde se le da dinero a una persona, la cual pide para comer.
+\end{itemize}
+Si bien, las distintas normas de conductas nombradas, pueden tener marcadas diferencias entre ellas, decimos igualmente que son normas de conducta, ello, porque existe un núcleo común entre ellas.
+\begin{cPB}{black}{Naranja}
+  \textbf{Núcleo:} proposiciones o enunciados que tienen por objeto influir en nuestro comportamiento, dirigir nuestra conducta en un sentido o el otro, conseguir que actuemos en una determinada manera que se considere deseable.  
+\end{cPB}
+
+\subsection{Clases}
+\begin{itemize}
+  \item \textbf{Normas de trato social:} Son prescripciones\footnote{Regla, directriz o mandato que indica cómo debe comportarse una persona en una situación específica.}, originadas al interior de un grupo social determinado, que tienden a la realización de ciertos fines como la urbanidad\footnote{Comportamiento acorde con los buenos modales.}, el decoro, la cortesía y otros semejantes, en las que la inobservancia\footnote{Falta de cumplimiento.} de los deberes impuestos se traduce en un tipo difuso de sanción\footnote{Desde la representación de la conducta infringida al infractor, haste el linchamiento (la sanción más grave y primitiva).}.
+  \begin{itemize}
+    \item Ejemplos de ellas: los saludos, regalos, invitaciones, visitas, etc.
+    \item Hay autores como Giorgio del Vecchio que opina que la conducta del hombre sólo puede ser objeto de regulación moral o jurídica\footnote{Todo lo relacionado con el derecho, su ejercicio e interpretación.} (negando que las normas de trato social sean normas autónomas).
+  \end{itemize}
+
+  \item \textbf{Normas morales:} Conjunto de principios y normas que establecerían qué es lo que debemos hacer para actuar de un modo moralmente correcto y conseguir el bien a que aspiramos.
+  \newline
+  Se entiende por ética:
+  \begin{enumerate}
+    \item Sólo al actuar humano y no califica a éste de correcto o incorrecto, de bueno o malo.
+    \item No solo se utiliza para referirse al comportamiento humano, sino que para calificar este comportamiento de bueno o malo.
+    \item Para referirnos a uno de los 3 órdenes normativos (los usos sociales, el derecho y la moral). 
+  \end{enumerate}
+
+  \item \textbf{Normas jurídicas:} Son aquellas que regulan la conducta de los hombres que viven en sociedad, que provienen de actos de producción normativa ejecutados por la autoridad (legislador) a la que otras normas jurídicas del respectivo ordenamiento le otorgan competencia para tales actos, cuyo cumplimiento, además, está garantizado por la legitima posibilidad del uso de la fuerza socialmente organizada y que, por último, apuntan a la realización de aspiraciones de orden, paz y seguridad.
+  \begin{itemize}
+    \item A este tipo de normas, junto con la costumbre, la jurisprudencia\footnote{Conjunto de principios o normas generales que emanan de los fallos uniformes dictados por los Tribunales Superiores de Justicia para la aplicación e interpretación de las normas jurídicas.}, y los actos administrativos, se les denomina \textit{derecho}.
+  \end{itemize}
+  
+  \textbf{Características:}
+  \begin{itemize}
+    \item \hlcolor{Violeta!50}{Exteriores:} regulan las conductas emitidas o manifestadas por los individuos y no aquellas que permanecen en el pensamiento.
+    Existen excepciones, si una persona realiza una conducta prohibida (matar, lesionar, robar) la interioridad del sujeto es relevante (Si lo hizo intencional o por descuido).
+    
+    \item \hlcolor{Violeta!50}{Heterónomas:} son establecidas por una autoridad normativa que es ajena y está por sobre los individuos que deben obedecerlas.
+    \begin{itemize}
+      \item La característica heterónoma ocurre en los sistemas de democracias \newline representativas (se eligen a quienes dictaran las normas). 
+      \item La característica heterónoma se pierde en los sistemas de democracias directas (es el pueblo que, reunido en asambleas, produce sus propias leyes), pues son los mismo sujetos quienes se someten a su propio querer, sus propias normas.
+    \end{itemize}
+
+    \item \hlcolor{Violeta!50}{Bilaterales:} Imponen deberes a un sujeto determinado (sujeto pasivo) y confiere facultades a otro (sujeto activo) para exigir el cumplimiento de tales deberes.
+    
+    \item \hlcolor{Violeta!50}{Coercibles:} Frente al incumplimiento de una norma jurídica, existe la posibilidad de exigir el cumplimiento por medio de la fuerza legítima (a través de órganos reguladores en su funcionamiento por el ordenamiento jurídico).
+  \end{itemize}
+\end{itemize}
+
+\newpage
+\section{El derecho}
+Derecho es una voz polisémica\footnote{Tiene múltiples significados.}, tiene raíz latina que deriva de la voz \textbf{directum}, que significa lo que est\'a conforme a la regla, a la ley o la norma.
+\newparagraph
+\textbf{Definiciones:}
+\begin{itemize}
+  \item El Derecho es un sistema u orden normativo e institucional que regula la conducta externa de las personas, inspirando en los postulados de justicia y certeza jurídica, que regula la convivencia social y permite resolver los conflictos de relevancia jurídica, pudiendo imponerse coactivamente.
+  \item \textit{Francesco Carnelutti-} define Derecho al conjunto de mandatos jurídicos (preceptos sancionados) que se constituyen para garantizar, dentro de un grupo (Estado), la paz amenazada por los conflictos de intereses entre sus miembros.
+  \item Aplicado a un territorio especificó, el Derecho es un conjunto de principios y normas, esto es, el Ordenamiento Jurídico, que regula las relaciones entre los sujetos de una determinada nación, o entre Estados.
+  \item El Derecho, o el Ordenamiento Jurídico de un Estado puede ser Escrito(Chile), o puede basarse en la costumbre, a la que llamamos Derecho Consuetudinario.
+\end{itemize}
+
+\textbf{Clasificación:}
+\begin{itemize}
+  \item Derecho Público: Conjunto de normas que rigen la actividad y la organización del Estado, como también las relaciones entre los particulares y el Estado.
+  \begin{enumerate}[label=\alph*)-]
+    \item \hlcolor{Celeste!50}{Derecho Constitucional}: aquel que establece los principios y reglas que regulan la forma del Estado, la forma de gobierno, los derechos constitucionales, las atribuciones y potestades de los poderes públicos.
+    
+    \item \hlcolor{Celeste!50}{Derecho Administrativo}: es aquel que regula la Administración Pública o Administración del Estado. Se vincula con el Derecho Constitucional, \newline específicamente con su parte orgánica: es el derecho común de la Administración Pública.
+    
+    \item \hlcolor{Celeste!50}{Derecho Penal}: es la rama del Derecho Público que regula la potestad punitiva\footnote{buscar} del Estado, integrando un conjunto de disposiciones que tipifican las conductas u omisiones calificadas como delitos, y reglan las condiciones para la aplicación de las penas o de medidas de seguridad o rehabilitación.
+    
+    \item \hlcolor{Celeste!50}{Derecho Financiero}: rama del Derecho Administrativo relativa al manejo de las finanzas públicas. Abarca tanto normas sobre tributos (Derecho Tributario), as\'i como normas financieras propiamente tales relativas al fato (Derecho Presupuestario).
+    
+    \item \hlcolor{Celeste!50}{Derecho Económico}: aquel que regla todas las \'areas de la economía que son objeto de regulaciones públicas.
+    
+    \item \hlcolor{Celeste!50}{Derecho Internacional Público}: es el conjunto de normas jurídicas, costumbres y principios jurídicos que regulan las relaciones entre los Estados.
+    
+    \item \hlcolor{Celeste!50}{Derecho Procesal}: conjunto de normas que señala los pasos a seguir ante los tribunales de justicia. Esto es, establece los procedimientos judiciales y la manera de proceder de todos quienes intervienen en ellos.
+  \end{enumerate}
+
+  \item Derecho Privado: conjunto de normas que regulan las relaciones de los particulares entre sí o las relaciones de estos con el Estado u otros organismos cuando actúan como simples personas privadas, pudiendo ser el Estado también.
+  \textbf{Destacan las siguientes ramas:}
+  \begin{enumerate}[label=\alph*)-]
+    \item Derecho Civil: sintéticamente se le describe como el derecho privado común y general, puesto que constituye el núcleo del mismo.
+    \begin{itemize}
+      \item Es \textbf{común} porque es aplicable a todas las relaciones jurídicas privadas que no estén disciplinadas por otras ramas del derecho, además sus principios y normas generales son aplicables en casos de lagunas o vacíos legales.
+      \item Es \textbf{general} porque es aplicable a todas las personas, salvo disposición especial.
+      \item Se le conoce como \textit{``el conjunto de principios y preceptos jurídicos sobre la personalidad y las relaciones patrimoniales y de familia.''}
+      \item Regula a los individuos desde el nacimiento hasta la muerte, tanto en su vida familiar, como en el ámbito económico y patrimonial.
+    \end{itemize}
+
+    \item Derecho Comercial: es la rama del derecho que rige las relaciones entre particulares, esto es, personas naturales y personas jurídicas, y que se encarga de otorgar un marco jurídico a los actos de comercio.
+    
+    \item Derecho del Trabajo: es el conjunto de normas y principios que tienen por objeto regular las relaciones entre empleadores y trabajadores entre ellos, y también con el Estado, fijando reglas que tienen por objeto brindar protección y tutela al trabajo dependiente.
+  \end{enumerate}
+\end{itemize}
+\end{document}
